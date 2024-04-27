@@ -7,6 +7,7 @@ import "react-vertical-timeline-component/style.min.css";
 import "./education.css";
 import { useTheme } from "../../context/ThemeContext";
 import ContactForm from "../contactForm/contactForm";
+import { basePath } from "../../constant";
 
 const Education = () => {
   const { isDarkMode } = useTheme();
@@ -27,7 +28,7 @@ const Education = () => {
           contentStyle={contentStyle}
           contentArrowStyle={{ borderRight: "7px solid  rgb(53, 53, 53)" }}
           iconStyle={{
-            backgroundImage: `url("/images/icons/gndu.png")`,
+            backgroundImage: `url("${basePath}/images/icons/gndu.png")`,
             backgroundSize: "cover",
             backgroundPosition: "50%",
             width: "50px",
@@ -52,7 +53,7 @@ const Education = () => {
           contentStyle={contentStyle}
           contentArrowStyle={{ borderRight: "7px solid  rgb(53, 53, 53)" }}
           iconStyle={{
-            backgroundImage: `url("/images/icons/gndu.png")`,
+            backgroundImage: `url("${basePath}/images/icons/gndu.png")`,
             backgroundSize: "cover",
             backgroundPosition: "50%",
             width: "50px",
@@ -77,7 +78,7 @@ const Education = () => {
           contentStyle={contentStyle}
           contentArrowStyle={{ borderRight: "7px solid  rgb(53, 53, 53)" }}
           iconStyle={{
-            backgroundImage: `url("/images/icons/school.jpeg")`,
+            backgroundImage: `url("${basePath}/images/icons/school.jpeg")`,
             backgroundSize: "cover",
             backgroundPosition: "50%",
             width: "50px",
@@ -100,7 +101,7 @@ const Education = () => {
           contentStyle={contentStyle}
           contentArrowStyle={{ borderRight: "7px solid  rgb(53, 53, 53)" }}
           iconStyle={{
-            backgroundImage: `url("/images/icons/schoolTangra.jpg")`,
+            backgroundImage: `url("${basePath}/images/icons/schoolTangra.jpg")`,
             backgroundSize: "cover",
             backgroundPosition: "50%",
             width: "50px",
