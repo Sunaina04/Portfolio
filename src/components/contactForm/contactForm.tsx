@@ -164,7 +164,7 @@ const ContactForm: React.FC = () => {
               </svg>
             </a>
             <a
-              href="/SunainaTakhi.pdf"
+              href={basePath + "/SunainaTakhi.pdf"}
               target="_blank"
               aria-label="link to Resume"
             >
