@@ -3,6 +3,7 @@ import "./about.css";
 import Experience from "../experience/experience";
 import Education from "../education/education";
 import { useTheme } from "../../context/ThemeContext";
+import { basePath } from "../../constant";
 
 const About = () => {
   const { isDarkMode } = useTheme();
@@ -40,7 +41,8 @@ const About = () => {
         <div className="image-container">
           <img
             className="image"
-            src="/images/Programmer.avif"
+            // src={`${basePath}/images/Programmer.avif`}
+            src={basePath + "/images/Programmer.avif"}
             alt="Your Image Alt Text"
             width={400}
             height={300}

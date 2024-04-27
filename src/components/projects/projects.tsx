@@ -2,6 +2,7 @@ import React from "react";
 import "./projects.css"; // Assuming "projects.css" is your external CSS file
 import { useTheme } from "../../context/ThemeContext";
 import ContactForm from "../contactForm/contactForm";
+import { basePath } from "../../constant";
 
 const Projects = () => {
   const { isDarkMode } = useTheme();
@@ -30,7 +31,7 @@ const Projects = () => {
               <strong>Role:</strong> React Developer
             </p>
             <img
-              src="/images/icons/Moorfind.png"
+              src={basePath + "/images/icons/Moorfind.png"}
               style={{ width: "140%", marginLeft: "-80px", marginTop: "30px" }}
             />
           </div>
@@ -59,7 +60,7 @@ const Projects = () => {
               Visit Surf Lokal CRM Web
             </a>
             <img
-              src="/images/icons/CRM.png"
+              src={basePath + "/images/icons/CRM.png"}
               style={{ width: "140%", marginLeft: "-80px" }}
             />
           </div>
@@ -89,7 +90,7 @@ const Projects = () => {
               Visit Surf Lokal Property Web
             </a>
             <img
-              src="/images/icons/Surflokal.png"
+              src={basePath + "/images/icons/Surflokal.png"}
               style={{
                 width: "140%",
                 marginTop: "30px",
@@ -117,7 +118,7 @@ const Projects = () => {
               <strong>Role:</strong> Front-end Developer
             </p>
             <img
-              src="/images/icons/Redscope.png"
+              src={basePath + "/images/icons/Redscope.png"}
               style={{
                 width: "140%",
                 marginLeft: "-80px",
@@ -145,7 +146,7 @@ const Projects = () => {
               Visit Supplier Order Management Project
             </a>
             <img
-              src="/images/icons/Redington-nobg.png"
+              src={basePath + "/images/icons/Redington-nobg.png"}
               style={{ width: "100%" }}
             />
           </div>
@@ -188,7 +189,7 @@ const Projects = () => {
               <strong>Role:</strong> Frontend and Backend Developer
             </p>
             <img
-              src="/images/icons/C&S.png"
+              src={basePath + "/images/icons/C&S.png"}
               style={{
                 width: "140%",
                 marginLeft: "-80px",
@@ -215,7 +216,7 @@ const Projects = () => {
               <strong>Role:</strong> Frontend and Backend Developer
             </p>
             <img
-              src="/images/icons/BloodBank.png"
+              src={basePath + "/images/icons/BloodBank.png"}
               style={{
                 width: "140%",
                 marginLeft: "-80px",

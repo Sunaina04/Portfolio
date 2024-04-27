@@ -14,7 +14,7 @@ function App() {
   return (
     <>
       <ThemeProvider>
-        <BrowserRouter>
+        <BrowserRouter basename="/Portfolio">
           <Header />
           <Routes>
             <Route path="/" element={<Index />}></Route>

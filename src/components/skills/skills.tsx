@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./skills.css";
 import { useTheme } from "../../context/ThemeContext";
+import { basePath } from "../../constant";
 
 const Skills = () => {
   const [shouldAnimate, setShouldAnimate] = useState(false);
@@ -39,7 +40,7 @@ const Skills = () => {
           <div className="skill-box">
             <p>
               <img
-                src={"./images/icons/c++.svg"}
+                src={basePath + "./images/icons/c++.svg"}
                 alt="logo"
                 style={{
                   width: "20px",
@@ -52,7 +53,7 @@ const Skills = () => {
 
             <p>
               <img
-                src={"./images/icons/css.svg"}
+                src={ basePath +"./images/icons/css.svg"}
                 alt="logo"
                 style={{
                   width: "20px",
@@ -64,7 +65,7 @@ const Skills = () => {
             </p>
             <p>
               <img
-                src={"./images/icons/javascript.gif"}
+                src={ basePath +"./images/icons/javascript.gif"}
                 alt="logo"
                 style={{
                   width: "20px",
@@ -77,7 +78,7 @@ const Skills = () => {
 
             <p>
               <img
-                src={"./images/icons/java.gif"}
+                src={ basePath +"./images/icons/java.gif"}
                 alt="logo"
                 style={{
                   width: "20px",
@@ -89,7 +90,7 @@ const Skills = () => {
             </p>
             <p>
               <img
-                src={"./images/icons/typescript.svg"}
+                src={ basePath +"./images/icons/typescript.svg"}
                 alt="logo"
                 style={{
                   width: "20px",
@@ -101,7 +102,7 @@ const Skills = () => {
             </p>
             <p>
               <img
-                src={"./images/icons/html5.png"}
+                src={ basePath +"./images/icons/html5.png"}
                 alt="logo"
                 style={{
                   width: "20px",
@@ -118,7 +119,7 @@ const Skills = () => {
           <div className="skill-box">
             <p>
               <img
-                src={"./images/icons/logo.svg"}
+                src={ basePath +"./images/icons/logo.svg"}
                 alt="logo"
                 style={{ width: "25px" }}
               />
@@ -126,7 +127,7 @@ const Skills = () => {
             </p>
             <p>
               <img
-                src={"./images/icons/react-router.svg"}
+                src={ basePath +"./images/icons/react-router.svg"}
                 alt="logo"
                 style={{
                   width: "20px",
@@ -138,7 +139,7 @@ const Skills = () => {
             </p>
             <p>
               <img
-                src={"./images/icons/redux.png"}
+                src={ basePath +"./images/icons/redux.png"}
                 alt="logo"
                 style={{
                   width: "20px",
@@ -150,7 +151,7 @@ const Skills = () => {
             </p>
             <p>
               <img
-                src={"./images/icons/mui.png"}
+                src={ basePath +"./images/icons/mui.png"}
                 alt="logo"
                 style={{
                   width: "20px",
@@ -162,7 +163,7 @@ const Skills = () => {
             </p>
             <p>
               <img
-                src={"./images/icons/mongoose.png"}
+                src={ basePath +"./images/icons/mongoose.png"}
                 alt="logo"
                 style={{
                   width: "20px",
@@ -174,7 +175,7 @@ const Skills = () => {
             </p>
             <p>
               <img
-                src={"./images/icons/jest.png"}
+                src={ basePath +"./images/icons/jest.png"}
                 alt="logo"
                 style={{
                   width: "20px",
@@ -188,7 +189,7 @@ const Skills = () => {
             <div className="skill-box" style={{marginTop :"10px"}} >
             <p>
               <img
-                src={"./images/icons/enzyme.png"}
+                src={ basePath +"./images/icons/enzyme.png"}
                 alt="logo"
                 style={{
                   width: "15px",
@@ -200,7 +201,7 @@ const Skills = () => {
             </p>
             <p>
               <img
-                src={"./images/icons/recharts.png"}
+                src={ basePath +"./images/icons/recharts.png"}
                 alt="logo"
                 style={{
                   width: "20px",
@@ -212,7 +213,7 @@ const Skills = () => {
             </p>
             <p>
               <img
-                src={"./images/icons/chart.js"}
+                src={ basePath +"./images/icons/chart.js"}
                 alt="logo"
                 style={{
                   width: "20px",
@@ -224,7 +225,7 @@ const Skills = () => {
             </p>
             <p>
               <img
-                src={"./images/icons/lodash.png"}
+                src={ basePath +"./images/icons/lodash.png"}
                 alt="logo"
                 style={{
                   width: "20px",
@@ -236,7 +237,7 @@ const Skills = () => {
             </p>
             <p>
               <img
-                src={"./images/icons/JWT.svg"}
+                src={ basePath +"./images/icons/JWT.svg"}
                 alt="logo"
                 style={{
                   width: "20px",
@@ -248,7 +249,7 @@ const Skills = () => {
             </p>
             <p>
               <img
-                src={"./images/icons/jquery.png"}
+                src={ basePath +"./images/icons/jquery.png"}
                 alt="logo"
                 style={{
                   width: "20px",
@@ -265,7 +266,7 @@ const Skills = () => {
           <div className="skill-box">
             <p>
               <img
-                src={"./images/icons/mongodb.svg"}
+                src={ basePath +"./images/icons/mongodb.svg"}
                 alt="logo"
                 style={{
                   width: "20px",
@@ -277,7 +278,7 @@ const Skills = () => {
             </p>
             <p>
               <img
-                src={"./images/icons/postgresql.svg"}
+                src={ basePath +"./images/icons/postgresql.svg"}
                 alt="logo"
                 style={{
                   width: "20px",
@@ -289,7 +290,7 @@ const Skills = () => {
             </p>
             <p>
               <img
-                src={"./images/icons/sql.png"}
+                src={ basePath +"./images/icons/sql.png"}
                 alt="logo"
                 style={{
                   width: "20px",
@@ -306,7 +307,7 @@ const Skills = () => {
           <div className="skill-box">
             <p>
               <img
-                src={"./images/icons/git.svg"}
+                src={ basePath +"./images/icons/git.svg"}
                 alt="logo"
                 style={{
                   width: "20px",
@@ -318,7 +319,7 @@ const Skills = () => {
             </p>
             <p>
               <img
-                src={"./images/icons/github.gif"}
+                src={ basePath +"./images/icons/github.gif"}
                 alt="logo"
                 style={{
                   width: "20px",
@@ -330,7 +331,7 @@ const Skills = () => {
             </p>
             <p>
               <img
-                src={"./images/icons/docker.svg"}
+                src={ basePath +"./images/icons/docker.svg"}
                 alt="logo"
                 style={{
                   width: "20px",
@@ -342,7 +343,7 @@ const Skills = () => {
             </p>
             <p>
               <img
-                src={"./images/icons/postman.png"}
+                src={ basePath +"./images/icons/postman.png"}
                 alt="logo"
                 style={{
                   width: "20px",
@@ -354,7 +355,7 @@ const Skills = () => {
             </p>
             <p>
               <img
-                src={"./images/icons/visual-studio.svg"}
+                src={ basePath +"./images/icons/visual-studio.svg"}
                 alt="logo"
                 style={{
                   width: "20px",
@@ -366,7 +367,7 @@ const Skills = () => {
             </p>
             <p>
               <img
-                src={"./images/icons/intellij-idea.svg"}
+                src={ basePath +"./images/icons/intellij-idea.svg"}
                 alt="logo"
                 style={{
                   width: "20px",
@@ -378,7 +379,7 @@ const Skills = () => {
             </p>
             <p>
               <img
-                src={"./images/icons/figma.gif"}
+                src={ basePath +"./images/icons/figma.gif"}
                 alt="logo"
                 style={{
                   width: "20px",
@@ -390,7 +391,7 @@ const Skills = () => {
             </p>
             <p>
               <img
-                src={"./images/icons/ubuntu.png"}
+                src={ basePath +"./images/icons/ubuntu.png"}
                 alt="logo"
                 style={{
                   width: "20px",

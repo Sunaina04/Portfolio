@@ -4,6 +4,7 @@ import Skills from "../skills/skills";
 import Header from "../header/header";
 import { useTheme } from "../../context/ThemeContext";
 import ContactForm from "../contactForm/contactForm";
+import { basePath } from "../../constant";
 
 const Index = () => {
   const { isDarkMode } = useTheme();
@@ -57,7 +58,7 @@ const Index = () => {
         <div className="home-image-container">
           <img
             className="image"
-            src="/images/Women_coding.avif"
+            src={basePath + "/images/Women_coding.avif"}
             alt="Your Image Alt Text"
             width={400}
             height={300}

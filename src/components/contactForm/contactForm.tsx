@@ -1,6 +1,7 @@
 import React, { FormEvent, useState } from "react";
 import "./contactForm.css"; // Import external CSS file
 import { useTheme } from "../../context/ThemeContext";
+import { basePath } from "../../constant";
 
 const ContactForm: React.FC = () => {
   const { isDarkMode } = useTheme();
@@ -167,7 +168,7 @@ const ContactForm: React.FC = () => {
               target="_blank"
               aria-label="link to Resume"
             >
-              <img src="/images/icons/resume.png" width={"40px"} height={"30px"}/>
+              <img src={basePath + "/images/icons/resume.png"} width={"40px"} height={"30px"}/>
             </a>
           </div>
         </div>
