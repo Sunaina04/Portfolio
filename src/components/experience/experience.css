@@ -1,0 +1,115 @@
+/* General styles */
+.expParentContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #000000; /* Change to your desired background color */
+  padding: 150px;
+}
+
+.dark-mode {
+  background-color: #000000 !important; /* Dark background color */
+  color: white !important;
+  border-color: #ffffff !important;
+}
+
+.light-mode {
+  background-color: white; /* Light background color */
+  color: black;
+  border-color: #000000 !important;
+}
+
+.exp-container {
+  padding: 50px; /* Reduced padding */
+  border-radius: 8px; /* Reduced border radius */
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden; /* Ensure overflow is hidden for animation */
+  position: relative; /* Required for absolute positioning of elements */
+  border: 2px solid #dba800; /* White border */
+  transition: box-shadow 0.3s ease, color 0.3s ease; /* Add transition effect */
+}
+
+.exp-container:hover {
+  box-shadow: 0px 8px 12px rgba(0, 0, 0, 0.2); /* Add shadow on hover */
+}
+
+.exp-title {
+  font-size: 50px; /* Reduced font size */
+  font-weight: bold;
+  color: #b69b00; /* White text */
+  text-align: center;
+  margin-top: -30px;
+  margin-bottom: -45px; /* Reduced margin */
+  position: relative; /* Positioning context for animation */
+  animation: fadeInDown 1s ease-in-out; /* Fade in animation */
+}
+
+.exp-subtitle {
+  font-size: 30px; /* Reduced font size */
+  font-weight: bold;
+  color: #d69301; /* White text */
+  margin-bottom: 10px;
+  animation: fadeIn 1s ease-in-out; /* Fade in animation */
+}
+
+.exp-text {
+  font-size: 20px; /* Reduced font size */
+  line-height: 1.6;
+  text-align: justify;
+  animation: fadeInUp 1s ease-in-out; /* Fade in animation */
+}
+
+/* Keyframe animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px); /* Smaller slide down animation */
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px); /* Smaller slide up animation */
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Media queries for mobile view */
+@media only screen and (max-width: 768px) {
+  .expParentContainer {
+    padding: 80px; /* Adjust padding for mobile screens */
+  }
+
+  .exp-container {
+    padding: 30px; /* Adjust padding for mobile screens */
+  }
+
+  .exp-title {
+    font-size: 40px; /* Adjust font size for mobile screens */
+  }
+
+  .exp-subtitle {
+    font-size: 25px; /* Adjust font size for mobile screens */
+  }
+
+  .exp-text {
+    font-size: 16px; /* Adjust font size for mobile screens */
+  }
+}

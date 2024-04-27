@@ -1,0 +1,102 @@
+/* contactForm.css */
+
+/* General styles */
+.footer {
+  font-family: Arial, sans-serif;
+  color: #333;
+  padding: 20px;
+  display: flex; /* Use flexbox for centering */
+  justify-content: center; /* Horizontally center content */
+  align-items: center; /* Vertically center content */
+}
+
+/* Light mode */
+.light-mode {
+  background-color: #f0f0f0;
+}
+
+/* Dark mode */
+.dark-mode {
+  background-color: #333;
+  color: #fff;
+}
+
+/* Form container */
+.contact-form-container {
+  max-width: 500px;
+  text-align: center; /* Center align text */
+}
+
+/* Form elements */
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+/* Send button */
+.send-button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 20px;
+  padding: 15px 180px; /* Adjusted padding for the button */
+  cursor: pointer;
+  margin-top: 20px;
+  justify-content: center;
+}
+
+/* Send button hover effect */
+.send-button:hover {
+  background-color: #0056b3;
+}
+
+/* Result message */
+.result-message,
+.error-message {
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+/* Footer links */
+.footer-links {
+  margin-top: 15px;
+  display: flex;
+  align-items: center;
+}
+
+/* Margin between social links */
+.social-link {
+  margin-right: 1rem;
+}
+
+/* LinkedIn icon */
+.linkedin-icon {
+  width: 30px;
+  height: 30px;
+  margin-left: 15rem;
+}
+
+/* Media queries for smaller screens */
+@media only screen and (max-width: 768px) {
+  .contact-form-container {
+    max-width: 90%;
+    padding: 0 10px;
+  }
+
+  .send-button {
+    padding: 15px 50px;
+  }
+
+  .footer-links .social-link {
+    margin-right: 0.5rem;
+    margin-top: 10px;
+    text-align: center;
+  }
+}

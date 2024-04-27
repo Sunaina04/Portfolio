@@ -1,0 +1,103 @@
+.parent-container {
+  padding: 120px;
+  text-align: center; /* Center the content horizontally */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.dark-mode {
+  background-color: #000000 !important; /* Dark background color */
+  color: white !important;
+  border-color: #ffffff !important;
+}
+
+.light-mode {
+  background-color: white; /* Light background color */
+  color: black;
+  border-color: #000000 !important;
+}
+
+.projectHeading {
+  margin-top: 20px;
+  font-size: 50px;
+}
+
+
+.projects-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* Center the project boxes horizontally */
+  gap: 50px; /* Add some gap between project boxes */
+  margin-top: 50px;
+  padding: 20px;
+}
+
+.project-box {
+  border-width: 2px;
+  border-style: solid;
+  border-radius: 20px;
+  padding: 45px;
+  width: calc(50% - 20px);
+  max-width: 500px;
+  background-color: rgba(255, 255, 255, 0.05);
+  /* color: white; */
+  font-size: 18px; /* Increase font size for better readability */
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  box-sizing: border-box;
+}
+
+.project-box h2 {
+  margin-top: 10px;
+}
+
+.project-box p {
+  margin-bottom: 10px;
+  text-align: justify;
+}
+
+
+.project-box:hover {
+  background-color: rgba(255, 255, 255, 0.1); /* Lighten background color on hover */
+  transform: translateY(-5px);
+}
+
+.project-details h2 {
+  font-size: 20px; /* Increase font size for emphasis */
+  margin-bottom: 10px; /* Add margin below heading */
+}
+
+.project-details p {
+  margin-bottom: 10px; /* Add margin between paragraphs */
+  text-align: left;
+}
+
+/* Define media query for screens smaller than 768px (typical mobile devices) */
+@media only screen and (max-width: 768px) {
+  .parent-container {
+    padding: 60px;
+  }
+
+  .projects-container {
+    gap: 20px; /* Reduce the gap between project boxes */
+    margin-top: 30px;
+  }
+
+  .project-box {
+    width: calc(100% - 20px); /* Make project boxes full width */
+    padding: 20px; /* Reduce padding */
+    max-width: none; /* Remove maximum width */
+  }
+
+  .project-box h2 {
+    font-size: 28px; /* Reduce font size for better fit */
+  }
+
+  .project-box img {
+    width: 100%; /* Make images fill the container */
+    margin-left: auto; /* Center images horizontally */
+    margin-right: auto;
+    display: block;
+  }
+}

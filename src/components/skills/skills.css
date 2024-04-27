@@ -1,0 +1,76 @@
+.skills-container {
+  margin-left: 5vh;
+  /* color: white; */
+}
+
+.dark-mode {
+  background-color: #000000 !important; /* Dark background color */
+  color: white !important;
+  border-color: #ffffff !important;
+}
+
+.light-mode {
+  background-color: white; /* Light background color */
+  color: black;
+  border-color: #000000 !important;
+}
+
+.category {
+  margin-bottom: -10px;
+  overflow: hidden; /* Hide overflow for animation */
+}
+
+.skill-box {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: -30px;
+  animation: slideInFromLeft 1s ease forwards; /* Adjust animation duration */
+  transform: translateX(-100%);
+}
+
+h1 {
+  color: rgb(221, 151, 0);
+}
+
+.skill-box p {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+  line-height: 0.8rem;
+  padding: 10px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+
+.skill-box p:last-child {
+  margin-right: 0;
+}
+
+.App-logo {
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 5s linear;
+  }
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes slideInFromLeft {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+

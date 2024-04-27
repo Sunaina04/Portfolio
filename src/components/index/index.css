@@ -1,0 +1,136 @@
+/* index.css */
+
+/* Default styles */
+
+.main {
+  background-color: #000000;
+}
+
+.header {
+  min-height: 45vh;
+  margin-left: 10vh;
+  display: flex;
+  font-size: calc(10px + 2vmin);
+  color: #e2cca4;
+}
+
+.dark-mode {
+  background-color: #000000 !important; /* Dark background color */
+  color: white !important;
+  border-color: #ffffff !important;
+}
+
+.light-mode {
+  background-color: white; /* Light background color */
+  color: black;
+  border-color: #000000 !important;
+}
+
+h1 {
+  color: #e2cca4;
+  margin-top: 12vh;
+  font-size: 60px;
+}
+
+.container {
+  min-height: 10vh;
+  display: flex;
+  justify-content: space-between;
+}
+
+.text {
+  font-size: 35px;
+  margin-left: 10vh;
+}
+
+.image {
+  width: 450px;
+  height: 350px;
+  object-fit: cover;
+}
+
+.home-image-container img {
+  transition: 1s ease;
+  margin-right: 120px;
+  border-radius: 20px;
+}
+
+.home-image-container img:hover {
+  border-radius: 50%;
+  transition: 1s ease;
+}
+
+.phrase {
+  animation: fadeInOut 4s ease infinite;
+  transition: opacity 0.3s ease;
+  font-size: 40px;
+}
+
+.show {
+  opacity: 1;
+}
+
+@keyframes fadeInOut {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+/* Media Queries */
+
+/* For screens smaller than 768px (phones) */
+@media (max-width: 767px) {
+  .header {
+    min-height: 30vh; /* Adjusted height for smaller screens */
+    margin-left: 5vh; /* Adjusted margin for smaller screens */
+    font-size: calc(8px + 2vmin); /* Adjusted font size for smaller screens */
+  }
+
+  h1 {
+    font-size: 40px; /* Adjusted font size for smaller screens */
+  }
+
+  .text {
+    font-size: 25px; /* Adjusted font size for smaller screens */
+    margin-left: 5vh; /* Adjusted margin for smaller screens */
+  }
+
+  .container {
+    flex-direction: column; /* Display content in column for smaller screens */
+    align-items: center; /* Center align content */
+  }
+
+  .image {
+    width: 100%; /* Adjusted width for smaller screens */
+    height: auto; /* Adjusted height for smaller screens */
+    margin-top: 20px; /* Add margin to separate image from text */
+  }
+
+  .home-image-container img {
+    margin-right: 0; /* No margin on smaller screens */
+  }
+}
+
+/* For screens smaller than 400px */
+@media (max-width: 399px) {
+  .header {
+    min-height: 25vh; /* Adjusted height for smaller screens */
+    margin-left: 3vh; /* Adjusted margin for smaller screens */
+    font-size: calc(6px + 2vmin); /* Adjusted font size for smaller screens */
+  }
+
+  h1 {
+    font-size: 30px; /* Adjusted font size for smaller screens */
+  }
+
+  .text {
+    font-size: 20px; /* Adjusted font size for smaller screens */
+    margin-left: 3vh; /* Adjusted margin for smaller screens */
+  }
+}

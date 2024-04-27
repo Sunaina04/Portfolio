@@ -1,0 +1,108 @@
+/* General styles */
+.aboutParentContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #000000; /* Change to your desired background color */
+  padding: 250px;
+}
+
+.dark-mode {
+  background-color: #000000 !important; /* Dark background color */
+  color: white !important;
+  border-color: #ffffff !important;
+}
+
+.light-mode {
+  background-color: white; /* Light background color */
+  color: black;
+  border-color: #000000 !important;
+}
+
+.aboutContent {
+  text-align: left; /* Align text to the left */
+  margin-right: 20px; /* Add margin to separate text from the image */
+}
+
+.headerText {
+  font-size: 4rem;
+  color: #9c8003; /* Change to your desired text color */
+}
+
+.contentText {
+  font-size: 1.4rem;
+}
+
+.locationContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.locationText {
+  margin-left: 5px;
+  font-size: 1.2rem;
+}
+
+.image {
+  width: 450px;
+  height: 350px;
+  object-fit: cover;
+}
+
+.image-container img {
+  transition: 1s ease;
+  margin-right: -40px;
+  margin-top: 80px;
+  border-radius: 50px;
+}
+
+.image-container img:hover {
+  border-radius: 50%;
+  transition: 1s ease;
+}
+
+/* Media queries */
+@media only screen and (max-width: 1024px) {
+  .aboutParentContainer {
+    padding: 200px; /* Adjust padding for smaller screens */
+  }
+
+  .image {
+    width: 400px; /* Adjust image width for smaller screens */
+    height: 300px; /* Adjust image height for smaller screens */
+  }
+
+  .image-container img {
+    margin-top: 60px; /* Adjust margin for image container for smaller screens */
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .aboutParentContainer {
+    padding: 100px; /* Adjust padding for mobile screens */
+    flex-direction: column; /* Stack content vertically */
+    text-align: center; /* Center align text for mobile screens */
+  }
+
+  .aboutContent {
+    margin-right: 0; /* Remove margin for smaller screens */
+  }
+
+  .headerText {
+    font-size: 3rem; /* Adjust header text size for smaller screens */
+  }
+
+  .contentText {
+    font-size: 1.2rem; /* Adjust content text size for smaller screens */
+  }
+
+  .image {
+    width: 300px; /* Adjust image width for smaller screens */
+    height: 250px; /* Adjust image height for smaller screens */
+  }
+
+  .image-container img {
+    margin-top: 40px; /* Adjust margin for image container for smaller screens */
+  }
+}
