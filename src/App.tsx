@@ -1,7 +1,7 @@
 import React from "react";
 import { Route, Routes } from "react-router";
 import Index from "./components/index";
-import { BrowserRouter, HashRouter } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 import Skills from "./components/skills/skills";
 import Projects from "./components/projects/projects";
 import Education from "./components/education/education";
@@ -14,7 +14,7 @@ function App() {
   return (
     <>
       <ThemeProvider>
-        <HashRouter basename="/Portfolio">
+        <BrowserRouter basename="/Portfolio">
           <Header />
           <Routes>
             <Route path="/" element={<Index />}></Route>
@@ -24,7 +24,7 @@ function App() {
             <Route path="/projects" element={<Projects />}></Route>
           </Routes>
           <ContactForm/>
-        </HashRouter>
+        </BrowserRouter>
       </ThemeProvider>
     </>
   );
