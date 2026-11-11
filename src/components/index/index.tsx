@@ -1,73 +1,79 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { FaArrowRight, FaFileDownload, FaMapMarkerAlt } from "react-icons/fa";
 import "./index.css";
 import Skills from "../skills/skills";
-import Header from "../header/header";
-import { useTheme } from "../../context/ThemeContext";
-import ContactForm from "../contactForm/contactForm";
 import { basePath } from "../../constant";
+import { highlights, profile } from "../../data/portfolio";
+import { useReveal } from "../../hooks/useReveal";
 
 const Index = () => {
-  const { isDarkMode } = useTheme();
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
-  const phrasesToRepeat = [
-    "Beautiful UI",
-    "Modern UX",
-    "Performance",
-    "Best UX",
-    "Latest Tech",
-    "Responsiveness",
-  ];
-
-  // Function to generate random color
-  const generateRandomColor = () => {
-    const letters = "0123456789ABCDEF";
-    let color = "#";
-    for (let i = 0; i < 6; i++) {
-      color += letters[Math.floor(Math.random() * 16)];
-    }
-    return color;
-  };
+  const phrases = profile.focusAreas;
+  useReveal();
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      setCurrentWordIndex(
-        (prevIndex) => (prevIndex + 1) % phrasesToRepeat.length
-      );
-    }, 2000);
+      setCurrentWordIndex((prevIndex) => (prevIndex + 1) % phrases.length);
+    }, 2500);
 
     return () => clearTimeout(timer);
-  }, [currentWordIndex, phrasesToRepeat.length]);
+  }, [currentWordIndex, phrases.length]);
 
   return (
-    <div className={`main ${isDarkMode ? "dark-mode" : "light-mode"}`}>
-      {" "}
-      <div className={`header ${isDarkMode ? "dark-mode" : "light-mode"}`}>
-        {" "}
-        <h1>Sunaina</h1>
-      </div>
-      <Header />
-      <div className={`container ${isDarkMode ? "dark-mode" : "light-mode"}`}>
-        {" "}
-        <div className="text">
-          <h1>I'm a Software Engineer</h1>
-          <p>Currently making Web Apps having</p>
-          <div className="phrase" style={{ color: generateRandomColor() }}>
-            {phrasesToRepeat[currentWordIndex]}
+    <main className="page">
+      <section className="section hero">
+        <div className="hero-text">
+          <span className="eyebrow">Hi, I'm</span>
+          <h1 className="hero-name">{profile.name}</h1>
+          <h2 className="hero-title">{profile.title}</h2>
+          <p className="hero-summary">{profile.summary}</p>
+          <p className="hero-focus">
+            Focused on{" "}
+            <span key={currentWordIndex} className="phrase">
+              {phrases[currentWordIndex]}
+            </span>
+          </p>
+          <div className="hero-actions">
+            <Link to="/projects" className="btn btn-primary">
+              View Projects <FaArrowRight aria-hidden="true" />
+            </Link>
+            <a
+              href={basePath + profile.resume}
+              className="btn btn-ghost"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <FaFileDownload aria-hidden="true" /> Resume
+            </a>
           </div>
+          <p className="hero-location">
+            <FaMapMarkerAlt aria-hidden="true" /> {profile.company} ·{" "}
+            {profile.location}
+          </p>
         </div>
         <div className="home-image-container">
           <img
             className="image"
             src={basePath + "/images/Women_coding.avif"}
-            alt="Your Image Alt Text"
-            width={400}
-            height={300}
+            alt="Illustration of a woman working at a computer"
+            width={450}
+            height={350}
           />
-          <div className="image-overlay"></div>
         </div>
-      </div>
+      </section>
+
+      <section className="section highlights" aria-label="Highlights">
+        {highlights.map((item) => (
+          <div key={item.label} className="card highlight" data-reveal>
+            <span className="highlight-value">{item.value}</span>
+            <span className="highlight-label">{item.label}</span>
+          </div>
+        ))}
+      </section>
+
       <Skills />
-    </div>
+    </main>
   );
 };
 

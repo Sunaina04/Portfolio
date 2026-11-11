@@ -1,40 +1,51 @@
 import React from "react";
-import { FaHome, FaInfoCircle, FaProjectDiagram, FaSun, FaMoon } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import {
+  FaHome,
+  FaInfoCircle,
+  FaProjectDiagram,
+  FaEnvelope,
+  FaSun,
+  FaMoon,
+} from "react-icons/fa";
+import { NavLink } from "react-router-dom";
 import "./header.css";
 import { useTheme } from "../../context/ThemeContext";
+
+const links = [
+  { to: "/", label: "Home", Icon: FaHome },
+  { to: "/about", label: "About", Icon: FaInfoCircle },
+  { to: "/projects", label: "Projects", Icon: FaProjectDiagram },
+];
 
 const Header = () => {
   const { isDarkMode, toggleDarkMode } = useTheme();
 
   return (
-    <div className={`navbar ${isDarkMode ? "dark-mode" : ""}`}>
-      <div className="nav-item">
-        <Link to="/">
-          <FaHome className="icon" />
-          <span>Home</span>
-        </Link>
-      </div>
-      <div className="nav-item">
-        <Link to="/about">
-          <FaInfoCircle className="icon" />
-          <span>About</span>
-        </Link>
-      </div>
-      <div className="nav-item">
-        <Link to="/projects">
-          <FaProjectDiagram className="icon" />
-          <span>Projects</span>
-        </Link>
-      </div>
-      <div className="theme-icon" onClick={toggleDarkMode}>
-        {isDarkMode ? (
-          <FaSun className="icon" />
-        ) : (
-          <FaMoon className="icon" style={{ color: "white" }} />
-        )}
-      </div>
-    </div>
+    <nav className="navbar" aria-label="Main">
+      {links.map(({ to, label, Icon }) => (
+        <NavLink
+          key={to}
+          to={to}
+          end
+          className={({ isActive }) => `nav-item${isActive ? " active" : ""}`}
+        >
+          <Icon className="icon" aria-hidden="true" />
+          <span>{label}</span>
+        </NavLink>
+      ))}
+      <a className="nav-item" href="#contact">
+        <FaEnvelope className="icon" aria-hidden="true" />
+        <span>Contact</span>
+      </a>
+      <button
+        type="button"
+        className="theme-icon"
+        onClick={toggleDarkMode}
+        aria-label={isDarkMode ? "Switch to light mode" : "Switch to dark mode"}
+      >
+        {isDarkMode ? <FaSun /> : <FaMoon />}
+      </button>
+    </nav>
   );
 };
 

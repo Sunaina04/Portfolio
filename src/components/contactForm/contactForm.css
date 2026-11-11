@@ -1,102 +1,154 @@
-/* contactForm.css */
-
-/* General styles */
 .footer {
-  font-family: Arial, sans-serif;
-  color: #333;
-  padding: 20px;
-  display: flex; /* Use flexbox for centering */
-  justify-content: center; /* Horizontally center content */
-  align-items: center; /* Vertically center content */
+  border-top: 1px solid var(--border);
 }
 
-/* Light mode */
-.light-mode {
-  background-color: #f0f0f0;
+.contact {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+  gap: 48px;
+  align-items: start;
 }
 
-/* Dark mode */
-.dark-mode {
-  background-color: #333;
-  color: #fff;
-}
-
-/* Form container */
-.contact-form-container {
-  max-width: 500px;
-  text-align: center; /* Center align text */
-}
-
-/* Form elements */
-input[type="text"],
-input[type="email"],
-input[type="tel"],
-textarea {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  box-sizing: border-box;
-}
-
-/* Send button */
-.send-button {
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  border-radius: 20px;
-  padding: 15px 180px; /* Adjusted padding for the button */
-  cursor: pointer;
-  margin-top: 20px;
-  justify-content: center;
-}
-
-/* Send button hover effect */
-.send-button:hover {
-  background-color: #0056b3;
-}
-
-/* Result message */
-.result-message,
-.error-message {
-  margin-top: 10px;
-  font-size: 14px;
-}
-
-/* Footer links */
-.footer-links {
-  margin-top: 15px;
+.contact-links {
   display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.contact-link {
+  display: inline-flex;
   align-items: center;
+  gap: 14px;
+  color: var(--text);
+  text-decoration: none;
+  overflow-wrap: anywhere;
+  transition: color 0.2s ease;
 }
 
-/* Margin between social links */
-.social-link {
-  margin-right: 1rem;
+.contact-link:hover {
+  color: var(--accent);
 }
 
-/* LinkedIn icon */
-.linkedin-icon {
-  width: 30px;
-  height: 30px;
-  margin-left: 15rem;
+.contact-link-icon {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  color: var(--accent);
+  transition: border-color 0.2s ease;
 }
 
-/* Media queries for smaller screens */
-@media only screen and (max-width: 768px) {
-  .contact-form-container {
-    max-width: 90%;
-    padding: 0 10px;
+.contact-link:hover .contact-link-icon {
+  border-color: var(--accent);
+}
+
+/* Form */
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 32px;
+}
+
+.contact-form:hover {
+  transform: none;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.form-field input,
+.form-field textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--bg);
+  color: var(--text);
+  font: inherit;
+  font-size: 1rem;
+  transition: border-color 0.2s ease;
+}
+
+.form-field textarea {
+  resize: vertical;
+}
+
+.form-field input:focus,
+.form-field textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.hidden-field {
+  display: none;
+}
+
+.send-button {
+  justify-content: center;
+  width: 100%;
+  margin-top: 4px;
+}
+
+.send-button:disabled {
+  opacity: 0.7;
+  cursor: wait;
+}
+
+.form-result {
+  min-height: 1.4em;
+  margin: 0;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+.form-result.success {
+  color: var(--accent);
+}
+
+.form-result.error {
+  color: #e5534b;
+}
+
+.footer-bottom {
+  padding: 24px 16px;
+  border-top: 1px solid var(--border);
+  font-size: 0.9rem;
+  text-align: center;
+  color: var(--muted);
+}
+
+@media (max-width: 899px) {
+  .contact {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+}
+
+@media (max-width: 479px) {
+  .form-row {
+    grid-template-columns: 1fr;
   }
 
-  .send-button {
-    padding: 15px 50px;
-  }
-
-  .footer-links .social-link {
-    margin-right: 0.5rem;
-    margin-top: 10px;
-    text-align: center;
+  .contact-form {
+    padding: 22px 18px;
   }
 }

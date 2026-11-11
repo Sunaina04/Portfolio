@@ -1,136 +1,148 @@
-/* index.css */
+/* Home: hero + highlights */
 
-/* Default styles */
-
-.main {
-  background-color: #000000;
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+  align-items: center;
+  gap: 48px;
+  min-height: calc(100vh - 90px);
+  padding-top: 40px;
 }
 
-.header {
-  min-height: 45vh;
-  margin-left: 10vh;
+.hero-text {
+  animation: fadeInUp 0.8s ease both;
+}
+
+.hero-name {
+  margin: 0;
+  font-size: clamp(3rem, 8vw, 5.5rem);
+  line-height: 1;
+  color: var(--accent-soft);
+}
+
+.hero-title {
+  margin: 16px 0 0;
+  font-size: clamp(1.4rem, 2.6vw, 2rem);
+  line-height: 1.25;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.hero-summary {
+  max-width: 560px;
+  margin: 20px 0 0;
+  font-size: 1.1rem;
+  color: var(--muted);
+}
+
+.hero-focus {
+  margin: 20px 0 0;
+  font-size: 1.25rem;
+}
+
+.phrase {
+  display: inline-block;
+  font-weight: 700;
+  color: var(--accent);
+  animation: fadeInUp 0.5s ease both;
+}
+
+.hero-actions {
   display: flex;
-  font-size: calc(10px + 2vmin);
-  color: #e2cca4;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 32px;
 }
 
-.dark-mode {
-  background-color: #000000 !important; /* Dark background color */
-  color: white !important;
-  border-color: #ffffff !important;
-}
-
-.light-mode {
-  background-color: white; /* Light background color */
-  color: black;
-  border-color: #000000 !important;
-}
-
-h1 {
-  color: #e2cca4;
-  margin-top: 12vh;
-  font-size: 60px;
-}
-
-.container {
-  min-height: 10vh;
+.hero-location {
   display: flex;
-  justify-content: space-between;
-}
-
-.text {
-  font-size: 35px;
-  margin-left: 10vh;
+  align-items: center;
+  gap: 8px;
+  margin: 24px 0 0;
+  font-size: 0.95rem;
+  color: var(--muted);
 }
 
 .image {
-  width: 450px;
-  height: 350px;
+  display: block;
+  width: 100%;
+  max-width: 450px;
+  height: auto;
+  aspect-ratio: 9 / 7;
   object-fit: cover;
 }
 
+.home-image-container {
+  display: flex;
+  justify-content: center;
+  animation: fadeInUp 0.8s 0.15s ease both;
+}
+
 .home-image-container img {
-  transition: 1s ease;
-  margin-right: 120px;
   border-radius: 20px;
+  transition: border-radius 1s ease;
 }
 
 .home-image-container img:hover {
   border-radius: 50%;
-  transition: 1s ease;
 }
 
-.phrase {
-  animation: fadeInOut 4s ease infinite;
-  transition: opacity 0.3s ease;
-  font-size: 40px;
+/* Highlights strip */
+.highlights {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 20px;
+  padding-top: 0;
 }
 
-.show {
-  opacity: 1;
+.highlight {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 24px;
 }
 
-@keyframes fadeInOut {
-  0% {
-    opacity: 0;
+.highlight-value {
+  font-size: 2.4rem;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--accent);
+}
+
+.highlight-label {
+  font-size: 0.95rem;
+  color: var(--muted);
+}
+
+/* Tablet */
+@media (max-width: 1023px) {
+  .highlights {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
-  50% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
 }
 
-/* Media Queries */
-
-/* For screens smaller than 768px (phones) */
+/* Phones */
 @media (max-width: 767px) {
-  .header {
-    min-height: 30vh; /* Adjusted height for smaller screens */
-    margin-left: 5vh; /* Adjusted margin for smaller screens */
-    font-size: calc(8px + 2vmin); /* Adjusted font size for smaller screens */
-  }
-
-  h1 {
-    font-size: 40px; /* Adjusted font size for smaller screens */
-  }
-
-  .text {
-    font-size: 25px; /* Adjusted font size for smaller screens */
-    margin-left: 5vh; /* Adjusted margin for smaller screens */
-  }
-
-  .container {
-    flex-direction: column; /* Display content in column for smaller screens */
-    align-items: center; /* Center align content */
+  .hero {
+    grid-template-columns: 1fr;
+    min-height: 0;
+    gap: 32px;
+    padding-top: 24px;
   }
 
   .image {
-    width: 100%; /* Adjusted width for smaller screens */
-    height: auto; /* Adjusted height for smaller screens */
-    margin-top: 20px; /* Add margin to separate image from text */
+    max-width: 340px;
   }
 
-  .home-image-container img {
-    margin-right: 0; /* No margin on smaller screens */
-  }
-}
-
-/* For screens smaller than 400px */
-@media (max-width: 399px) {
-  .header {
-    min-height: 25vh; /* Adjusted height for smaller screens */
-    margin-left: 3vh; /* Adjusted margin for smaller screens */
-    font-size: calc(6px + 2vmin); /* Adjusted font size for smaller screens */
+  .highlights {
+    gap: 12px;
   }
 
-  h1 {
-    font-size: 30px; /* Adjusted font size for smaller screens */
+  .highlight {
+    padding: 18px;
   }
 
-  .text {
-    font-size: 20px; /* Adjusted font size for smaller screens */
-    margin-left: 3vh; /* Adjusted margin for smaller screens */
+  .highlight-value {
+    font-size: 2rem;
   }
 }

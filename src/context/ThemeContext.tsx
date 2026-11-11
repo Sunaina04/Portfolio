@@ -1,4 +1,10 @@
-import React, { createContext, useState, useContext, PropsWithChildren } from "react";
+import React, {
+  createContext,
+  useState,
+  useContext,
+  useEffect,
+  PropsWithChildren,
+} from "react";
 
 export interface ThemeContextType {
   isDarkMode: boolean;
@@ -6,6 +12,7 @@ export interface ThemeContextType {
 }
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
+const STORAGE_KEY = "portfolio-theme";
 
 export const useTheme = (): ThemeContextType => {
   const context = useContext(ThemeContext);
@@ -15,17 +22,34 @@ export const useTheme = (): ThemeContextType => {
   return context;
 };
 
+const readStoredTheme = (): boolean => {
+  try {
+    return localStorage.getItem(STORAGE_KEY) !== "light";
+  } catch {
+    return true;
+  }
+};
+
 export const ThemeProvider: React.FC<PropsWithChildren<{}>> = ({ children }) => {
-  const [isDarkMode, setIsDarkMode] = useState(true);
+  const [isDarkMode, setIsDarkMode] = useState(readStoredTheme);
+
+  // Colours come from CSS variables keyed off this attribute (see index.css).
+  useEffect(() => {
+    document.documentElement.dataset.theme = isDarkMode ? "dark" : "light";
+    try {
+      localStorage.setItem(STORAGE_KEY, isDarkMode ? "dark" : "light");
+    } catch {
+      // Storage unavailable (private mode); theme still applies for this visit.
+    }
+  }, [isDarkMode]);
 
   const toggleDarkMode = () => {
-    setIsDarkMode(!isDarkMode);
+    setIsDarkMode((dark) => !dark);
   };
 
-  const value = {
-    isDarkMode,
-    toggleDarkMode,
-  };
-
-  return <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>;
+  return (
+    <ThemeContext.Provider value={{ isDarkMode, toggleDarkMode }}>
+      {children}
+    </ThemeContext.Provider>
+  );
 };

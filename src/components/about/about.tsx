@@ -1,58 +1,57 @@
 import React from "react";
+import { FaFileDownload, FaMapMarkerAlt } from "react-icons/fa";
 import "./about.css";
 import Experience from "../experience/experience";
+import ProjectManagement from "../projectManagement/projectManagement";
 import Education from "../education/education";
-import { useTheme } from "../../context/ThemeContext";
 import { basePath } from "../../constant";
+import { profile } from "../../data/portfolio";
+import { useReveal } from "../../hooks/useReveal";
 
 const About = () => {
-  const { isDarkMode } = useTheme();
+  useReveal();
 
   return (
-    <div className="main">
-      <div
-        className={`aboutParentContainer ${
-          isDarkMode ? "dark-mode" : "light-mode"
-        }`}
-      >
+    <main className="page">
+      <section className="section about">
         <div className="aboutContent">
-          <h1 className="headerText">Hi, I'm Sunaina</h1>
-          <p className="contentText">
-            I turn vision into reality with code. Whether I'm working on a
-            website or any digital product, I bring my commitment to design
-            excellence and user-centered thinking to every project I work on.
-          </p>
-          <p className="contentText">
-            Explore my latest projects showcasing my expertise in Reactjs,
-            Javascript, Typescript and web development.
-          </p>
-          <div className="locationContainer">
-            <img
-              alt="Indian flag"
-              loading="lazy"
-              decoding="async"
-              src="https://flagcdn.com/in.svg"
-              width="15"
-              height="15"
-            />
-            <span className="locationText">Amritsar, India</span>
+          <span className="eyebrow">About me</span>
+          <h1 className="headerText">Hi, I'm {profile.name}</h1>
+          <p className="about-role">{profile.title}</p>
+          {profile.about.map((paragraph) => (
+            <p key={paragraph.slice(0, 24)} className="contentText">
+              {paragraph}
+            </p>
+          ))}
+          <div className="about-footer">
+            <span className="locationContainer">
+              <FaMapMarkerAlt aria-hidden="true" />
+              {profile.company} · {profile.location}
+            </span>
+            <a
+              href={basePath + profile.resume}
+              className="btn btn-ghost"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <FaFileDownload aria-hidden="true" /> Download Resume
+            </a>
           </div>
         </div>
         <div className="image-container">
           <img
             className="image"
-            // src={`${basePath}/images/Programmer.avif`}
             src={basePath + "/images/Programmer.avif"}
-            alt="Your Image Alt Text"
-            width={400}
-            height={300}
+            alt="Illustration of a programmer at a desk"
+            width={450}
+            height={350}
           />
-          <div className="image-overlay"></div>
         </div>
-      </div>
+      </section>
       <Experience />
+      <ProjectManagement />
       <Education />
-    </div>
+    </main>
   );
 };
 

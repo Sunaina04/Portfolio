@@ -1,103 +1,128 @@
-.parent-container {
-  padding: 120px;
-  text-align: center; /* Center the content horizontally */
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.dark-mode {
-  background-color: #000000 !important; /* Dark background color */
-  color: white !important;
-  border-color: #ffffff !important;
-}
-
-.light-mode {
-  background-color: white; /* Light background color */
-  color: black;
-  border-color: #000000 !important;
-}
-
 .projectHeading {
-  margin-top: 20px;
-  font-size: 50px;
+  font-size: clamp(2.5rem, 6vw, 4rem);
 }
-
 
 .projects-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center; /* Center the project boxes horizontally */
-  gap: 50px; /* Add some gap between project boxes */
-  margin-top: 50px;
-  padding: 20px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 28px;
 }
 
 .project-box {
-  border-width: 2px;
-  border-style: solid;
-  border-radius: 20px;
-  padding: 45px;
-  width: calc(50% - 20px);
-  max-width: 500px;
-  background-color: rgba(255, 255, 255, 0.05);
-  /* color: white; */
-  font-size: 18px; /* Increase font size for better readability */
-  transition: transform 0.3s ease, background-color 0.3s ease;
-  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
 }
 
-.project-box h2 {
-  margin-top: 10px;
+.project-media {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 16 / 9;
+  background: radial-gradient(
+      circle at 30% 20%,
+      rgba(221, 151, 0, 0.22),
+      transparent 60%
+    ),
+    var(--surface-hover);
+  border-bottom: 1px solid var(--border);
 }
 
-.project-box p {
-  margin-bottom: 10px;
-  text-align: justify;
+.project-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: transform 0.5s ease;
 }
 
-
-.project-box:hover {
-  background-color: rgba(255, 255, 255, 0.1); /* Lighten background color on hover */
-  transform: translateY(-5px);
+.project-box:hover .project-media img {
+  transform: scale(1.03);
 }
 
-.project-details h2 {
-  font-size: 20px; /* Increase font size for emphasis */
-  margin-bottom: 10px; /* Add margin below heading */
+.project-monogram {
+  padding: 0 24px;
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-align: center;
+  color: var(--accent-soft);
 }
 
-.project-details p {
-  margin-bottom: 10px; /* Add margin between paragraphs */
-  text-align: left;
+.project-details {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding: 28px;
 }
 
-/* Define media query for screens smaller than 768px (typical mobile devices) */
-@media only screen and (max-width: 768px) {
-  .parent-container {
-    padding: 60px;
-  }
+.project-heading {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px 12px;
+}
 
+.project-heading h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  color: var(--accent);
+}
+
+.project-focus {
+  padding: 4px 12px;
+  border: 1px solid var(--accent);
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.project-summary {
+  margin: 8px 0 0;
+  color: var(--muted);
+}
+
+.project-label {
+  margin: 22px 0 10px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent-soft);
+}
+
+.project-points {
+  margin: 0 0 20px;
+  padding-left: 20px;
+}
+
+.project-points li {
+  margin-bottom: 8px;
+}
+
+.project-points li::marker {
+  color: var(--accent);
+}
+
+.project-link {
+  align-self: flex-start;
+  margin-top: auto;
+}
+
+@media (max-width: 899px) {
   .projects-container {
-    gap: 20px; /* Reduce the gap between project boxes */
-    margin-top: 30px;
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
+
+@media (max-width: 767px) {
+  .project-details {
+    padding: 22px 20px;
   }
 
-  .project-box {
-    width: calc(100% - 20px); /* Make project boxes full width */
-    padding: 20px; /* Reduce padding */
-    max-width: none; /* Remove maximum width */
-  }
-
-  .project-box h2 {
-    font-size: 28px; /* Reduce font size for better fit */
-  }
-
-  .project-box img {
-    width: 100%; /* Make images fill the container */
-    margin-left: auto; /* Center images horizontally */
-    margin-right: auto;
-    display: block;
+  .project-heading h2 {
+    font-size: 1.3rem;
   }
 }
