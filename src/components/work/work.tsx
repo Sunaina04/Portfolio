@@ -15,12 +15,21 @@ const Work = () => {
   const [hovered, setHovered] = useState<number | null>(null);
   const previewRef = useRef<HTMLDivElement>(null);
 
-  // Cursor-following preview (desktop pointers only, see work.css).
+  // Preview follows the cursor sideways but sits above or below the hovered
+  // row, over the dimmed rows, so it never covers the text being read.
   const onMove = (e: React.MouseEvent) => {
-    // Flip to the left of the cursor near the right edge (preview is 520px wide).
-    const x = e.clientX + 548 > window.innerWidth ? e.clientX - 576 : e.clientX;
-    previewRef.current?.style.setProperty("--x", `${x}px`);
-    previewRef.current?.style.setProperty("--y", `${e.clientY}px`);
+    const preview = previewRef.current;
+    const row = (e.target as HTMLElement).closest(".work-row");
+    if (!preview || !row) return;
+    const r = row.getBoundingClientRect();
+    const w = preview.offsetWidth;
+    const h = preview.offsetHeight;
+    const gap = 12;
+    const x = Math.min(Math.max(e.clientX - w / 2, 16), window.innerWidth - w - 16);
+    // Above when there is room under the 80px header, otherwise below.
+    const y = r.top - h - gap > 80 ? r.top - h - gap : r.bottom + gap;
+    preview.style.setProperty("--x", `${x}px`);
+    preview.style.setProperty("--y", `${y}px`);
   };
 
   return (

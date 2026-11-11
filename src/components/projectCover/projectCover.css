@@ -56,6 +56,7 @@
 
 .sketch-node--primary text {
   fill: var(--paper);
+  font-weight: 600;
 }
 
 .sketch-node--core rect {

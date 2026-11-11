@@ -139,13 +139,13 @@
     width: 520px;
     pointer-events: none;
     opacity: 0;
-    transform: translate(calc(var(--x, 0px) + 28px), calc(var(--y, 0px) - 50%)) scale(0.92);
-    transition: opacity 0.3s var(--ease), transform 0.45s var(--ease);
+    transform: translate(var(--x, 0px), var(--y, 0px)) scale(0.96);
+    transition: opacity 0.3s var(--ease), transform 0.35s var(--ease);
   }
 
   .work-preview.is-visible {
     opacity: 1;
-    transform: translate(calc(var(--x, 0px) + 28px), calc(var(--y, 0px) - 50%)) scale(1);
+    transform: translate(var(--x, 0px), var(--y, 0px)) scale(1);
   }
 
   .work-preview-item {
