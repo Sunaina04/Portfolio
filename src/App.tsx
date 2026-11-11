@@ -72,8 +72,7 @@ const createRouter = () =>
           { path: "*", element: <Navigate to="/" replace /> },
         ],
       },
-    ],
-    { basename: "/Portfolio" }
+    ]
   );
 
 function App() {

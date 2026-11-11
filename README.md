@@ -1,6 +1,6 @@
 # Sunaina Ruhaniat — Portfolio
 
-Personal portfolio and services site, live at <https://sunaina04.github.io/Portfolio/>.
+Personal portfolio and services site, live at <https://sunaina04.github.io/>.
 
 Built with React and TypeScript (Create React App), deployed to GitHub Pages.
 
@@ -23,7 +23,7 @@ If it's left empty, "Send by email" opens the visitor's email app instead.
 
 ```bash
 npm install      # once
-npm start        # local preview at http://localhost:3000/Portfolio
+npm start        # local preview at http://localhost:3000
 npm test         # run the test suite
 npm run deploy   # build and publish to GitHub Pages
 ```

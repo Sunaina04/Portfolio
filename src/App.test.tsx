@@ -4,7 +4,7 @@ import App from './App';
 import { projects, services } from './data/portfolio';
 
 const renderAt = (path: string) => {
-  window.history.pushState({}, '', `/Portfolio${path}`);
+  window.history.pushState({}, '', path);
   return render(<App />);
 };
 
@@ -21,7 +21,7 @@ test('home shows the headline, current role and every project', () => {
   projects.forEach((p) => {
     expect(within(work).getByRole('link', { name: new RegExp(p.name) })).toHaveAttribute(
       'href',
-      `/Portfolio/work/${p.slug}`
+      `/work/${p.slug}`
     );
   });
 });
@@ -66,7 +66,7 @@ test('case study page renders its sections and service CTA', () => {
     expect(screen.getByRole('heading', { name: label })).toBeInTheDocument()
   );
   expect(screen.getByRole('link', { name: /Discuss your project/ }).getAttribute('href')).toMatch(
-    /^\/Portfolio\/?\?service=software-development#contact$/
+    /^\/?\?service=software-development#contact$/
   );
 });
 
@@ -81,7 +81,7 @@ test('Explainer Adda links to the live site', () => {
 
 test('unknown case study redirects home', () => {
   renderAt('/work/nope');
-  expect(window.location.pathname).toMatch(/^\/Portfolio\/?$/);
+  expect(window.location.pathname).toMatch(/^\/$/);
   expect(window.location.hash).toBe('#work');
 });
 

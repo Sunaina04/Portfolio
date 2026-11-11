@@ -1,4 +1,4 @@
 User-agent: *
 Disallow:
 
-Sitemap: https://sunaina04.github.io/Portfolio/sitemap.xml
+Sitemap: https://sunaina04.github.io/sitemap.xml

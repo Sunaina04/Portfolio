@@ -14,7 +14,7 @@ jest.mock('./delivery', () => ({
 // visitor's email app addressed to the portfolio owner instead.
 test('falls back to the email app when no form key is configured', () => {
   const fetchSpy = jest.spyOn(window, 'fetch');
-  window.history.pushState({}, '', '/Portfolio/');
+  window.history.pushState({}, '', '/');
   render(<App />);
 
   const fill = (label: RegExp, value: string) => {
