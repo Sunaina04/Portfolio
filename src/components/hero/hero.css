@@ -30,7 +30,7 @@
 
 /* Headline: main clause large, the rest as a quieter second line */
 .hero-title {
-  margin-top: clamp(28px, 3.6vw, 48px);
+  margin: 0;
   max-width: 17ch;
   font-size: clamp(40px, 6.6vw, 104px);
   line-height: 0.98;
@@ -129,32 +129,88 @@
   animation: rise 0.9s 0.7s var(--ease) both;
 }
 
-.hero-foot {
+/* Top: headline column + proof aside */
+.hero-top {
   display: grid;
-  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
-  gap: 32px clamp(40px, 6vw, 96px);
-  align-items: end;
-  margin-top: clamp(40px, 5vw, 64px);
+  grid-template-columns: minmax(0, 1fr);
+  gap: 48px;
+  margin-top: clamp(28px, 3.6vw, 48px);
+}
+
+.hero-aside {
+  display: grid;
+  align-content: start;
+  gap: 32px;
   animation: rise 0.9s 0.85s var(--ease) both;
 }
 
-.hero-intro {
-  max-width: 60ch;
-  font-size: clamp(16px, 1.3vw, 18px);
-  line-height: 1.6;
-  color: var(--ink-2);
-}
-
-.hero-now {
-  display: grid;
-  gap: 12px;
-  padding-top: 18px;
+/* At-a-glance figures */
+.hero-stats {
+  margin: 0;
   border-top: 1px solid var(--rule-strong);
 }
 
-.hero-now-role {
-  font-size: clamp(22px, 2vw, 28px);
-  line-height: 1.15;
+.hero-stat {
+  display: grid;
+  grid-template-columns: minmax(120px, 0.8fr) minmax(0, 1.4fr);
+  align-items: baseline;
+  gap: 16px;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--rule);
+  animation: rise 0.8s var(--ease) both;
+  animation-delay: calc(0.6s + var(--i) * 0.12s);
+}
+
+.hero-stat-value {
+  font-size: clamp(56px, 5.4vw, 80px);
+  font-style: italic;
+  line-height: 0.9;
+  color: var(--accent);
+}
+
+.hero-stat dd {
+  display: grid;
+  gap: 4px;
+  margin: 0;
+}
+
+.hero-stat-label {
+  font-size: 17px;
+  color: var(--ink);
+}
+
+.hero-stat-note {
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.hero-quick {
+  margin-top: 20px;
+}
+
+@media (min-width: 1024px) {
+  .hero-top {
+    grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+    gap: clamp(48px, 5vw, 80px);
+    align-items: start;
+  }
+
+  /* Headline now shares the width, so it's set a little smaller. */
+  .hero-title {
+    font-size: clamp(52px, 5.2vw, 84px);
+  }
+
+  .hero-aside {
+    align-self: center;
+  }
+}
+
+.hero-intro {
+  margin-top: clamp(40px, 5vw, 64px);
+  max-width: 64ch;
+  font-size: clamp(16px, 1.3vw, 18px);
+  line-height: 1.6;
+  color: var(--ink-2);
 }
 
 /* Career line */
@@ -216,16 +272,11 @@
   font-weight: 500;
 }
 
-/* The masthead shows the availability chip from 1280px up; don't repeat it. */
+/* From 1280px the masthead shows the availability chip, so the meta line
+   would hold only the location: drop it and let the headline lead. */
 @media (min-width: 1280px) {
-  .hero-available {
-    visibility: hidden;
-  }
-}
-
-@media (max-width: 899px) {
-  .hero-foot {
-    grid-template-columns: 1fr;
+  .hero-meta {
+    display: none;
   }
 }
 
@@ -245,6 +296,15 @@
   .hero-roles {
     font-size: 11.5px;
     line-height: 1.8;
+  }
+
+  .hero-stat {
+    grid-template-columns: 96px minmax(0, 1fr);
+    padding: 16px 0;
+  }
+
+  .hero-stat-value {
+    font-size: 48px;
   }
 
   .hero-line {

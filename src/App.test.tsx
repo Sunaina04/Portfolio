@@ -13,7 +13,10 @@ test('home shows the headline, current role and every project', () => {
   expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent(
     'I plan, build and deliver software and AI products for businesses — and bring in the right developers when the project needs more hands.'
   );
-  expect(screen.getByText(/Project Manager at Genboot, since April 2024/)).toBeInTheDocument();
+  const glance = screen.getByRole('complementary', { name: 'At a glance' });
+  expect(within(glance).getByText('Project Manager at Genboot since 2024')).toBeInTheDocument();
+  expect(within(glance).getByText(String(projects.length))).toBeInTheDocument();
+  expect(within(glance).getByText('24h')).toBeInTheDocument();
   const work = screen.getByRole('region', { name: /Six projects/ });
   projects.forEach((p) => {
     expect(within(work).getByRole('link', { name: new RegExp(p.name) })).toHaveAttribute(

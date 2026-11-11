@@ -32,6 +32,14 @@ export const profile = {
   replyTime: "within 24 hours",
 };
 
+// Three figures beside the hero headline. Each is backed by the resume or
+// the reply time above; the case-study count is filled in from projects.
+export const heroStats = [
+  { value: "6+", label: "years in software", note: "Project Manager at Genboot since 2024" },
+  { value: "CASE_STUDIES", label: "case studies", note: "AI, web, maps, real-time data, content" },
+  { value: "24h", label: "reply time", note: "Email, WhatsApp or the form" },
+];
+
 // Hero career line
 export const milestones = [
   { date: "May 2020", label: "Senior Software Engineer" },
