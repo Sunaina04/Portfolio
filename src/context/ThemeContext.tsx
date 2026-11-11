@@ -22,8 +22,8 @@ export const useTheme = (): ThemeContextType => {
   return context;
 };
 
-// public/index.html sets data-theme before first paint (saved choice, else
-// the system preference); start from that so React and the page agree.
+// public/index.html sets data-theme before first paint (the visitor's saved
+// choice, else light); start from that so React and the page agree.
 const initialTheme = (): boolean =>
   document.documentElement.dataset.theme === "dark";
 

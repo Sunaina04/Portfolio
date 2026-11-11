@@ -10,8 +10,7 @@
     />
     <meta name="author" content="Sunaina" />
     <link rel="canonical" href="https://sunaina04.github.io/Portfolio/" />
-    <meta name="theme-color" content="#f3efe7" media="(prefers-color-scheme: light)" />
-    <meta name="theme-color" content="#12110f" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#f3efe7" />
 
     <meta property="og:type" content="website" />
     <meta property="og:title" content="Sunaina — Technical Project Manager & Software Engineer" />
@@ -34,16 +33,14 @@
     />
 
     <script>
-      // Apply the saved (or system) theme before first paint to avoid a flash.
+      // Apply the theme before first paint to avoid a flash. Light by default;
+      // dark only if the visitor chose it with the toggle on an earlier visit.
       (function () {
         var theme;
         try {
           theme = localStorage.getItem("portfolio-theme");
         } catch (e) {}
-        if (theme !== "light" && theme !== "dark") {
-          theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-        }
-        document.documentElement.dataset.theme = theme;
+        document.documentElement.dataset.theme = theme === "dark" ? "dark" : "light";
       })();
     </script>
 
