@@ -15,9 +15,9 @@ test('home shows the headline, current role and every project', () => {
   );
   const glance = screen.getByRole('complementary', { name: 'At a glance' });
   expect(within(glance).getByText('Project Manager at Genboot since 2024')).toBeInTheDocument();
-  expect(within(glance).getByText(String(projects.length))).toBeInTheDocument();
+  expect(within(glance).getByText('12+')).toBeInTheDocument();
   expect(within(glance).getByText('24h')).toBeInTheDocument();
-  const work = screen.getByRole('region', { name: /Six projects/ });
+  const work = screen.getByRole('region', { name: /Products I've helped/ });
   projects.forEach((p) => {
     expect(within(work).getByRole('link', { name: new RegExp(p.name) })).toHaveAttribute(
       'href',
@@ -219,5 +219,45 @@ test('every "Discuss" link scrolls to the form, even when already at #contact', 
   await waitFor(() => expect(scrollSpy).toHaveBeenCalled());
   expect(screen.getByRole('combobox', { name: /What do you need/ })).toHaveValue(
     'website-advertising'
+  );
+});
+
+test('LoadSmart is a project-management case study with facts and the challenge', () => {
+  renderAt('/work/loadsmart');
+  expect(screen.getByRole('heading', { level: 1, name: 'LoadSmart' })).toBeInTheDocument();
+  expect(screen.getByText('6–9 months')).toBeInTheDocument();
+  expect(screen.getByText('12+ members')).toBeInTheDocument();
+  expect(screen.getByRole('heading', { name: 'The challenge' })).toBeInTheDocument();
+  expect(screen.getByText(/not a complete production launch/)).toBeInTheDocument();
+});
+
+test('Loan AI has no "My role" block, since no role is documented', () => {
+  renderAt('/work/loan-ai');
+  expect(screen.getByRole('heading', { level: 1, name: 'Loan AI' })).toBeInTheDocument();
+  expect(screen.queryByRole('heading', { name: 'My role' })).toBeNull();
+});
+
+test('ITC video loads YouTube only after pressing play', () => {
+  renderAt('/work/itc');
+  expect(document.querySelector('iframe')).toBeNull();
+  fireEvent.click(screen.getByRole('button', { name: /Play video/ }));
+  expect(document.querySelector('iframe')?.getAttribute('src')).toContain(
+    'youtube-nocookie.com/embed/-3PdP7sARRo'
+  );
+});
+
+test('work is grouped by domain, and placeholder projects stay hidden', () => {
+  renderAt('/');
+  ['AI products', 'Logistics & smart mobility', 'Business platforms & tools', 'Content & publishing'].forEach(
+    (d) =>
+      expect(
+        within(screen.getByRole('region', { name: /Products I've helped/ })).getByRole('heading', {
+          name: new RegExp(`^${d}`),
+        })
+      ).toBeInTheDocument()
+  );
+  expect(screen.getByText('Nearby Vibes')).toBeInTheDocument();
+  ['Color Wonder', 'Ylore Travel', 'Chicxflow'].forEach((name) =>
+    expect(screen.queryByText(name)).toBeNull()
   );
 });

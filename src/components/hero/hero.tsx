@@ -2,14 +2,12 @@ import React from "react";
 import Link from "../pageLink/pageLink";
 import { FiArrowDownRight, FiArrowUpRight } from "react-icons/fi";
 import "./hero.css";
-import { heroStats, milestones, profile, projects } from "../../data/portfolio";
+import { heroStats, milestones, profile } from "../../data/portfolio";
 import QuickLinks from "../quickLinks/quickLinks";
 
 const { lead, emphasis, rest, tail } = profile.headline;
 
-const stats = heroStats.map((st) =>
-  st.value === "CASE_STUDIES" ? { ...st, value: String(projects.length) } : st
-);
+const stats = heroStats;
 
 // Each word rises in on load, in order.
 const Word = ({ children, i }: { children: string; i: number }) => (

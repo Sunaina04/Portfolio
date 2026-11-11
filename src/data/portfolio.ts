@@ -33,11 +33,11 @@ export const profile = {
   replyTime: "within 24 hours",
 };
 
-// Three figures beside the hero headline. Each is backed by the resume or
-// the reply time above; the case-study count is filled in from projects.
+// Three figures beside the hero headline, each backed by the resume, the
+// LoadSmart delivery notes or the reply time above.
 export const heroStats = [
   { value: "6+", label: "years in software", note: "Project Manager at Genboot since 2024" },
-  { value: "CASE_STUDIES", label: "case studies", note: "AI, web, maps, real-time data, content" },
+  { value: "12+", label: "team members coordinated", note: "On one multi-module delivery (LoadSmart)" },
   { value: "24h", label: "reply time", note: "Email, WhatsApp or the form" },
 ];
 
@@ -137,7 +137,10 @@ export const services: Service[] = [
       "Managing timeline, budget and delivery",
       "Coordinating testing and release",
     ],
-    related: [{ label: "Experience as Project Manager", to: "/#experience" }],
+    related: [
+      { label: "LoadSmart — delivery case study", to: "/work/loadsmart" },
+      { label: "Experience as Project Manager", to: "/#experience" },
+    ],
   },
   {
     id: "software-development",
@@ -175,7 +178,10 @@ export const services: Service[] = [
       "Adding AI features to an existing product (OpenAI and other models)",
       "New AI-powered applications, built from scratch",
     ],
-    related: [{ label: "Sydkik — AI executive assistant", to: "/work/sydkik" }],
+    related: [
+      { label: "Sydkik — AI executive assistant", to: "/work/sydkik" },
+      { label: "Loan AI — RAG over bank policies", to: "/work/loan-ai" },
+    ],
   },
   {
     id: "resource-connections",
@@ -264,33 +270,61 @@ export interface SystemSketch {
   outputs: string[];
 }
 
+export type DomainId = "ai" | "logistics" | "business" | "content";
+
+// Work is grouped by domain on the home page, in this order.
+export const domains: { id: DomainId; title: string }[] = [
+  { id: "logistics", title: "Logistics & smart mobility" },
+  { id: "ai", title: "AI products" },
+  { id: "business", title: "Business platforms & tools" },
+  { id: "content", title: "Content & publishing" },
+];
+
+export interface CaseSection {
+  label: string;
+  intro?: string;
+  items?: string[];
+  numbered?: boolean;
+  outro?: string;
+}
+
 export interface Project {
   slug: string;
   name: string;
   kind: string;
+  domain: DomainId;
   summary: string;
   focus: string;
   service: string; // id of the related service, for the case-study CTA
   context?: string; // where the work was done, e.g. delivered at Genboot
-  role: string;
+  contextShort?: string; // short tag for the work list
+  role?: string;
+  facts?: { label: string; value: string }[]; // replaces the default facts row
   overview: string;
   problem: string;
   stack: string[];
   stackLabel?: string;
-  contributions: string[];
+  contributions?: string[];
   contributionLabel?: string;
   features: string[];
+  featuresLabel?: string;
+  sections?: CaseSection[]; // extra blocks, shown after the features
   outcomes?: string[];
   sketch: SystemSketch;
   link?: string;
+  cover?: string; // real product image shown at the top instead of the sketch
   screenshot?: string;
+  gallery?: { src: string; alt: string; shape: "wide" | "phone" }[];
+  video?: { youtubeId: string; title: string; poster: string };
   articles?: { title: string; url: string; language: string }[];
 }
 
 export const projects: Project[] = [
   {
     slug: "sydkik",
+    domain: "ai",
     context: "Delivered as part of the Genboot team",
+    contextShort: "At Genboot",
     kind: "AI application",
     service: "ai-solutions",
     name: "Sydkik",
@@ -313,6 +347,7 @@ export const projects: Project[] = [
       "Microsoft Graph API",
       "Google Calendar API",
     ],
+    contributionLabel: "Phase 1 — Technical contribution",
     contributions: [
       "Developed scalable backend services using Python and FastAPI.",
       "Integrated OpenAI APIs to build AI email drafting, smart suggestions, meeting summaries, and productivity automation.",
@@ -327,6 +362,28 @@ export const projects: Project[] = [
       "Calendar, email and meeting workflows",
       "Notifications and task automation",
     ],
+    cover: "/images/work/sydkik-cover.webp",
+    sections: [
+      {
+        label: "Phase 2 — Voice AI",
+        intro: "Continued product development, adding a voice layer to the assistant:",
+        items: [
+          "Voice AI infrastructure",
+          "LiveKit integration",
+          "Speech-to-text (STT) streaming",
+          "Text-to-speech (TTS)",
+          "Conversation engine",
+          "Push-to-talk",
+          "Intent routing",
+          "QA and stabilization",
+        ],
+      },
+    ],
+    gallery: [
+      { src: "/images/work/sydkik-welcome.webp", alt: "Sydkik welcome screen: AI first, human when it matters", shape: "phone" },
+      { src: "/images/work/sydkik-briefing.webp", alt: "Sydkik daily briefing with priorities, market and weather", shape: "phone" },
+      { src: "/images/work/sydkik-today.webp", alt: "Sydkik today view with focus, emails, tasks and meetings", shape: "phone" },
+    ],
     sketch: {
       inputs: ["Microsoft Graph", "Google Calendar"],
       core: ["FastAPI services", "Celery + Redis jobs"],
@@ -335,7 +392,9 @@ export const projects: Project[] = [
   },
   {
     slug: "itc",
+    domain: "logistics",
     context: "Delivered as part of the Genboot team",
+    contextShort: "At Genboot",
     kind: "Software platform",
     service: "software-development",
     name: "ITC",
@@ -365,6 +424,16 @@ export const projects: Project[] = [
       "Redis caching improved response times for high-frequency real-time requests.",
       "Backend optimization kept API performance reliable under high-volume real-time data.",
     ],
+    cover: "/images/work/itc-dashboard.webp",
+    gallery: [
+      { src: "/images/work/itc-detection.webp", alt: "Four traffic camera feeds with lanes, crossings and detected vehicles marked", shape: "wide" },
+      { src: "/images/work/itc-intersection.webp", alt: "Aerial view of a monitored intersection", shape: "wide" },
+    ],
+    video: {
+      youtubeId: "-3PdP7sARRo",
+      title: "ITC traffic platform video",
+      poster: "/images/work/itc-intersection.webp",
+    },
     sketch: {
       inputs: ["Traffic cameras", "Microservices"],
       core: ["Python REST APIs", "Redis cache"],
@@ -373,7 +442,9 @@ export const projects: Project[] = [
   },
   {
     slug: "supplier-order-management",
+    domain: "business",
     context: "Delivered as part of the Genboot team",
+    contextShort: "At Genboot",
     kind: "Web application",
     service: "software-development",
     name: "Supplier Order Management",
@@ -418,7 +489,9 @@ export const projects: Project[] = [
   },
   {
     slug: "marina-mooring",
+    domain: "logistics",
     context: "Delivered as part of the Genboot team",
+    contextShort: "At Genboot",
     kind: "Software platform",
     service: "software-development",
     name: "Marina Mooring",
@@ -456,7 +529,9 @@ export const projects: Project[] = [
   },
   {
     slug: "redscope",
+    domain: "business",
     context: "Delivered as part of the Genboot team",
+    contextShort: "At Genboot",
     kind: "Desktop application",
     service: "software-development",
     name: "Redscope",
@@ -496,6 +571,10 @@ export const projects: Project[] = [
 // Explainer Adda: description taken from the site's own pages (reviewed Nov 2026).
 projects.push({
   slug: "explainer-adda",
+  domain: "content",
+  context: "Independent — my own project",
+  contextShort: "Independent",
+  cover: "/images/work/explainer-adda.png",
   name: "Explainer Adda",
   kind: "Content platform",
   service: "content-writing",
@@ -548,6 +627,171 @@ projects.push({
     },
   ],
 });
+
+// LoadSmart: the project-management case study, from Sunaina's own delivery
+// notes. Status is stated as partial deployment — don't present it as a full
+// production launch.
+projects.push({
+  slug: "loadsmart",
+  name: "LoadSmart",
+  kind: "Web platform + driver mobile app",
+  domain: "logistics",
+  summary: "Managing the delivery of a multi-module logistics and fleet management platform",
+  focus: "Technical project management",
+  service: "project-management",
+  facts: [
+    { label: "Role", value: "Technical Project Manager" },
+    { label: "Duration", value: "6–9 months" },
+    { label: "Team", value: "12+ members" },
+    { label: "Status", value: "Partial deployment · driver app in internal testing" },
+  ],
+  role: "I coordinated end-to-end delivery across a cross-functional team of 12+ people — keeping what needed to be built, how it was being implemented and what was ready for review and testing aligned.",
+  overview:
+    "LoadSmart is a logistics and fleet management platform that brings shipper and driver operations into one connected system: load management, dispatch, fleet administration, driver management, tracking, maintenance, analytics, and a driver-facing mobile app.",
+  problem:
+    "Many interconnected modules, a web platform and a mobile app, and several teams working in parallel — with requirements and designs still evolving while development and testing were under way.",
+  stack: [
+    "Fleet management",
+    "Load management & dispatch",
+    "Driver mobile app",
+    "Maintenance",
+    "Tracking",
+    "Analytics & reporting",
+    "Organization verification",
+    "Authentication",
+    "Electronic load documentation (e-LR)",
+  ],
+  stackLabel: "Modules",
+  contributionLabel: "My responsibilities",
+  contributions: [
+    "Managed project scope, priorities and delivery planning.",
+    "Broke requirements into actionable development tasks.",
+    "Coordinated frontend, backend, mobile, design and QA workstreams.",
+    "Clarified functional requirements and resolved implementation questions.",
+    "Ran sprint planning, task allocation and progress tracking.",
+    "Identified technical dependencies between modules.",
+    "Coordinated API integration and cross-platform workflows.",
+    "Reviewed implementation against approved Figma designs.",
+    "Managed changing requirements and communicated their delivery impact.",
+    "Organized demos, collected stakeholder feedback and tracked follow-ups.",
+    "Coordinated QA and made sure identified issues were assigned.",
+    "Monitored deployment readiness and internal testing progress.",
+  ],
+  featuresLabel: "Delivered so far",
+  features: [
+    "Post a Load workflow",
+    "My Driver and Active Roster",
+    "My Fleet listing and vehicle details",
+    "Add/Edit Truck and bulk vehicle upload",
+    "Fleet Analytics sections",
+    "Maintenance integration",
+    "Driver app build submitted for internal testing",
+  ],
+  sections: [
+    {
+      label: "Team & coordination",
+      intro: "I worked across six functions and kept their work aligned — design decisions, development tasks, integrations and testing:",
+      items: [
+        "UI/UX and product design",
+        "Frontend development",
+        "Backend development",
+        "Mobile app development",
+        "Quality assurance",
+        "Client and stakeholder communication",
+      ],
+    },
+    {
+      label: "The challenge",
+      intro:
+        "Revised Figma designs for the driver app arrived while development and testing were already in progress. They weren't just visual: they changed frontend implementation, functional behaviour and backend work, creating dependencies across teams. How I handled it:",
+      numbered: true,
+      items: [
+        "Requirement clarification — reviewed the updated designs and clarified the expected behaviour.",
+        "Impact assessment — worked with developers to map the changes across frontend, backend and related workflows.",
+        "Dependency management — identified the affected workstreams and sequenced their implementation.",
+        "Effort estimation — reassessed development and testing effort: about three weeks for the revised driver-app work after design approval.",
+        "Priority management — tracked the affected tasks and kept the work moving.",
+        "Continuous QA — tested against the Figma designs, documented mismatches and assigned issues.",
+        "Stakeholder communication — kept stakeholders informed about progress, changes and expectations.",
+      ],
+      outro:
+        "The lesson: treat design changes as potential scope and delivery changes, not just visual updates.",
+    },
+    {
+      label: "Delivery status",
+      intro:
+        "The platform reached partial deployment, with implemented web functionality moving through QA and review, and the driver app build submitted for internal testing. Other workflows were still in development and testing — this was not a complete production launch.",
+    },
+    {
+      label: "Key learning",
+      intro:
+        "Understand the requirement. Align the team. Manage the dependencies. Track execution. Deliver with clarity.",
+    },
+  ],
+  sketch: {
+    inputs: ["Requirements", "Figma designs"],
+    core: ["Sprint planning", "Dev + QA workstreams"],
+    outputs: ["Web platform", "Driver mobile app"],
+  },
+});
+
+// Loan AI: from the project details provided; Sunaina's own role on it isn't
+// documented yet, so the case study has no "My role" block.
+projects.push({
+  slug: "loan-ai",
+  name: "Loan AI",
+  kind: "AI application",
+  domain: "ai",
+  summary: "An AI-powered loan eligibility and policy understanding platform",
+  focus: "AI & RAG platform",
+  service: "ai-solutions",
+  overview:
+    "Loan AI is an AI-powered platform for loan eligibility and bank policy understanding. It processes bank policy documents, uses retrieval-augmented generation (RAG) to work with them, and supports loan evaluation through an admin dashboard.",
+  problem:
+    "Loan eligibility rules live in long bank policy documents. Evaluating an application means finding and applying the right rules consistently — and being able to see how each decision was reached.",
+  stack: ["FastAPI", "Supabase PostgreSQL", "pgvector", "RAG"],
+  featuresLabel: "What the platform does",
+  features: [
+    "Bank policy document processing",
+    "RAG-based retrieval over policy documents",
+    "Loan evaluation workflows",
+    "Admin dashboard for bank policy management",
+    "Feedback history and decision trail",
+  ],
+  sketch: {
+    inputs: ["Bank policy docs", "Loan applications"],
+    core: ["FastAPI services", "pgvector retrieval"],
+    outputs: ["Eligibility decision", "Decision trail"],
+  },
+});
+
+// Order on the page, grouped by domain in the same order as `domains`, so
+// numbering and "Next case study" follow what visitors see. LoadSmart (the
+// project-management case study) leads.
+const order = [
+  "loadsmart",
+  "itc",
+  "marina-mooring",
+  "sydkik",
+  "loan-ai",
+  "supplier-order-management",
+  "redscope",
+  "explainer-adda",
+];
+projects.sort((a, b) => order.indexOf(a.slug) - order.indexOf(b.slug));
+
+// Smaller projects listed without a case study.
+export const moreProjects: { name: string; note: string }[] = [
+  {
+    name: "Nearby Vibes",
+    note: "Milestone-based delivery with changing scope and client coordination.",
+  },
+  { name: "Udaan Credit", note: "Fintech product with credit-related applications." },
+];
+
+// Waiting for details before they go on the site (not rendered anywhere):
+// Color Wonder, Ylore Travel, Chicxflow — add a summary, domain and role, then
+// move them into moreProjects or projects.
 
 // Toolkit: the core skills only (the full list is in the resume PDF).
 export interface ToolkitGroup {

@@ -1,3 +1,71 @@
+/* Domain groups */
+.work-group + .work-group {
+  margin-top: clamp(40px, 5vw, 64px);
+}
+
+.work-domain {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin: 0 0 12px;
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.work-domain span {
+  color: var(--accent);
+}
+
+/* Real image tiles (hover preview and phone thumbnails) */
+.work-image {
+  margin: 0;
+  overflow: hidden;
+  border-radius: 6px;
+  aspect-ratio: 16 / 9;
+  background: var(--paper-2);
+}
+
+.work-image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+}
+
+/* Smaller projects without a case study */
+.work-more {
+  margin-top: clamp(48px, 6vw, 72px);
+}
+
+.work-more ul {
+  border-top: 1px solid var(--rule);
+}
+
+.work-more li {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr);
+  gap: 8px 32px;
+  align-items: baseline;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--rule);
+}
+
+.work-more-name {
+  font-size: 26px;
+  line-height: 1.1;
+}
+
+.work-more-note {
+  color: var(--ink-2);
+}
+
+@media (max-width: 599px) {
+  .work-more li {
+    grid-template-columns: 1fr;
+  }
+}
+
 .work-list {
   border-bottom: 1px solid var(--rule);
 }
@@ -148,14 +216,19 @@
   .work-row {
     grid-template-columns: minmax(0, 1fr) 44px;
     grid-template-areas:
-      "index index"
+      "thumb thumb"
       "name arrow"
       "meta meta";
     gap: 12px;
   }
 
-  /* Too small to read here; the case study shows the sketch full size */
-  .work-thumb {
+  .work-index {
+    display: none;
+  }
+
+  /* Sketches are too small to read here (the case study shows them full
+     size), but real product images are fine. */
+  .work-thumb:not(:has(.work-image)) {
     display: none;
   }
 }

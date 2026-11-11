@@ -4,7 +4,18 @@ import { FiArrowUpRight } from "react-icons/fi";
 import "./work.css";
 import SectionHead from "../sectionHead/sectionHead";
 import ProjectCover from "../projectCover/projectCover";
-import { projects } from "../../data/portfolio";
+import { basePath } from "../../constant";
+import { domains, moreProjects, Project, projects } from "../../data/portfolio";
+
+// A real product image when there is one, otherwise the drawn sketch.
+const Visual = ({ project, index }: { project: Project; index: number }) =>
+  project.cover ? (
+    <figure className="work-image">
+      <img src={basePath + project.cover} alt="" loading="lazy" />
+    </figure>
+  ) : (
+    <ProjectCover project={project} index={index} compact />
+  );
 
 const Work = () => {
   const [hovered, setHovered] = useState<number | null>(null);
@@ -27,38 +38,74 @@ const Work = () => {
           id="work-title"
           title={
             <>
-              Six projects — software, <em>AI</em> and a content platform of my own.
+              Products I've helped <em>plan, build and deliver.</em>
             </>
           }
-        />
+        >
+          <p>
+            {projects.length} case studies across AI, logistics, business software and content —
+            from leading a 12+ person delivery to writing the backend myself.
+          </p>
+        </SectionHead>
 
-        <ol className="work-list" onMouseMove={onMove} onMouseLeave={() => setHovered(null)}>
-          {projects.map((project, i) => (
-            <li key={project.slug} data-reveal style={{ "--delay": `${i * 0.06}s` } as React.CSSProperties}>
-              <Link
-                to={`/work/${project.slug}`}
-                className="work-row"
-                onMouseEnter={() => setHovered(i)}
-                onFocus={() => setHovered(null)}
-              >
-                <span className="work-index mono">{String(i + 1).padStart(2, "0")}</span>
-                <span className="work-thumb" aria-hidden="true">
-                  <ProjectCover project={project} index={i} compact />
-                </span>
-                <span className="work-name display">{project.name}</span>
-                <span className="work-meta">
-                  <span className="work-summary">{project.summary}</span>
-                  <span className="mono">
-                    {project.focus} · {project.context ? "At Genboot" : "Independent"}
-                  </span>
-                </span>
-                <span className="work-arrow" aria-hidden="true">
-                  <FiArrowUpRight />
-                </span>
-              </Link>
-            </li>
-          ))}
-        </ol>
+        <div className="work-groups" onMouseMove={onMove} onMouseLeave={() => setHovered(null)}>
+          {domains.map((domain) => {
+            const inDomain = projects.filter((p) => p.domain === domain.id);
+            if (!inDomain.length) return null;
+            return (
+              <div key={domain.id} className="work-group">
+                <h3 className="work-domain mono">
+                  {domain.title} <span>{inDomain.length}</span>
+                </h3>
+                <ol className="work-list">
+                  {inDomain.map((project) => {
+                    const i = projects.indexOf(project);
+                    return (
+                      <li key={project.slug} data-reveal>
+                        <Link
+                          to={`/work/${project.slug}`}
+                          className="work-row"
+                          onMouseEnter={() => setHovered(i)}
+                          onFocus={() => setHovered(null)}
+                        >
+                          <span className="work-index mono">{String(i + 1).padStart(2, "0")}</span>
+                          <span className="work-thumb" aria-hidden="true">
+                            <Visual project={project} index={i} />
+                          </span>
+                          <span className="work-name display">{project.name}</span>
+                          <span className="work-meta">
+                            <span className="work-summary">{project.summary}</span>
+                            <span className="mono">
+                              {project.focus}
+                              {project.contextShort && ` · ${project.contextShort}`}
+                            </span>
+                          </span>
+                          <span className="work-arrow" aria-hidden="true">
+                            <FiArrowUpRight />
+                          </span>
+                        </Link>
+                      </li>
+                    );
+                  })}
+                </ol>
+              </div>
+            );
+          })}
+        </div>
+
+        {moreProjects.length > 0 && (
+          <div className="work-more" data-reveal>
+            <h3 className="work-domain mono">More projects</h3>
+            <ul>
+              {moreProjects.map((p) => (
+                <li key={p.name}>
+                  <span className="work-more-name serif">{p.name}</span>
+                  <span className="work-more-note">{p.note}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
       </div>
 
       <div
@@ -68,7 +115,7 @@ const Work = () => {
       >
         {projects.map((project, i) => (
           <div key={project.slug} className={`work-preview-item${hovered === i ? " is-active" : ""}`}>
-            <ProjectCover project={project} index={i} compact />
+            <Visual project={project} index={i} />
           </div>
         ))}
       </div>
