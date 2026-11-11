@@ -23,7 +23,7 @@ export const useTheme = (): ThemeContextType => {
 };
 
 // public/index.html sets data-theme before first paint (the visitor's saved
-// choice, else light); start from that so React and the page agree.
+// choice, else dark); start from that so React and the page agree.
 const initialTheme = (): boolean =>
   document.documentElement.dataset.theme === "dark";
 
@@ -32,6 +32,10 @@ export const ThemeProvider: React.FC<PropsWithChildren<{}>> = ({ children }) => 
 
   useEffect(() => {
     document.documentElement.dataset.theme = isDarkMode ? "dark" : "light";
+    // Keep the mobile browser bar in step with the page colour.
+    document
+      .querySelector('meta[name="theme-color"]')
+      ?.setAttribute("content", isDarkMode ? "#12110f" : "#f3efe7");
   }, [isDarkMode]);
 
   const toggleDarkMode = () => {

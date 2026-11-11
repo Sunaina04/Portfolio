@@ -10,7 +10,7 @@
     />
     <meta name="author" content="Sunaina Ruhaniat" />
     <link rel="canonical" href="https://sunaina04.github.io/Portfolio/" />
-    <meta name="theme-color" content="#f3efe7" />
+    <meta name="theme-color" content="#12110f" />
 
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Sunaina Ruhaniat" />
@@ -42,14 +42,14 @@
     />
 
     <script>
-      // Apply the theme before first paint to avoid a flash. Light by default;
-      // dark only if the visitor chose it with the toggle on an earlier visit.
+      // Apply the theme before first paint to avoid a flash. Dark by default;
+      // light only if the visitor chose it with the toggle on an earlier visit.
       (function () {
         var theme;
         try {
           theme = localStorage.getItem("portfolio-theme");
         } catch (e) {}
-        document.documentElement.dataset.theme = theme === "dark" ? "dark" : "light";
+        document.documentElement.dataset.theme = theme === "light" ? "light" : "dark";
       })();
     </script>
 
