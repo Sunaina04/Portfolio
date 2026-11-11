@@ -61,8 +61,61 @@ const VideoFacade = ({ video }: { video: NonNullable<Project["video"]> }) => {
   );
 };
 
+type Shot = { src: string; alt: string };
+
+const hostOf = (link?: string) => link?.replace(/^https?:\/\//, "").replace(/\/$/, "");
+
+// A browser window around a web screen.
+const BrowserFrame = ({ label, children }: { label: string; children: ReactNode }) => (
+  <figure className="frame-window">
+    <div className="frame-bar" aria-hidden="true">
+      <i />
+      <i />
+      <i />
+      <span>{label}</span>
+    </div>
+    {children}
+  </figure>
+);
+
+const PhoneFrame = ({ shot, lazy }: { shot: Shot; lazy?: boolean }) => (
+  <figure className="frame-phone">
+    <img src={basePath + shot.src} alt={shot.alt} loading={lazy ? "lazy" : undefined} />
+  </figure>
+);
+
+// Top showcase: the cover in a browser window, with up to two phone screens
+// layered beside it, or just the phones for mobile-first products.
+const Stage = ({ project, phones }: { project: Project; phones: Shot[] }) => {
+  const label = hostOf(project.link) ?? project.name;
+  if (project.stage === "phones" && phones.length) {
+    return (
+      <div className="cs-stage cs-stage--phones">
+        {phones.slice(0, 3).map((shot) => (
+          <PhoneFrame key={shot.src} shot={shot} />
+        ))}
+        <span className="cs-chip cs-chip--top">Mobile app</span>
+      </div>
+    );
+  }
+  if (!project.cover) return null;
+  const side = phones.slice(0, 2);
+  return (
+    <div className={`cs-stage cs-stage--${side.length ? "mixed" : "web"}`}>
+      <BrowserFrame label={label}>
+        <img src={basePath + project.cover} alt={`${project.name} product screen`} />
+      </BrowserFrame>
+      {side.map((shot) => (
+        <PhoneFrame key={shot.src} shot={shot} />
+      ))}
+      <span className="cs-chip cs-chip--top">{project.kind}</span>
+      {side.length > 0 && <span className="cs-chip cs-chip--bottom">Mobile app</span>}
+    </div>
+  );
+};
+
 const defaultFacts = (project: Project) => {
-  const host = project.link?.replace(/^https?:\/\//, "").replace(/\/$/, "");
+  const host = hostOf(project.link);
   return [
     { label: "Type", value: project.kind },
     { label: "Focus", value: project.focus },
@@ -94,6 +147,15 @@ const CaseStudy = () => {
   const stackLabel = project.stackLabel ?? "Technologies";
   const facts: { label: string; value: ReactNode }[] = project.facts ?? defaultFacts(project);
   const showScreenshot = project.screenshot && project.screenshot !== project.cover;
+  const phones = project.gallery?.filter((g) => g.shape === "phone") ?? [];
+  const wides: Shot[] = [
+    ...(project.gallery?.filter((g) => g.shape === "wide") ?? []),
+    ...(showScreenshot ? [{ src: project.screenshot!, alt: `${project.name} interface` }] : []),
+  ];
+  const hasStage = Boolean(project.cover) || (project.stage === "phones" && phones.length > 0);
+  // Phones already shown in full on the top stage don't need repeating.
+  const phonesBelow = project.stage === "phones" && phones.length <= 3 ? [] : phones;
+  const frameLabel = hostOf(project.link) ?? project.name;
 
   return (
     <main id="main" className="case-study">
@@ -124,10 +186,8 @@ const CaseStudy = () => {
         </dl>
 
         <div className="cs-cover">
-          {project.cover ? (
-            <figure className="cs-cover-image">
-              <img src={basePath + project.cover} alt={`${project.name} product screens`} />
-            </figure>
+          {hasStage ? (
+            <Stage project={project} phones={phones} />
           ) : (
             <ProjectCover project={project} index={index} />
           )}
@@ -190,32 +250,54 @@ const CaseStudy = () => {
           <Block label={stackLabel}>
             <p className="cs-stack">{project.stack.join(" / ")}</p>
           </Block>
+          {project.clip && (
+            <Block label="Walkthrough">
+              <figure className="cs-clip">
+                <div className="cs-stage cs-stage--web">
+                  <BrowserFrame label={frameLabel}>
+                    <video
+                      src={basePath + project.clip.src}
+                      poster={basePath + project.clip.poster}
+                      controls
+                      muted
+                      playsInline
+                      preload="none"
+                      aria-label={project.clip.title}
+                    />
+                  </BrowserFrame>
+                </div>
+                <figcaption className="mono">{project.clip.title}</figcaption>
+              </figure>
+            </Block>
+          )}
           {project.video && (
             <Block label="Video">
               <VideoFacade video={project.video} />
             </Block>
           )}
-          {(project.gallery || showScreenshot) && (
+          {(wides.length > 0 || phonesBelow.length > 0) && (
             <Block label="Screens">
-              <div className={`cs-gallery cs-gallery--${project.gallery?.[0]?.shape ?? "wide"}`}>
-                {project.gallery?.map((g) => (
-                  <figure key={g.src} className="cs-shot">
-                    <img src={basePath + g.src} alt={g.alt} loading="lazy" />
-                  </figure>
-                ))}
-                {showScreenshot && (
-                  <figure className="cs-shot">
-                    <img
-                      src={basePath + project.screenshot}
-                      alt={`${project.name} interface`}
-                      loading="lazy"
-                    />
-                  </figure>
+              <div className="cs-screens">
+                {wides.length > 0 && (
+                  <div className="cs-stage cs-stage--web cs-screens-web">
+                    {wides.map((shot) => (
+                      <BrowserFrame key={shot.src} label={frameLabel}>
+                        <img src={basePath + shot.src} alt={shot.alt} loading="lazy" />
+                      </BrowserFrame>
+                    ))}
+                  </div>
+                )}
+                {phonesBelow.length > 0 && (
+                  <div className="cs-stage cs-stage--phones">
+                    {phonesBelow.map((shot) => (
+                      <PhoneFrame key={shot.src} shot={shot} lazy />
+                    ))}
+                  </div>
                 )}
               </div>
             </Block>
           )}
-          {project.cover && (
+          {hasStage && (
             <Block label="System sketch">
               <ProjectCover project={project} index={index} />
             </Block>

@@ -315,7 +315,11 @@ export interface Project {
   cover?: string; // real product image shown at the top instead of the sketch
   screenshot?: string;
   gallery?: { src: string; alt: string; shape: "wide" | "phone" }[];
+  /** "phones" puts the phone screens on the top stage instead of the cover. */
+  stage?: "phones";
   video?: { youtubeId: string; title: string; poster: string };
+  /** Short self-hosted screen recording of the product in use. */
+  clip?: { src: string; poster: string; title: string };
   articles?: { title: string; url: string; language: string }[];
 }
 
@@ -363,6 +367,7 @@ export const projects: Project[] = [
       "Notifications and task automation",
     ],
     cover: "/images/work/sydkik-cover.webp",
+    stage: "phones",
     sections: [
       {
         label: "Phase 2 — Voice AI",
@@ -424,11 +429,17 @@ export const projects: Project[] = [
       "Redis caching improved response times for high-frequency real-time requests.",
       "Backend optimization kept API performance reliable under high-volume real-time data.",
     ],
-    cover: "/images/work/itc-dashboard.webp",
+    cover: "/images/work/itc-presence.webp",
     gallery: [
       { src: "/images/work/itc-detection.webp", alt: "Four traffic camera feeds with lanes, crossings and detected vehicles marked", shape: "wide" },
+      { src: "/images/work/itc-maps.webp", alt: "Maps view: a junction on Rothschild Boulevard with congested segments highlighted and a traffic overview for the last hour", shape: "wide" },
       { src: "/images/work/itc-intersection.webp", alt: "Aerial view of a monitored intersection", shape: "wide" },
     ],
+    clip: {
+      src: "/images/work/itc-walkthrough.mp4",
+      poster: "/images/work/itc-walkthrough-poster.webp",
+      title: "Walkthrough of the Presence and Maps views across several junctions",
+    },
     video: {
       youtubeId: "-3PdP7sARRo",
       title: "ITC traffic platform video",
@@ -504,7 +515,7 @@ export const projects: Project[] = [
       "Marina operators need to see marinas, berths and vessel locations at a glance — and the map has to stay fast with large volumes of location data.",
     stack: ["Python", "React.js", "Leaflet.js", "Jest", "React Testing Library"],
     link: "https://genmoor.vercel.app",
-    screenshot: "/images/work/marina-mooring.png",
+    cover: "/images/work/marina-mooring-dashboard.webp",
     contributions: [
       "Developed and maintained a platform to streamline berth allocation and marina operations.",
       "Built interactive map-based features with Leaflet.js to visualize marinas, berths, and vessel locations.",
@@ -728,6 +739,13 @@ projects.push({
         "Understand the requirement. Align the team. Manage the dependencies. Track execution. Deliver with clarity.",
     },
   ],
+  cover: "/images/work/loadsmart-web-dashboard.webp",
+  gallery: [
+    { src: "/images/work/loadsmart-web-landing.webp", alt: "LoadSmart website: run your entire freight operation from one command centre, for shippers and truckers", shape: "wide" },
+    { src: "/images/work/loadsmart-splash.webp", alt: "LoadSmart driver app splash screen", shape: "phone" },
+    { src: "/images/work/loadsmart-home.webp", alt: "Driver app home: current trip, directions, expenses, papers and next trip", shape: "phone" },
+    { src: "/images/work/loadsmart-trip.webp", alt: "Driver app trip progress with papers, photos and weighing slip upload", shape: "phone" },
+  ],
   sketch: {
     inputs: ["Requirements", "Figma designs"],
     core: ["Sprint planning", "Dev + QA workstreams"],
@@ -758,6 +776,8 @@ projects.push({
     "Admin dashboard for bank policy management",
     "Feedback history and decision trail",
   ],
+  link: "https://loan-ai-frontend.vercel.app/",
+  cover: "/images/work/loan-ai-home.webp",
   sketch: {
     inputs: ["Bank policy docs", "Loan applications"],
     core: ["FastAPI services", "pgvector retrieval"],

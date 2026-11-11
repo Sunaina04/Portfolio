@@ -4,18 +4,12 @@ import { FiArrowUpRight } from "react-icons/fi";
 import "./work.css";
 import SectionHead from "../sectionHead/sectionHead";
 import ProjectCover from "../projectCover/projectCover";
-import { basePath } from "../../constant";
 import { domains, moreProjects, Project, projects } from "../../data/portfolio";
 
-// A real product image when there is one, otherwise the drawn sketch.
-const Visual = ({ project, index }: { project: Project; index: number }) =>
-  project.cover ? (
-    <figure className="work-image">
-      <img src={basePath + project.cover} alt="" loading="lazy" />
-    </figure>
-  ) : (
-    <ProjectCover project={project} index={index} compact />
-  );
+// The drawn system sketch; real screens live on the case study page.
+const Visual = ({ project, index }: { project: Project; index: number }) => (
+  <ProjectCover project={project} index={index} compact />
+);
 
 const Work = () => {
   const [hovered, setHovered] = useState<number | null>(null);
