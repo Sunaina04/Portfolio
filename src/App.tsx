@@ -14,7 +14,7 @@ import ContactForm from "./components/contactForm/contactForm";
 
 // Start each route at the top, or at the #section named in the URL.
 const ScrollManager = () => {
-  const { pathname, hash } = useLocation();
+  const { pathname, hash, key } = useLocation();
   const lastPath = useRef(pathname);
 
   // New page: set the scroll position before paint, so a page transition
@@ -27,15 +27,17 @@ const ScrollManager = () => {
     else window.scrollTo({ top: 0, behavior: "instant" as ScrollBehavior });
   }, [pathname, hash]);
 
-  // Same page, new #section: wait a frame so the mobile menu can release its
-  // scroll lock first, then scroll (smoothly, via CSS).
+  // Same page, #section link: scroll on every click, keyed on the navigation
+  // itself rather than the hash, so a link to the section already in the URL
+  // (e.g. a second "Discuss this service") still scrolls. Wait a frame so the
+  // mobile menu can release its scroll lock first.
   useEffect(() => {
     if (!hash) return;
     const frame = requestAnimationFrame(() => {
       document.getElementById(hash.slice(1))?.scrollIntoView();
     });
     return () => cancelAnimationFrame(frame);
-  }, [hash]);
+  }, [hash, key]);
 
   return null;
 };

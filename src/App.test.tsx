@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen, within, fireEvent } from '@testing-library/react';
+import { render, screen, within, fireEvent, waitFor } from '@testing-library/react';
 import App from './App';
 import { projects, services } from './data/portfolio';
 
@@ -201,4 +201,23 @@ test('hero shows resume, LinkedIn and WhatsApp links, and no empty Instagram lin
   );
   expect(link(/WhatsApp/).getAttribute('href')).toMatch(/^https:\/\/wa\.me\/918284948195\?text=/);
   expect(within(row).queryByRole('link', { name: /Instagram/ })).toBeNull();
+});
+
+test('every "Discuss" link scrolls to the form, even when already at #contact', async () => {
+  const scrollSpy = jest.spyOn(Element.prototype, 'scrollIntoView');
+  renderAt('/');
+  const links = screen.getAllByRole('link', { name: /Discuss this$/ });
+  expect(links.length).toBe(2);
+
+  scrollSpy.mockClear();
+  fireEvent.click(links[0]);
+  await waitFor(() => expect(scrollSpy).toHaveBeenCalled());
+
+  // Second link: the URL already ends in #contact, but it must still scroll.
+  scrollSpy.mockClear();
+  fireEvent.click(links[1]);
+  await waitFor(() => expect(scrollSpy).toHaveBeenCalled());
+  expect(screen.getByRole('combobox', { name: /What do you need/ })).toHaveValue(
+    'website-advertising'
+  );
 });
