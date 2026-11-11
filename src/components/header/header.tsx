@@ -61,9 +61,20 @@ const Header = () => {
   const themeLabel = isDarkMode ? "Switch to light mode" : "Switch to dark mode";
 
   return (
-    <header className={`masthead${scrolled ? " is-scrolled" : ""}`}>
+    <header
+      className={`masthead${scrolled ? " is-scrolled" : ""}${menuOpen ? " menu-open" : ""}`}
+    >
       <div className="wrap masthead-inner">
-        <Link to="/" className="masthead-logo serif" onClick={() => setMenuOpen(false)}>
+        <Link
+          to="/"
+          className="masthead-logo serif"
+          onClick={() => {
+            setMenuOpen(false);
+            // Already on the home page the URL may not change, so nothing
+            // else would scroll: take the visitor back to the top.
+            if (pathname === "/") window.scrollTo({ top: 0, behavior: "smooth" });
+          }}
+        >
           {profile.name}
         </Link>
         <Link
