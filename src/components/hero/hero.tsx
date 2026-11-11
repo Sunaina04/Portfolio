@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import Link from "../pageLink/pageLink";
 import { FiArrowDownRight, FiArrowUpRight } from "react-icons/fi";
 import "./hero.css";
 import { identities, milestones, profile } from "../../data/portfolio";

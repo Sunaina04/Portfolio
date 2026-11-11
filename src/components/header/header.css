@@ -2,6 +2,7 @@
   position: sticky;
   top: 0;
   z-index: 1000;
+  view-transition-name: masthead;
   border-bottom: 1px solid transparent;
   transition: background-color 0.4s var(--ease), border-color 0.4s var(--ease);
 }

@@ -1,8 +1,10 @@
 import React, { ReactNode } from "react";
-import { Link, Navigate, useParams } from "react-router-dom";
+import { Navigate, useParams } from "react-router-dom";
+import Link from "../pageLink/pageLink";
 import { FiArrowLeft, FiArrowRight, FiArrowUpRight } from "react-icons/fi";
 import "./caseStudy.css";
 import ProjectCover from "../projectCover/projectCover";
+import ReadingProgress from "../readingProgress/readingProgress";
 import { basePath } from "../../constant";
 import { projects, services } from "../../data/portfolio";
 import { ModeTag } from "../services/services";
@@ -32,6 +34,7 @@ const CaseStudy = () => {
 
   return (
     <main id="main" className="case-study">
+      <ReadingProgress />
       <div className="wrap">
         <nav className="cs-crumbs mono" aria-label="Breadcrumb">
           <Link to={{ pathname: "/", hash: "#work" }} className="cs-back">

@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import Link from "../pageLink/pageLink";
 import "./skills.css";
 import SectionHead from "../sectionHead/sectionHead";
 import { projects, toolkit, ToolkitGroup } from "../../data/portfolio";

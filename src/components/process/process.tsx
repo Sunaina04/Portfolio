@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import Link from "../pageLink/pageLink";
 import { FiArrowUpRight } from "react-icons/fi";
 import "./process.css";
 import { ModeTag } from "../services/services";

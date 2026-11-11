@@ -49,12 +49,27 @@
   vector-effect: non-scaling-stroke;
   stroke-dasharray: 340;
   stroke-dashoffset: 340;
-  animation: draw 1.2s 0.9s var(--ease) forwards;
+  animation: draw 1.2s 0.9s var(--ease) forwards,
+    wave 4.5s 2.1s ease-in-out infinite alternate;
 }
 
 @keyframes draw {
   to {
     stroke-dashoffset: 0;
+  }
+}
+
+/* Same path structure, crest and trough swapped, so it ripples smoothly.
+   Browsers that can't animate path shapes keep the static line. */
+@keyframes wave {
+  0% {
+    d: path("M2 14 C 60 4, 120 18, 180 9 S 270 6, 298 11");
+  }
+  50% {
+    d: path("M2 12 C 60 15, 120 5, 180 12 S 270 13, 298 9");
+  }
+  100% {
+    d: path("M2 10 C 60 6, 120 16, 180 7 S 270 10, 298 13");
   }
 }
 

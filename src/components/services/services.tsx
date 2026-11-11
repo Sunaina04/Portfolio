@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import Link from "../pageLink/pageLink";
 import { FiArrowUpRight, FiPlus } from "react-icons/fi";
 import "./services.css";
 import SectionHead from "../sectionHead/sectionHead";

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
+import Link from "../pageLink/pageLink";
 import { FiMoon, FiSun } from "react-icons/fi";
 import "./header.css";
 import { useTheme } from "../../context/ThemeContext";
