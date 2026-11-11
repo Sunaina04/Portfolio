@@ -327,7 +327,7 @@ const ContactForm: React.FC = () => {
                 />
               </Field>
             </div>
-            <Field name="phone" label="Phone (optional)" error={errors.phone}>
+            <Field name="phone" label="Phone" required error={errors.phone}>
               <input
                 type="tel"
                 inputMode="tel"

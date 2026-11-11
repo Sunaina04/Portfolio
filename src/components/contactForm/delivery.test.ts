@@ -37,7 +37,7 @@ test('sendEmail succeeds only on an OK response with success: true', async () =>
   const [url, init] = fetchSpy.mock.calls[0];
   expect(url).toBe('https://api.web3forms.com/submit');
   const body = JSON.parse(init?.body as string);
-  expect(body).toMatchObject({ name: 'Asha Verma', phone: 'Not provided', service: 'Not specified', botcheck: false });
+  expect(body).toMatchObject({ name: 'Asha Verma', service: 'Not specified', botcheck: false });
   expect(body.access_key).toBeTruthy();
 });
 

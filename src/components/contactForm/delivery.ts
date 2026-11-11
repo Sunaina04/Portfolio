@@ -66,7 +66,7 @@ export const sendEmail = async (
         from_name: "Sunaina Ruhaniat — portfolio",
         name: v.name,
         email: v.email,
-        phone: v.phone || "Not provided",
+        phone: v.phone,
         service: serviceTitle || "Not specified",
         message: v.message,
         botcheck,

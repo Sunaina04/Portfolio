@@ -25,6 +25,7 @@ test('falls back to the email app when no form key is configured', () => {
   fill(/^Name/, 'Asha Verma');
   fill(/^Email/, 'asha@example.com');
   fill(/^Message/, 'I need help planning and building a small web app.');
+  fill(/^Phone/, '+91 98765 43210');
   fireEvent.click(screen.getByRole('button', { name: /Send by email/ }));
 
   expect(fetchSpy).not.toHaveBeenCalled();

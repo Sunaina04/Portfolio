@@ -19,11 +19,11 @@ describe('email', () => {
   );
 });
 
-describe('phone (optional)', () => {
-  it.each(['', '+91 82849 48195', '(020) 1234-5678', '9876543210'])('accepts %p', (v) =>
+describe('phone (required)', () => {
+  it.each(['+91 82849 48195', '(020) 1234-5678', '9876543210'])('accepts %p', (v) =>
     expect(validateField('phone', v)).toBeUndefined()
   );
-  it.each(['hjseo', '12345', '+1 234 567 890 123 456 7', '98765abc10'])('rejects %p', (v) =>
+  it.each(['', '   ', 'hjseo', '12345', '+1 234 567 890 123 456 7', '98765abc10'])('rejects %p', (v) =>
     expect(validateField('phone', v)).toBeDefined()
   );
 });

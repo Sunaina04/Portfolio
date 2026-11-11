@@ -120,6 +120,7 @@ describe('contact form validation', () => {
     fill(/^Name/, '  Asha Verma ');
     fill(/^Email/, 'asha@example.com');
     fill(/^Message/, 'I need help planning and building a small web app.');
+    fill(/^Phone/, '+91 98765 43210');
     fireEvent.click(screen.getByRole('button', { name: /Send by email/ }));
 
     expect(fetchSpy).toHaveBeenCalledTimes(1);
@@ -138,6 +139,7 @@ describe('contact form validation', () => {
     fill(/^Name/, 'Asha Verma');
     fill(/^Email/, 'asha@example.com');
     fill(/^Message/, 'I need help planning and building a small web app.');
+    fill(/^Phone/, '+91 98765 43210');
     fireEvent.click(screen.getByRole('button', { name: /Send by email/ }));
 
     expect(await screen.findByText(/wasn't sent/)).toBeInTheDocument();
@@ -157,6 +159,7 @@ describe('contact form validation', () => {
     fill(/^Name/, 'Asha Verma');
     fill(/^Email/, '');
     fill(/^Message/, 'Can you build a chatbot for our support team?');
+    fill(/^Phone/, '+91 98765 43210');
     expect(screen.getByLabelText(/^Email/)).not.toHaveAttribute('aria-invalid');
     fireEvent.click(screen.getByRole('button', { name: /Send on WhatsApp/ }));
 
@@ -179,6 +182,7 @@ describe('contact form validation', () => {
     renderAt('/');
     fill(/^Name/, 'Asha Verma');
     fill(/^Message/, 'I need help planning and building a small web app.');
+    fill(/^Phone/, '+91 98765 43210');
     fireEvent.click(screen.getByRole('button', { name: /Send by email/ }));
     expect(fetchSpy).not.toHaveBeenCalled();
     expect(screen.getByLabelText(/^Email/)).toHaveAccessibleDescription(/enter your email/);

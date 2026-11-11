@@ -49,7 +49,7 @@ export const validateField = (
       return undefined;
 
     case "phone": {
-      if (!value) return undefined; // optional
+      if (!value) return "Please enter your phone number.";
       if (!PHONE_PATTERN.test(value)) {
         return "Phone can only contain digits, spaces, +, -, ( and ).";
       }
