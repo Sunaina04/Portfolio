@@ -127,6 +127,10 @@
   line-height: 1.15;
 }
 
+.hero-quick {
+  margin-top: 4px;
+}
+
 .hero-ctas {
   display: flex;
   flex-wrap: wrap;

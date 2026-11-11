@@ -4,6 +4,7 @@ import { FiMoon, FiSun } from "react-icons/fi";
 import "./header.css";
 import { useTheme } from "../../context/ThemeContext";
 import { profile } from "../../data/portfolio";
+import QuickLinks from "../quickLinks/quickLinks";
 
 export const sections = [
   { id: "about", label: "About" },
@@ -129,6 +130,7 @@ const Header = () => {
           <a className="mobile-mail link" href={`mailto:${profile.email}`}>
             {profile.email}
           </a>
+          <QuickLinks className="quick-links--menu mobile-quick" />
         </nav>
       </div>
     </header>

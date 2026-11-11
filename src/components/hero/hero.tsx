@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { FiArrowDownRight, FiArrowUpRight } from "react-icons/fi";
 import "./hero.css";
 import { identities, milestones, profile } from "../../data/portfolio";
+import QuickLinks from "../quickLinks/quickLinks";
 
 // Headline split into words so each can rise in on load.
 const before = ["From"];
@@ -82,6 +83,7 @@ const Hero = () => (
               Explore services <FiArrowDownRight aria-hidden="true" />
             </Link>
           </div>
+          <QuickLinks className="hero-quick" />
         </div>
       </div>
 

@@ -221,6 +221,11 @@
   animation-delay: calc(var(--i) * 60ms);
 }
 
+.mobile-quick {
+  margin-top: 20px;
+  animation: rise 0.6s 0.3s var(--ease) both;
+}
+
 .mobile-mail {
   margin-top: 32px;
   align-self: flex-start;

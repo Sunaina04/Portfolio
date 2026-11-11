@@ -162,3 +162,17 @@ describe('contact form validation', () => {
     expect(screen.getByLabelText(/^Email/)).toHaveAccessibleDescription(/enter your email/);
   });
 });
+
+test('hero shows resume, LinkedIn and WhatsApp links, and no empty Instagram link', () => {
+  renderAt('/');
+  const row = screen.getAllByRole('list', { name: 'Resume and profiles' })[0];
+  const link = (name: RegExp) => within(row).getByRole('link', { name });
+  expect(link(/Resume/).getAttribute('href')).toMatch(/\/Sunaina_Resume\.pdf$/);
+  expect(link(/Resume/)).toHaveAttribute('download');
+  expect(link(/LinkedIn/)).toHaveAttribute(
+    'href',
+    'https://www.linkedin.com/in/sunaina-ruhaniat-01a650207/'
+  );
+  expect(link(/WhatsApp/).getAttribute('href')).toMatch(/^https:\/\/wa\.me\/918284948195\?text=/);
+  expect(within(row).queryByRole('link', { name: /Instagram/ })).toBeNull();
+});

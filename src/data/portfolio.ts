@@ -13,6 +13,9 @@ export const profile = {
   phone: "+91 82849 48195",
   whatsapp: "918284948195", // same number, international format for wa.me links
   linkedin: "https://www.linkedin.com/in/sunaina-ruhaniat-01a650207/",
+  // Instagram handle without the @ (e.g. "sunaina.builds"). Left empty until
+  // provided; the link appears everywhere automatically once it's set.
+  instagram: "",
   resume: "/Sunaina_Resume.pdf",
   availability: "Open to independent projects",
   promise:

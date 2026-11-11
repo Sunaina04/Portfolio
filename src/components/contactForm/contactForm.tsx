@@ -1,7 +1,7 @@
 import React, { FormEvent, useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { FiAlertCircle, FiArrowUpRight, FiArrowUp, FiChevronDown, FiMail } from "react-icons/fi";
-import { FaWhatsapp } from "react-icons/fa";
+import { FaInstagram, FaWhatsapp } from "react-icons/fa";
 import "./contactForm.css";
 import { basePath } from "../../constant";
 import { profile, services } from "../../data/portfolio";
@@ -194,6 +194,16 @@ const ContactForm: React.FC = () => {
     { href: basePath + profile.resume, label: "Resume (PDF)", external: true },
     { href: whatsappUrl(whatsappGreeting), label: "WhatsApp", external: true, Icon: FaWhatsapp },
     { href: `tel:${profile.phone.replace(/\s/g, "")}`, label: `Call ${profile.phone}` },
+    ...(profile.instagram
+      ? [
+          {
+            href: `https://www.instagram.com/${profile.instagram}/`,
+            label: "Instagram",
+            external: true,
+            Icon: FaInstagram,
+          },
+        ]
+      : []),
   ];
 
   return (
