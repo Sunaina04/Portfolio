@@ -1,51 +1,28 @@
 import React from "react";
-import {
-  VerticalTimeline,
-  VerticalTimelineElement,
-} from "react-vertical-timeline-component";
-import "react-vertical-timeline-component/style.min.css";
 import "./education.css";
-import { basePath } from "../../constant";
+import SectionHead from "../sectionHead/sectionHead";
 import { education } from "../../data/portfolio";
 
-const contentStyle = {
-  background: "var(--surface)",
-  color: "var(--text)",
-  border: "1px solid var(--border)",
-  borderRadius: "20px",
-  boxShadow: "none",
-};
-
-const Education = () => {
-  return (
-    <section className="section education-container" id="education">
-      <span className="eyebrow">Academics</span>
-      <h2 className="section-title">Education</h2>
-      <VerticalTimeline lineColor="var(--border)">
+const Education = () => (
+  <section id="education" className="section" aria-labelledby="education-title">
+    <div className="wrap">
+      <SectionHead index="07" label="Education" id="education-title" title="Education" />
+      <ol className="edu">
         {education.map((item) => (
-          <VerticalTimelineElement
-            key={item.degree}
-            className="vertical-timeline-element--education"
-            date={item.date}
-            contentStyle={contentStyle}
-            contentArrowStyle={{ borderRight: "7px solid var(--border)" }}
-            iconStyle={{
-              backgroundImage: `url("${basePath}${item.icon}")`,
-              backgroundSize: "cover",
-              backgroundPosition: "50%",
-              boxShadow: "0 0 0 3px var(--accent)",
-            }}
-          >
-            <h3 className="vertical-timeline-element-title">{item.degree}</h3>
-            <h4 className="vertical-timeline-element-subtitle">
-              {item.school}, {item.location}
-            </h4>
-            <p className="edu-score">{item.score}</p>
-          </VerticalTimelineElement>
+          <li key={item.degree} className="edu-row" data-reveal>
+            <span className="mono">{item.date}</span>
+            <div>
+              <h3 className="edu-degree serif">{item.degree}</h3>
+              <p className="edu-school">
+                {item.school}, {item.location}
+              </p>
+            </div>
+            <span className="edu-score serif">{item.score}</span>
+          </li>
         ))}
-      </VerticalTimeline>
-    </section>
-  );
-};
+      </ol>
+    </div>
+  </section>
+);
 
 export default Education;

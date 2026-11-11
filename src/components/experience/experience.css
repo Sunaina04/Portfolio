@@ -1,111 +1,100 @@
-.exp-timeline {
-  position: relative;
-  margin: 0;
-  padding: 0 0 0 56px;
-  list-style: none;
+.roles {
+  border-bottom: 1px solid var(--rule);
 }
 
-/* Vertical line connecting the roles */
-.exp-timeline::before {
-  content: "";
-  position: absolute;
-  top: 8px;
-  bottom: 8px;
-  left: 19px;
-  width: 2px;
-  background: linear-gradient(var(--accent), var(--border));
+.role {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr) minmax(0, 1.6fr);
+  gap: 24px clamp(32px, 4vw, 64px);
+  padding: clamp(36px, 5vw, 56px) 0;
+  border-top: 1px solid var(--rule);
 }
 
-.exp-item {
-  position: relative;
-}
-
-.exp-item + .exp-item {
-  margin-top: 28px;
-}
-
-.exp-marker {
-  position: absolute;
-  top: 24px;
-  left: -56px;
+.role-dates {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  border: 2px solid var(--accent);
-  border-radius: 50%;
-  background: var(--bg);
-  color: var(--accent);
-  font-size: 15px;
-}
-
-.exp-container {
-  padding: 28px 32px;
-}
-
-.exp-header {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
+  flex-direction: column;
   align-items: flex-start;
-  gap: 8px 16px;
-  margin-bottom: 16px;
+  gap: 12px;
+  padding-top: 0.6em;
 }
 
-.exp-subtitle {
-  margin: 0;
-  font-size: 1.5rem;
+.role-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
   color: var(--accent);
 }
 
-.exp-company {
-  margin: 4px 0 0;
+.role-badge::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+  animation: pulse 2.4s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  50% {
+    box-shadow: 0 0 0 6px color-mix(in srgb, var(--accent) 15%, transparent);
+  }
+}
+
+.role-title {
+  font-size: clamp(40px, 4.4vw, 64px);
+  line-height: 1;
+}
+
+.role-company {
+  margin-top: 12px;
   color: var(--muted);
 }
 
-.exp-period {
-  padding: 4px 12px;
-  border: 1px solid var(--border);
-  border-radius: 999px;
-  font-size: 0.85rem;
-  white-space: nowrap;
-  color: var(--muted);
+.role-summary {
+  font-family: var(--serif);
+  font-size: clamp(24px, 2.2vw, 30px);
+  line-height: 1.2;
+  margin-bottom: 24px;
 }
 
-.exp-period.current {
-  border-color: var(--accent);
+.role-points li {
+  position: relative;
+  padding: 10px 0 10px 24px;
+  border-top: 1px solid var(--rule);
+  font-size: 16px;
+  color: var(--ink-2);
+}
+
+.role-points li::before {
+  content: "—";
+  position: absolute;
+  left: 0;
   color: var(--accent);
 }
 
-.exp-points {
-  margin: 0;
-  padding-left: 20px;
-}
-
-.exp-points li {
-  margin-bottom: 8px;
-}
-
-.exp-points li::marker {
-  color: var(--accent);
-}
-
-@media (max-width: 767px) {
-  .exp-timeline {
-    padding-left: 0;
+@media (max-width: 1023px) {
+  .role {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
   }
 
-  .exp-timeline::before,
-  .exp-marker {
-    display: none;
+  .role-body {
+    grid-column: 2;
+  }
+}
+
+@media (max-width: 699px) {
+  .role {
+    grid-template-columns: 1fr;
   }
 
-  .exp-container {
-    padding: 22px 20px;
+  .role-dates {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 0;
   }
 
-  .exp-subtitle {
-    font-size: 1.3rem;
+  .role-body {
+    grid-column: auto;
   }
 }

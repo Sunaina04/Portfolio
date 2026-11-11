@@ -22,29 +22,27 @@ export const useTheme = (): ThemeContextType => {
   return context;
 };
 
-const readStoredTheme = (): boolean => {
-  try {
-    return localStorage.getItem(STORAGE_KEY) !== "light";
-  } catch {
-    return true;
-  }
-};
+// public/index.html sets data-theme before first paint (saved choice, else
+// the system preference); start from that so React and the page agree.
+const initialTheme = (): boolean =>
+  document.documentElement.dataset.theme === "dark";
 
 export const ThemeProvider: React.FC<PropsWithChildren<{}>> = ({ children }) => {
-  const [isDarkMode, setIsDarkMode] = useState(readStoredTheme);
+  const [isDarkMode, setIsDarkMode] = useState(initialTheme);
 
-  // Colours come from CSS variables keyed off this attribute (see index.css).
   useEffect(() => {
     document.documentElement.dataset.theme = isDarkMode ? "dark" : "light";
-    try {
-      localStorage.setItem(STORAGE_KEY, isDarkMode ? "dark" : "light");
-    } catch {
-      // Storage unavailable (private mode); theme still applies for this visit.
-    }
   }, [isDarkMode]);
 
   const toggleDarkMode = () => {
-    setIsDarkMode((dark) => !dark);
+    setIsDarkMode((dark) => {
+      try {
+        localStorage.setItem(STORAGE_KEY, dark ? "light" : "dark");
+      } catch {
+        // Storage unavailable (private mode); theme still applies for this visit.
+      }
+      return !dark;
+    });
   };
 
   return (

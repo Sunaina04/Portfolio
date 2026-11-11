@@ -1,46 +1,55 @@
 import React from "react";
-import { FaBriefcase } from "react-icons/fa";
 import "./experience.css";
+import SectionHead from "../sectionHead/sectionHead";
 import { experience } from "../../data/portfolio";
 
-const Experience = () => {
-  return (
-    <section className="section" id="experience">
-      <span className="eyebrow">Career</span>
-      <h2 className="section-title">Work Experience</h2>
-      <p className="section-lead">
-        6+ years at Genboot, progressing from Senior Software Engineer to
-        leading project delivery as a Project Manager.
-      </p>
-      <ol className="exp-timeline">
+const Experience = () => (
+  <section id="experience" className="section" aria-labelledby="experience-title">
+    <div className="wrap">
+      <SectionHead
+        index="05"
+        label="Employment"
+        id="experience-title"
+        title={
+          <>
+            6+ years at Genboot, from <em>engineer</em> to project manager.
+          </>
+        }
+      >
+        <p>
+          My full-time employment history. The services above are offered independently, outside
+          this role.
+        </p>
+      </SectionHead>
+
+      <ol className="roles">
         {experience.map((role) => (
-          <li key={role.title} className="exp-item" data-reveal>
-            <span className="exp-marker" aria-hidden="true">
-              <FaBriefcase />
-            </span>
-            <article className="card exp-container">
-              <header className="exp-header">
-                <div>
-                  <h3 className="exp-subtitle">{role.title}</h3>
-                  <p className="exp-company">
-                    {role.company} · {role.location}
-                  </p>
-                </div>
-                <span className={`exp-period${role.current ? " current" : ""}`}>
-                  {role.period}
-                </span>
-              </header>
-              <ul className="exp-points">
+          <li key={role.title} className={`role${role.current ? " is-current" : ""}`} data-reveal>
+            <div className="role-dates">
+              <span className="mono">
+                {role.start} — {role.end}
+              </span>
+              {role.current && <span className="role-badge mono">Current</span>}
+            </div>
+            <div className="role-head">
+              <h3 className="role-title display">{role.title}</h3>
+              <p className="role-company">
+                {role.company} · {role.location}
+              </p>
+            </div>
+            <div className="role-body">
+              <p className="role-summary">{role.summary}</p>
+              <ul className="role-points">
                 {role.points.map((point) => (
                   <li key={point}>{point}</li>
                 ))}
               </ul>
-            </article>
+            </div>
           </li>
         ))}
       </ol>
-    </section>
-  );
-};
+    </div>
+  </section>
+);
 
 export default Experience;

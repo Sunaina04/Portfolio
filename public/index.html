@@ -2,42 +2,67 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" href="/Portfolio/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
+    <title>Sunaina — Technical Project Manager &amp; Software Engineer</title>
     <meta
       name="description"
-      content="Sunaina — Technical Project Manager and Software Engineer with 6+ years of experience in Agile delivery, Python, FastAPI, Django and AI/LLM integrations."
+      content="Sunaina — Technical Project Manager, Software Developer and AI Engineer with 6+ years in software. Project management, software and AI development, developer connections, content writing and website advertising setup."
     />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/favicon.ico" />
-    <!--
-      manifest.json provides metadata used when your web app is installed on a
-      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
-    -->
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <!--
-      Notice the use of %PUBLIC_URL% in the tags above.
-      It will be replaced with the URL of the `public` folder during the build.
-      Only files inside the `public` folder can be referenced from the HTML.
+    <meta name="author" content="Sunaina" />
+    <link rel="canonical" href="https://sunaina04.github.io/Portfolio/" />
+    <meta name="theme-color" content="#f3efe7" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#12110f" media="(prefers-color-scheme: dark)" />
 
-      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
-      work correctly both with client-side routing and a non-root public URL.
-      Learn how to configure a non-root public URL by running `npm run build`.
-    -->
-    <title>Sunaina | Technical Project Manager &amp; Software Engineer</title>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Sunaina — Technical Project Manager & Software Engineer" />
+    <meta
+      property="og:description"
+      content="From idea to execution, I help businesses plan, build, manage, and grow their digital solutions."
+    />
+    <meta property="og:url" content="https://sunaina04.github.io/Portfolio/" />
+    <meta name="twitter:card" content="summary" />
+
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/favicon.ico" />
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <script>
+      // Apply the saved (or system) theme before first paint to avoid a flash.
+      (function () {
+        var theme;
+        try {
+          theme = localStorage.getItem("portfolio-theme");
+        } catch (e) {}
+        if (theme !== "light" && theme !== "dark") {
+          theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+        }
+        document.documentElement.dataset.theme = theme;
+      })();
+    </script>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Sunaina",
+        "jobTitle": "Technical Project Manager & Software Engineer",
+        "worksFor": { "@type": "Organization", "name": "Genboot" },
+        "url": "https://sunaina04.github.io/Portfolio/",
+        "sameAs": ["https://www.linkedin.com/in/sunaina-ruhaniat-01a650207/", "https://explaineradda.com/"],
+        "knowsAbout": ["Project management", "Agile delivery", "Python", "FastAPI", "Django", "AI engineering", "Retrieval-Augmented Generation", "Content writing"],
+        "alumniOf": { "@type": "CollegeOrUniversity", "name": "Guru Nanak Dev University" }
+      }
+    </script>
   </head>
   <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <noscript>You need to enable JavaScript to view this portfolio.</noscript>
     <div id="root"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
-
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
-
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
   </body>
 </html>

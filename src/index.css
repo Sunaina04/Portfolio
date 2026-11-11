@@ -1,34 +1,51 @@
-/* Design tokens. The palette keeps the original black + gold look; light mode
-   uses darker golds so text stays readable on white. */
+/* ------------------------------------------------------------------
+   Design system — "Editorial"
+   Warm paper and ink, one burnt-orange accent, a serif display face
+   (Instrument Serif), a neutral sans for reading (Geist) and a mono
+   for labels (Geist Mono). Dark mode inverts to ink paper.
+------------------------------------------------------------------- */
 :root,
-:root[data-theme="dark"] {
-  --bg: #000000;
-  --surface: rgba(255, 255, 255, 0.04);
-  --surface-hover: rgba(255, 255, 255, 0.08);
-  --border: rgba(255, 255, 255, 0.14);
-  --text: #ffffff;
-  --muted: #b9b4aa;
-  --accent: rgb(221, 151, 0);
-  --accent-soft: #e2cca4;
-  --accent-contrast: #000000;
-  --nav-bg: rgba(49, 47, 47, 0.92);
-  --nav-text: rgb(255, 242, 242);
-  --shadow: 0 18px 40px rgba(0, 0, 0, 0.55);
+:root[data-theme="light"] {
+  --paper: #f3efe7;
+  --paper-2: #ebe5d9;
+  --paper-3: #e1d9ca;
+  --ink: #161513;
+  --ink-2: #33302b;
+  --muted: #6b665d;
+  --rule: rgba(22, 21, 19, 0.14);
+  --rule-strong: rgba(22, 21, 19, 0.85);
+  --accent: #b93a0b;
+  --accent-ink: #ffffff;
+  --selection: rgba(185, 58, 11, 0.18);
+  --danger: #b42318;
+  color-scheme: light;
 }
 
-:root[data-theme="light"] {
-  --bg: #ffffff;
-  --surface: #faf6ec;
-  --surface-hover: #f4ecd8;
-  --border: rgba(0, 0, 0, 0.12);
-  --text: #141414;
-  --muted: #55524c;
-  --accent: #9a6200;
-  --accent-soft: #7a5a14;
-  --accent-contrast: #ffffff;
-  --nav-bg: rgba(49, 47, 47, 0.92);
-  --nav-text: rgb(255, 242, 242);
-  --shadow: 0 18px 40px rgba(122, 90, 20, 0.14);
+:root[data-theme="dark"] {
+  --paper: #12110f;
+  --paper-2: #1b1a17;
+  --paper-3: #26241f;
+  --ink: #eee9df;
+  --ink-2: #cfc9bd;
+  --muted: #a39e94;
+  --rule: rgba(238, 233, 223, 0.14);
+  --rule-strong: rgba(238, 233, 223, 0.8);
+  --accent: #f07a45;
+  --accent-ink: #12110f;
+  --selection: rgba(240, 122, 69, 0.28);
+  --danger: #ff8a7a;
+  color-scheme: dark;
+}
+
+:root {
+  --serif: "Instrument Serif", "Iowan Old Style", Georgia, serif;
+  --sans: "Geist", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "Geist Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+
+  --gutter: clamp(20px, 4vw, 48px);
+  --max: 1320px;
+  --section: clamp(88px, 12vw, 160px);
+  --ease: cubic-bezier(0.2, 0.7, 0.1, 1);
 }
 
 *,
@@ -39,171 +56,213 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 88px;
 }
 
 body {
   margin: 0;
-  background-color: var(--bg);
-  color: var(--text);
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 17px;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  text-rendering: optimizeLegibility;
+  transition: background-color 0.4s var(--ease), color 0.4s var(--ease);
 }
 
-img {
+::selection {
+  background: var(--selection);
+}
+
+img,
+svg {
+  display: block;
   max-width: 100%;
 }
 
 a {
-  color: var(--accent);
+  color: inherit;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+h1,
+h2,
+h3,
+h4 {
+  margin: 0;
+  font-weight: 400;
 }
 
-/* Layout */
-.page {
-  padding-top: 90px;
-  overflow-x: hidden;
+p {
+  margin: 0;
 }
 
-.section {
-  max-width: 1120px;
-  margin: 0 auto;
-  padding: 72px 24px;
-}
-
-.section-title {
-  margin: 0 0 12px;
-  font-size: clamp(2rem, 4vw, 3rem);
-  line-height: 1.15;
-  color: var(--accent);
-}
-
-.section-lead {
-  max-width: 680px;
-  margin: 0 0 40px;
-  font-size: 1.1rem;
-  color: var(--muted);
-}
-
-.eyebrow {
-  display: inline-block;
-  margin-bottom: 8px;
-  font-size: 0.8rem;
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--accent-soft);
-}
-
-/* Shared components */
-.card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 20px;
-  transition: transform 0.3s ease, background-color 0.3s ease,
-    border-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-.card:hover {
-  background: var(--surface-hover);
-  border-color: var(--accent);
-  box-shadow: var(--shadow);
-  transform: translateY(-5px);
-}
-
-.chip-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
+ul,
+ol {
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
-.chip {
-  padding: 6px 12px;
-  border: 1px solid var(--border);
-  border-radius: 999px;
-  font-size: 0.85rem;
-  line-height: 1.3;
-  color: var(--text);
-  transition: border-color 0.2s ease, color 0.2s ease;
+button {
+  font: inherit;
+  color: inherit;
 }
 
-.chip:hover {
-  border-color: var(--accent);
+/* ------------------------------ Layout ------------------------------ */
+.wrap {
+  width: 100%;
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+.section {
+  padding: var(--section) 0;
+  border-top: 1px solid var(--rule);
+}
+
+/* ---------------------------- Typography ---------------------------- */
+.mono {
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.serif {
+  font-family: var(--serif);
+  font-weight: 400;
+}
+
+.display {
+  font-family: var(--serif);
+  font-weight: 400;
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+}
+
+.display em,
+.serif em {
+  font-style: italic;
   color: var(--accent);
 }
 
+/* Animated hairline underline used on inline links */
+.link {
+  text-decoration: none;
+  background: linear-gradient(currentColor, currentColor) 0 100% / 100% 1px
+    no-repeat;
+  transition: background-size 0.4s var(--ease), color 0.2s ease;
+}
+
+.link:hover {
+  color: var(--accent);
+  background-size: 0 1px;
+  background-position: 100% 100%;
+}
+
+/* ----------------------------- Buttons ----------------------------- */
 .btn {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding: 12px 22px;
-  border: 1px solid var(--accent);
+  gap: 10px;
+  padding: 15px 24px;
+  border: 1px solid var(--ink);
   border-radius: 999px;
-  font: inherit;
-  font-weight: 600;
-  font-size: 0.95rem;
+  background: transparent;
+  color: var(--ink);
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1;
   text-decoration: none;
   cursor: pointer;
-  transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+  transition: background-color 0.3s var(--ease), color 0.3s var(--ease),
+    border-color 0.3s var(--ease);
+}
+
+.btn svg {
+  transition: transform 0.3s var(--ease);
+}
+
+.btn:hover svg {
+  transform: translate(2px, -2px);
 }
 
 .btn:hover {
-  transform: translateY(-2px);
+  background: var(--ink);
+  color: var(--paper);
 }
 
-.btn-primary {
+.btn-solid {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.btn-solid:hover {
   background: var(--accent);
-  color: var(--accent-contrast);
+  border-color: var(--accent);
+  color: var(--accent-ink);
 }
 
-.btn-ghost {
-  background: transparent;
-  color: var(--accent);
-}
-
-.btn-ghost:hover {
-  background: var(--accent);
-  color: var(--accent-contrast);
-}
-
-.btn:focus-visible,
-a:focus-visible,
-button:focus-visible {
+:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 3px;
+  border-radius: 4px;
 }
 
-/* Scroll reveal (see hooks/useReveal.ts) */
+.skip-link {
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  z-index: 2000;
+  padding: 10px 16px;
+  border-radius: 999px;
+  background: var(--ink);
+  color: var(--paper);
+  font-size: 14px;
+  text-decoration: none;
+  transform: translateY(-200%);
+  transition: transform 0.2s ease;
+}
+
+.skip-link:focus {
+  transform: none;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* --------------------------- Motion --------------------------- */
 [data-reveal] {
   opacity: 0;
-  transform: translateY(18px);
-  transition: opacity 0.7s ease, transform 0.7s ease;
+  transform: translateY(24px);
+  transition: opacity 0.9s var(--ease), transform 0.9s var(--ease);
+  transition-delay: var(--delay, 0s);
 }
 
-[data-reveal].is-visible {
+[data-reveal][data-visible] {
   opacity: 1;
   transform: none;
 }
 
-@keyframes fadeInUp {
+@keyframes rise {
   from {
     opacity: 0;
-    transform: translateY(14px);
+    transform: translateY(0.35em);
   }
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: none;
   }
 }
 
@@ -216,21 +275,12 @@ button:focus-visible {
   *::before,
   *::after {
     animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
 
   [data-reveal] {
     opacity: 1;
     transform: none;
-  }
-}
-
-@media (max-width: 767px) {
-  .page {
-    padding-top: 76px;
-  }
-
-  .section {
-    padding: 56px 16px;
   }
 }

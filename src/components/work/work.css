@@ -1,0 +1,161 @@
+.work-list {
+  border-bottom: 1px solid var(--rule);
+}
+
+.work-row {
+  display: grid;
+  grid-template-columns: 64px minmax(0, 1.4fr) minmax(0, 1fr) 48px;
+  align-items: center;
+  gap: 24px;
+  padding: clamp(24px, 3vw, 36px) 0;
+  border-top: 1px solid var(--rule);
+  text-decoration: none;
+  transition: color 0.3s var(--ease);
+}
+
+.work-index {
+  align-self: start;
+  padding-top: 0.9em;
+}
+
+.work-thumb {
+  display: none;
+}
+
+.work-name {
+  font-size: clamp(40px, 5.4vw, 80px);
+  line-height: 1;
+  transition: transform 0.5s var(--ease), color 0.3s ease;
+}
+
+.work-meta {
+  display: grid;
+  gap: 8px;
+}
+
+.work-summary {
+  font-size: 17px;
+  color: var(--ink-2);
+}
+
+.work-arrow {
+  justify-self: end;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border: 1px solid var(--rule);
+  border-radius: 50%;
+  font-size: 20px;
+  transition: background-color 0.3s var(--ease), color 0.3s var(--ease),
+    border-color 0.3s var(--ease), transform 0.4s var(--ease);
+}
+
+.work-row:hover .work-name,
+.work-row:focus-visible .work-name {
+  color: var(--accent);
+  transform: translateX(16px);
+}
+
+.work-row:hover .work-arrow,
+.work-row:focus-visible .work-arrow {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--paper);
+  transform: rotate(45deg);
+}
+
+/* Dim the rows that aren't hovered */
+@media (hover: hover) {
+  .work-list:hover .work-row:not(:hover) {
+    color: var(--muted);
+  }
+}
+
+/* Floating preview that follows the cursor */
+.work-preview {
+  display: none;
+}
+
+@media (hover: hover) and (pointer: fine) and (min-width: 900px) {
+  .work-preview {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 50;
+    display: block;
+    width: 520px;
+    pointer-events: none;
+    opacity: 0;
+    transform: translate(calc(var(--x, 0px) + 28px), calc(var(--y, 0px) - 50%)) scale(0.92);
+    transition: opacity 0.3s var(--ease), transform 0.45s var(--ease);
+  }
+
+  .work-preview.is-visible {
+    opacity: 1;
+    transform: translate(calc(var(--x, 0px) + 28px), calc(var(--y, 0px) - 50%)) scale(1);
+  }
+
+  .work-preview-item {
+    display: none;
+    border-radius: 6px;
+    box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.35);
+  }
+
+  .work-preview-item.is-active {
+    display: block;
+  }
+}
+
+/* Touch and small screens: show the sketch inline in each row */
+@media (hover: none), (max-width: 899px) {
+  .work-row {
+    grid-template-columns: 40px minmax(0, 1fr) 44px;
+    grid-template-areas:
+      "index thumb thumb"
+      "index name arrow"
+      "index meta meta";
+    gap: 16px;
+  }
+
+  .work-index {
+    grid-area: index;
+    padding-top: 0;
+  }
+
+  .work-thumb {
+    grid-area: thumb;
+    display: block;
+  }
+
+  .work-name {
+    grid-area: name;
+  }
+
+  .work-meta {
+    grid-area: meta;
+  }
+
+  .work-arrow {
+    grid-area: arrow;
+    width: 44px;
+    height: 44px;
+  }
+}
+
+@media (max-width: 599px) {
+  .work-row {
+    grid-template-columns: minmax(0, 1fr) 44px;
+    grid-template-areas:
+      "index index"
+      "name arrow"
+      "meta meta";
+    gap: 12px;
+  }
+
+  /* Too small to read here; the case study shows the sketch full size */
+  .work-thumb {
+    display: none;
+  }
+}

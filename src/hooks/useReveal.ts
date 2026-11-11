@@ -1,21 +1,23 @@
 import { useEffect } from "react";
 
-// Adds "is-visible" to every [data-reveal] element as it scrolls into view.
+// Marks every [data-reveal] element with data-visible as it scrolls into view.
+// An attribute rather than a class, because React rewrites className when a
+// component re-renders and would drop a class added here.
 // Re-runs when `key` changes so newly rendered routes are picked up.
 export const useReveal = (key?: unknown) => {
   useEffect(() => {
     const elements = Array.from(
-      document.querySelectorAll<HTMLElement>("[data-reveal]:not(.is-visible)")
+      document.querySelectorAll<HTMLElement>("[data-reveal]:not([data-visible])")
     );
     if (!("IntersectionObserver" in window)) {
-      elements.forEach((el) => el.classList.add("is-visible"));
+      elements.forEach((el) => el.setAttribute("data-visible", ""));
       return;
     }
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            entry.target.classList.add("is-visible");
+            entry.target.setAttribute("data-visible", "");
             observer.unobserve(entry.target);
           }
         });
