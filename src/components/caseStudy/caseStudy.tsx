@@ -48,6 +48,7 @@ const CaseStudy = () => {
         <header className="cs-hero">
           <h1 className="cs-title display">{project.name}</h1>
           <p className="cs-summary serif">{project.summary}.</p>
+          <p className="cs-context mono">{project.context ?? "Independent — my own project"}</p>
         </header>
 
         <dl className="cs-facts">

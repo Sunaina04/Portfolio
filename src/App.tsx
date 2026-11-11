@@ -65,9 +65,9 @@ const createRouter = () =>
           { path: "/", element: <Index /> },
           { path: "/work/:slug", element: <CaseStudy /> },
           // Former standalone pages, now sections of the home page
-          { path: "/about", element: <Navigate to="/#about" replace /> },
+          { path: "/about", element: <Navigate to="/" replace /> },
           { path: "/projects", element: <Navigate to="/#work" replace /> },
-          { path: "/education", element: <Navigate to="/#education" replace /> },
+          { path: "/education", element: <Navigate to="/#experience" replace /> },
           { path: "/skills", element: <Navigate to="/#skills" replace /> },
           { path: "*", element: <Navigate to="/" replace /> },
         ],

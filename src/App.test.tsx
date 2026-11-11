@@ -10,7 +10,9 @@ const renderAt = (path: string) => {
 
 test('home shows the headline, current role and every project', () => {
   renderAt('/');
-  expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('From idea to execution.');
+  expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent(
+    'I plan, build and deliver software and AI products for businesses — and bring in the right developers when the project needs more hands.'
+  );
   expect(screen.getByText(/Project Manager at Genboot, since April 2024/)).toBeInTheDocument();
   const work = screen.getByRole('region', { name: /Six projects/ });
   projects.forEach((p) => {
@@ -21,15 +23,32 @@ test('home shows the headline, current role and every project', () => {
   });
 });
 
-test('services expand one at a time and say who does the work', () => {
+test('services are tiered; rows expand one at a time and say who does the work', () => {
   renderAt('/');
-  const triggers = services.map((s) => screen.getByRole('button', { name: new RegExp(s.title) }));
+  const rows = services.filter((s) => s.tier !== 'extra');
+  const triggers = rows.map((s) => screen.getByRole('button', { name: new RegExp(s.title) }));
+  expect(rows.map((s) => s.tier)).toEqual(['core', 'core', 'core', 'network']);
   expect(triggers[0]).toHaveAttribute('aria-expanded', 'true');
   fireEvent.click(triggers[3]);
   expect(triggers[0]).toHaveAttribute('aria-expanded', 'false');
   expect(triggers[3]).toHaveAttribute('aria-expanded', 'true');
-  const panel = screen.getByRole('region', { name: services[3].title });
+  const panel = screen.getByRole('region', { name: rows[3].title });
   expect(within(panel).getByText('Specialists I connect you with')).toBeInTheDocument();
+
+  // Content and ad setup sit in the compact "Also available" cards.
+  services
+    .filter((s) => s.tier === 'extra')
+    .forEach((s) => expect(screen.getByRole('heading', { level: 4, name: s.title })).toBeInTheDocument());
+});
+
+test('client projects are framed as Genboot work; Explainer Adda as independent', () => {
+  renderAt('/work/sydkik');
+  expect(screen.getByText('Delivered as part of the Genboot team')).toBeInTheDocument();
+});
+
+test('Explainer Adda is marked as my own project', () => {
+  renderAt('/work/explainer-adda');
+  expect(screen.getByText(/Independent — my own project/)).toBeInTheDocument();
 });
 
 test('a service link preselects it in the contact form', () => {

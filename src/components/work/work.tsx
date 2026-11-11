@@ -22,7 +22,7 @@ const Work = () => {
     <section id="work" className="section work" aria-labelledby="work-title">
       <div className="wrap">
         <SectionHead
-          index="03"
+          index="02"
           label="Selected work"
           id="work-title"
           title={
@@ -48,7 +48,9 @@ const Work = () => {
                 <span className="work-name display">{project.name}</span>
                 <span className="work-meta">
                   <span className="work-summary">{project.summary}</span>
-                  <span className="mono">{project.focus}</span>
+                  <span className="mono">
+                    {project.focus} · {project.context ? "At Genboot" : "Independent"}
+                  </span>
                 </span>
                 <span className="work-arrow" aria-hidden="true">
                   <FiArrowUpRight />

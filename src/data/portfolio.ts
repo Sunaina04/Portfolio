@@ -18,44 +18,19 @@ export const profile = {
   instagram: "",
   resume: "/Sunaina_Resume.pdf",
   availability: "Open to independent projects",
-  promise:
-    "From idea to execution, I help businesses plan, build, manage, and grow their digital solutions.",
-  pitch: "I help businesses plan, build, manage, and grow their digital solutions.",
+  // Hero: one positioning line (main clause set large, the rest smaller).
+  headline: {
+    lead: ["I", "plan,", "build", "and"],
+    emphasis: "deliver",
+    rest: ["software", "and", "AI", "products", "for", "businesses"],
+    tail: "— and bring in the right developers when the project needs more hands.",
+  },
+  roleLine: ["Technical Project Manager", "Python & AI Engineer", "6+ years"],
+  pitch: "I help businesses plan, build and run their software projects.",
   intro:
-    "I'm a Technical Project Manager and Software Engineer with 6+ years in software. I manage projects end to end, build software and AI-powered solutions myself, bring in the right specialists when a project needs them, and write the content that helps it reach people.",
-  about: [
-    "My full-time role is Project Manager at Genboot, where I lead software projects from planning to production — requirements, scope, sprint planning, estimation, resource allocation, releases and support. Before that, I spent four years there as a Senior Software Engineer building Python backends, APIs and AI-powered applications.",
-    "Independently, I work with businesses on their own digital projects. Where the work matches my skills — project management, backend and web development, AI integrations, content — I do it myself. Where it needs other specialists, I help find suitable developers and coordinate the work.",
-  ],
+    "By day I'm a Project Manager at Genboot, leading software projects from planning to production. Before that I spent four years there as a Senior Software Engineer building Python backends, APIs and AI-powered applications. Independently, I take on projects for businesses: I build the parts that match my skills myself, and bring in and coordinate suitable developers for the rest.",
+  replyTime: "within 24 hours",
 };
-
-// The six hats, shown in the hero and the About section.
-export const identities = [
-  {
-    title: "Technical Project Manager",
-    text: "Planning, Agile delivery and stakeholder management — my full-time role since 2024.",
-  },
-  {
-    title: "Software Developer",
-    text: "Backend applications and APIs in Python, FastAPI and Django; web apps in React and Next.js.",
-  },
-  {
-    title: "AI Engineer",
-    text: "LLM integrations with OpenAI APIs, LangChain and Retrieval-Augmented Generation.",
-  },
-  {
-    title: "End-to-End Project Builder",
-    text: "Taking an idea through planning, build, launch and ongoing support.",
-  },
-  {
-    title: "Content Writer",
-    text: "Website, blog and SEO-oriented content — including my own platform, Explainer Adda.",
-  },
-  {
-    title: "Digital Solutions Consultant",
-    text: "Helping businesses choose the right approach, the right people and the right tools.",
-  },
-];
 
 // Hero career line
 export const milestones = [
@@ -121,8 +96,11 @@ export const deliveryModes: Record<DeliveryMode, string> = {
   coordinate: "Specialists I connect you with",
 };
 
+export type ServiceTier = "core" | "network" | "extra";
+
 export interface Service {
   id: string;
+  tier: ServiceTier;
   letter: string;
   title: string;
   benefit: string;
@@ -135,36 +113,37 @@ export interface Service {
 export const services: Service[] = [
   {
     id: "project-management",
+    tier: "core",
     letter: "A",
     title: "Project Management & Delivery",
     benefit:
       "Keep your project on scope, on schedule and on budget — with one person accountable for getting it shipped.",
     mode: "self",
     items: [
-      "End-to-end project management",
-      "Project planning and execution",
-      "Requirement gathering and analysis",
-      "Sprint planning and Agile management",
-      "Resource allocation and team coordination",
-      "Client and stakeholder communication",
-      "Timeline, budget and delivery management",
-      "QA coordination and release management",
+      "Running your project from kickoff to launch",
+      "Turning your requirements into a clear plan and scope",
+      "Planning the work in short, regular cycles (Agile sprints)",
+      "Coordinating developers, designers, testers and AI engineers",
+      "Regular updates on progress, risks and decisions",
+      "Managing timeline, budget and delivery",
+      "Coordinating testing and release",
     ],
     related: [{ label: "Experience as Project Manager", to: "/#experience" }],
   },
   {
     id: "software-development",
+    tier: "core",
     letter: "B",
     title: "Software Development & Project Building",
     benefit: "Turn an idea into working software — from the first plan to a deployed product.",
     mode: "mixed",
     items: [
-      "Web application development",
-      "Backend and API development",
-      "Custom software solutions",
-      "Full project development, from idea to deployment",
-      "Technical architecture and solution planning",
-      "Connecting you with suitable development resources",
+      "Web apps, customer portals and internal tools",
+      "Backends and APIs that connect your systems",
+      "Dashboards and map-based applications",
+      "Secure sign-in and role-based access",
+      "Taking a product from idea to deployment",
+      "Technical architecture and planning",
     ],
     related: [
       { label: "Supplier Order Management", to: "/work/supplier-order-management" },
@@ -174,24 +153,24 @@ export const services: Service[] = [
   },
   {
     id: "ai-solutions",
+    tier: "core",
     letter: "C",
     title: "AI Engineering & AI Solutions",
     benefit:
-      "Put AI to practical use — assistants, automation and answers grounded in your own data.",
+      "Put AI to practical use — assistants, automation and answers based on your own documents and data.",
     mode: "self",
     items: [
-      "AI-powered application development",
-      "LLM integrations",
-      "OpenAI API integrations",
-      "Retrieval-Augmented Generation (RAG)",
-      "AI chatbots and intelligent assistants",
-      "AI workflow automation",
-      "AI-based business solutions",
+      "AI assistants that draft emails, summarize meetings and suggest next steps",
+      "Chatbots that answer questions from your own documents (RAG)",
+      "Automating repetitive work with AI",
+      "Adding AI features to an existing product (OpenAI and other models)",
+      "New AI-powered applications, built from scratch",
     ],
     related: [{ label: "Sydkik — AI executive assistant", to: "/work/sydkik" }],
   },
   {
     id: "resource-connections",
+    tier: "network",
     letter: "D",
     title: "Developer & Technical Resource Connections",
     benefit:
@@ -203,12 +182,13 @@ export const services: Service[] = [
       "Backend developers",
       "Full-stack developers",
       "Shopify developers",
-      "Other specialised development professionals",
+      "Other specialized development professionals",
     ],
     note: "This is a connection and coordination service. I help you find suitable independent professionals, brief them and keep the work on track — the specialists are not my employees.",
   },
   {
     id: "content-writing",
+    tier: "extra",
     letter: "E",
     title: "Content Writing & Digital Content",
     benefit: "Clear, well-researched writing that explains what you do and helps people find it.",
@@ -227,6 +207,7 @@ export const services: Service[] = [
   },
   {
     id: "website-advertising",
+    tier: "extra",
     letter: "F",
     title: "Website Advertising & Monetization Support",
     benefit: "Get your website ready to display ads, and set up correctly from the start.",
@@ -245,16 +226,12 @@ export const services: Service[] = [
 // How I work: the end-to-end engagement.
 export const processSteps: { title: string; text: string; mode?: DeliveryMode }[] = [
   {
-    title: "Understand",
-    text: "Your business idea, goals and requirements — what success looks like for you.",
-  },
-  {
-    title: "Plan & scope",
-    text: "A clear plan with defined scope, priorities and timeline.",
+    title: "Understand & scope",
+    text: "Your idea, goals and requirements, turned into a clear plan with defined scope, priorities and timeline.",
   },
   {
     title: "Design the approach",
-    text: "The technical approach and solution architecture, and the skills the project needs.",
+    text: "The technical approach and architecture, and the skills the project needs.",
   },
   {
     title: "Build",
@@ -262,16 +239,12 @@ export const processSteps: { title: string; text: string; mode?: DeliveryMode }[
     mode: "mixed",
   },
   {
-    title: "Manage",
-    text: "Development, communication and execution — regular updates so you always know where things stand.",
+    title: "Manage & test",
+    text: "Development, communication and testing — with regular updates so you always know where things stand.",
   },
   {
-    title: "Test & launch",
-    text: "Coordinated testing, deployment and launch.",
-  },
-  {
-    title: "Support & grow",
-    text: "Ongoing support or further development, where agreed.",
+    title: "Launch & support",
+    text: "Deployment and launch, then ongoing support or further development where agreed.",
   },
 ];
 
@@ -289,6 +262,7 @@ export interface Project {
   summary: string;
   focus: string;
   service: string; // id of the related service, for the case-study CTA
+  context?: string; // where the work was done, e.g. delivered at Genboot
   role: string;
   overview: string;
   problem: string;
@@ -306,6 +280,7 @@ export interface Project {
 export const projects: Project[] = [
   {
     slug: "sydkik",
+    context: "Delivered as part of the Genboot team",
     kind: "AI application",
     service: "ai-solutions",
     name: "Sydkik",
@@ -315,7 +290,7 @@ export const projects: Project[] = [
     overview:
       "Sydkik is an AI-powered executive assistant that brings email, calendar and meeting workflows together and automates routine productivity tasks.",
     problem:
-      "An executive's work is spread across email, calendars and meetings in both Microsoft and Google tools. The assistant needed a backend that connects to those services and uses AI to draft, suggest and summarise on the user's behalf.",
+      "An executive's work is spread across email, calendars and meetings in both Microsoft and Google tools. The assistant needed a backend that connects to those services and uses AI to draft, suggest and summarize on the user's behalf.",
     stack: [
       "Python",
       "FastAPI",
@@ -350,6 +325,7 @@ export const projects: Project[] = [
   },
   {
     slug: "itc",
+    context: "Delivered as part of the Genboot team",
     kind: "Software platform",
     service: "software-development",
     name: "ITC",
@@ -372,12 +348,12 @@ export const projects: Project[] = [
     features: [
       "Real-time traffic data processing",
       "Aggregated traffic events, vehicle counts and congestion levels",
-      "Camera metadata synchronisation",
+      "Camera metadata synchronization",
       "Redis-cached live endpoints",
     ],
     outcomes: [
       "Redis caching improved response times for high-frequency real-time requests.",
-      "Backend optimisation kept API performance reliable under high-volume real-time data.",
+      "Backend optimization kept API performance reliable under high-volume real-time data.",
     ],
     sketch: {
       inputs: ["Traffic cameras", "Microservices"],
@@ -387,6 +363,7 @@ export const projects: Project[] = [
   },
   {
     slug: "supplier-order-management",
+    context: "Delivered as part of the Genboot team",
     kind: "Web application",
     service: "software-development",
     name: "Supplier Order Management",
@@ -406,7 +383,7 @@ export const projects: Project[] = [
       "Microsoft Entra ID (Azure AD)",
     ],
     link: "https://supplierordermgmt.netlify.app/",
-    screenshot: "/images/icons/Redington-nobg.png",
+    screenshot: "/images/work/supplier-order-management.png",
     contributions: [
       "Built the application from scratch using Next.js and Tailwind CSS.",
       "Implemented Single Sign-On (SSO) using Microsoft Authentication Library (MSAL) with Azure Active Directory.",
@@ -421,7 +398,7 @@ export const projects: Project[] = [
       "Work delegation: assign, reassign and track tasks",
     ],
     outcomes: [
-      "Performance optimised through server-side rendering, code splitting and modern Next.js practices.",
+      "Performance optimized through server-side rendering, code splitting and modern Next.js practices.",
     ],
     sketch: {
       inputs: ["Microsoft Entra ID"],
@@ -431,6 +408,7 @@ export const projects: Project[] = [
   },
   {
     slug: "marina-mooring",
+    context: "Delivered as part of the Genboot team",
     kind: "Software platform",
     service: "software-development",
     name: "Marina Mooring",
@@ -443,7 +421,7 @@ export const projects: Project[] = [
       "Marina operators need to see marinas, berths and vessel locations at a glance — and the map has to stay fast with large volumes of location data.",
     stack: ["Python", "React.js", "Leaflet.js", "Jest", "React Testing Library"],
     link: "https://genmoor.vercel.app",
-    screenshot: "/images/icons/MoorFind.png",
+    screenshot: "/images/work/marina-mooring.png",
     contributions: [
       "Developed and maintained a platform to streamline berth allocation and marina operations.",
       "Built interactive map-based features with Leaflet.js to visualize marinas, berths, and vessel locations.",
@@ -468,6 +446,7 @@ export const projects: Project[] = [
   },
   {
     slug: "redscope",
+    context: "Delivered as part of the Genboot team",
     kind: "Desktop application",
     service: "software-development",
     name: "Redscope",
@@ -485,7 +464,7 @@ export const projects: Project[] = [
       "Web Workers",
       "Small Language Models (SLMs)",
     ],
-    screenshot: "/images/icons/Redscope.png",
+    screenshot: "/images/work/redscope.png",
     contributions: [
       "Developed the frontend of an Electron-based desktop application for tracking and documenting issue-resolution workflows.",
       "Built responsive and reusable UI components using React.",
@@ -540,14 +519,12 @@ projects.push({
   link: "https://explaineradda.com/",
 });
 
-// Toolkit: every skill on the resume, deduplicated into five areas.
-// `core` marks the skills named in the resume's opening summary; they are
-// set larger on the page.
+// Toolkit: the core skills only (the full list is in the resume PDF).
 export interface ToolkitGroup {
   id: string;
   title: string;
   label: string;
-  skills: { name: string; core?: boolean }[];
+  skills: string[];
   inPractice?: { label: string; to: string };
 }
 
@@ -556,128 +533,31 @@ export const toolkit: ToolkitGroup[] = [
     id: "delivery",
     title: "Delivery",
     label: "Project management",
-    skills: [
-      { name: "Agile", core: true },
-      { name: "Project Planning", core: true },
-      { name: "Stakeholder Management", core: true },
-      { name: "Team Leadership", core: true },
-      { name: "Scrum" },
-      { name: "Sprint Planning" },
-      { name: "Requirement Gathering" },
-      { name: "Risk Management" },
-      { name: "Resource Planning" },
-      { name: "Delivery Management" },
-      { name: "Cost Estimation" },
-      { name: "Jira" },
-      { name: "Confluence" },
-    ],
+    skills: ["Agile & Scrum", "Sprint planning", "Stakeholder management", "Risk management", "Jira & Confluence"],
     inPractice: { label: "Project Manager at Genboot", to: "/#experience" },
   },
   {
     id: "ai",
     title: "AI & LLM",
     label: "Intelligent applications",
-    skills: [
-      { name: "OpenAI API", core: true },
-      { name: "Prompt Engineering", core: true },
-      { name: "RAG", core: true },
-      { name: "LangChain" },
-      { name: "Embeddings" },
-      { name: "Vector Search" },
-      { name: "Tool Calling" },
-      { name: "Pinecone" },
-      { name: "Ollama" },
-      { name: "Streaming APIs" },
-    ],
+    skills: ["OpenAI API", "LangChain", "RAG", "Prompt engineering", "Pinecone"],
   },
   {
     id: "backend",
     title: "Backend & Data",
     label: "Services, APIs, storage",
-    skills: [
-      { name: "Python", core: true },
-      { name: "FastAPI", core: true },
-      { name: "Django", core: true },
-      { name: "RESTful APIs", core: true },
-      { name: "Microservices", core: true },
-      { name: "Celery" },
-      { name: "PostgreSQL" },
-      { name: "PGVector" },
-      { name: "MySQL" },
-      { name: "SQL" },
-      { name: "Redis" },
-    ],
+    skills: ["Python", "FastAPI", "Django", "REST APIs", "PostgreSQL", "Redis"],
   },
   {
     id: "frontend",
-    title: "Frontend & UI",
-    label: "Interfaces and state",
-    skills: [
-      { name: "React.js" },
-      { name: "Next.js" },
-      { name: "TypeScript" },
-      { name: "JavaScript" },
-      { name: "Astro.js" },
-      { name: "HTML5" },
-      { name: "CSS3" },
-      { name: "Vanilla JavaScript" },
-      { name: "jQuery" },
-      { name: "Redux Toolkit" },
-      { name: "RTK Query" },
-      { name: "React Query" },
-      { name: "Tailwind CSS" },
-      { name: "Material UI" },
-      { name: "Ant Design" },
-      { name: "Reactstrap" },
-      { name: "Bootstrap" },
-      { name: "Jest" },
-      { name: "React Testing Library" },
-    ],
-  },
-  {
-    id: "ops",
-    title: "Cloud, DevOps & Tools",
-    label: "Shipping and running it",
-    skills: [
-      { name: "AWS (EC2, ECS, SQS, SNS)" },
-      { name: "Docker" },
-      { name: "Kubernetes" },
-      { name: "Linux" },
-      { name: "Git" },
-      { name: "DBeaver" },
-      { name: "MySQL Workbench" },
-    ],
+    title: "Web & Cloud",
+    label: "Interfaces and shipping",
+    skills: ["React", "Next.js", "TypeScript", "AWS", "Docker"],
   },
 ];
 
-export interface EducationItem {
-  degree: string;
-  school: string;
-  location: string;
-  date: string;
-  score: string;
-}
-
-export const education: EducationItem[] = [
-  {
-    degree: "Master of Computer Applications (MCA)",
-    school: "Guru Nanak Dev University",
-    location: "Amritsar, India",
-    date: "May 2022",
-    score: "9.17 CGPA",
-  },
-  {
-    degree: "Bachelor of Computer Applications (BCA)",
-    school: "Guru Nanak Dev University",
-    location: "Amritsar, India",
-    date: "May 2020",
-    score: "8.80 CGPA",
-  },
-  {
-    degree: "XII (Non-Medical)",
-    school: "P.S.E.B",
-    location: "Amritsar, India",
-    date: "May 2017",
-    score: "82.6%",
-  },
+// Shown as one line under Employment.
+export const education = [
+  { degree: "MCA", school: "Guru Nanak Dev University", year: "2022" },
+  { degree: "BCA", school: "Guru Nanak Dev University", year: "2020" },
 ];

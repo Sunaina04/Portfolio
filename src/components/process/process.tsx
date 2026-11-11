@@ -10,7 +10,7 @@ const Process = () => (
     <div className="wrap process-grid">
       <div className="process-aside">
         <p className="section-head-label mono">
-          <span>(04)</span> How I work
+          <span>(03)</span> How I work
         </p>
         <h2 id="process-title" className="process-title display" data-reveal>
           From <em>idea</em> to execution.

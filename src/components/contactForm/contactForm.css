@@ -81,6 +81,33 @@
   color: #1f9d55;
 }
 
+.contact-side {
+  display: grid;
+  align-content: start;
+  gap: 40px;
+}
+
+.next-steps h3 {
+  margin-bottom: 8px;
+  font-size: 12px;
+}
+
+.next-steps li {
+  display: grid;
+  grid-template-columns: 40px 1fr;
+  align-items: baseline;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--rule);
+  font-size: 16px;
+  color: var(--ink-2);
+}
+
+.next-steps li .serif {
+  font-size: 22px;
+  font-style: italic;
+  color: var(--accent);
+}
+
 .contact-place {
   padding-top: 18px;
 }

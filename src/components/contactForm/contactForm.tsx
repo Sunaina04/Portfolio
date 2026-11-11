@@ -210,7 +210,7 @@ const ContactForm: React.FC = () => {
     <footer id="contact" className="contact" aria-labelledby="contact-title">
       <div className="wrap">
         <p className="section-head-label mono contact-label">
-          <span>(08)</span> Contact
+          <span>(06)</span> Contact
         </p>
         <h2 id="contact-title" className="contact-title display" data-reveal>
           Let's build something <em>together.</em>
@@ -221,26 +221,45 @@ const ContactForm: React.FC = () => {
         </a>
 
         <div className="contact-grid">
-          <ul className="contact-links">
-            {links.map(({ href, label, external, Icon }) => (
-              <li key={label}>
-                <a
-                  href={href}
-                  className="contact-link"
-                  {...(external ? { target: "_blank", rel: "noreferrer" } : {})}
-                >
-                  <span className="contact-link-label">
-                    {Icon && <Icon aria-hidden="true" className="contact-link-icon" />}
-                    {label}
-                  </span>
-                  <FiArrowUpRight aria-hidden="true" />
-                </a>
+          <div className="contact-side">
+            <ul className="contact-links">
+              {links.map(({ href, label, external, Icon }) => (
+                <li key={label}>
+                  <a
+                    href={href}
+                    className="contact-link"
+                    {...(external ? { target: "_blank", rel: "noreferrer" } : {})}
+                  >
+                    <span className="contact-link-label">
+                      {Icon && <Icon aria-hidden="true" className="contact-link-icon" />}
+                      {label}
+                    </span>
+                    <FiArrowUpRight aria-hidden="true" />
+                  </a>
+                </li>
+              ))}
+              <li className="contact-place mono">
+                {profile.company} · {profile.location}
               </li>
-            ))}
-            <li className="contact-place mono">
-              {profile.company} · {profile.location}
-            </li>
-          </ul>
+            </ul>
+
+            <div className="next-steps">
+              <h3 className="mono">What happens next</h3>
+              <ol>
+                <li>
+                  <span className="serif">01</span>
+                  You send a message — by the form, email or WhatsApp.
+                </li>
+                <li>
+                  <span className="serif">02</span>I reply {profile.replyTime}.
+                </li>
+                <li>
+                  <span className="serif">03</span>
+                  We talk through what you need and agree the scope.
+                </li>
+              </ol>
+            </div>
+          </div>
 
           <form className="contact-form" onSubmit={onSubmit} noValidate>
             <input type="hidden" name="subject" value="New message from your portfolio" />

@@ -1,13 +1,14 @@
 import React from "react";
 import "./experience.css";
 import SectionHead from "../sectionHead/sectionHead";
-import { experience } from "../../data/portfolio";
+import { basePath } from "../../constant";
+import { education, experience, profile } from "../../data/portfolio";
 
 const Experience = () => (
   <section id="experience" className="section" aria-labelledby="experience-title">
     <div className="wrap">
       <SectionHead
-        index="05"
+        index="04"
         label="Employment"
         id="experience-title"
         title={
@@ -48,6 +49,17 @@ const Experience = () => (
           </li>
         ))}
       </ol>
+
+      <p className="exp-education">
+        <span className="mono">Education</span>
+        <span>
+          {education.map((e) => `${e.degree} (${e.year})`).join(" and ")},{" "}
+          {education[0].school}.
+        </span>
+        <a href={basePath + profile.resume} className="link" download="Sunaina_Resume.pdf">
+          Full resume (PDF)
+        </a>
+      </p>
     </div>
   </section>
 );
