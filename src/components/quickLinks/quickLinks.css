@@ -22,6 +22,10 @@
   font-size: 15px;
 }
 
+.quick-link .brand-icon {
+  font-size: 13px;
+}
+
 .quick-link:hover {
   color: var(--accent);
   background-size: 100% 1px;

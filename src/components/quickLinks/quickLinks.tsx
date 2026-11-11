@@ -1,7 +1,8 @@
 import React from "react";
-import { FaInstagram, FaLinkedinIn, FaWhatsapp } from "react-icons/fa";
+import { FaInstagram } from "react-icons/fa";
 import { FiDownload } from "react-icons/fi";
 import "./quickLinks.css";
+import { LinkedInLogo, WhatsAppLogo } from "../brandIcons/brandIcons";
 import { basePath } from "../../constant";
 import { profile } from "../../data/portfolio";
 import { whatsappUrl } from "../contactForm/delivery";
@@ -19,8 +20,8 @@ export const quickLinks = () =>
       hint: "PDF",
       download: "Sunaina_Resume.pdf",
     },
-    { label: "LinkedIn", href: profile.linkedin, Icon: FaLinkedinIn },
-    { label: "WhatsApp", href: whatsappUrl(greeting), Icon: FaWhatsapp },
+    { label: "LinkedIn", href: profile.linkedin, Icon: LinkedInLogo },
+    { label: "WhatsApp", href: whatsappUrl(greeting), Icon: WhatsAppLogo },
     profile.instagram && {
       label: "Instagram",
       href: `https://www.instagram.com/${profile.instagram}/`,

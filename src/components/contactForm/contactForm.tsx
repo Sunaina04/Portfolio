@@ -1,7 +1,8 @@
 import React, { FormEvent, useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { FiAlertCircle, FiArrowUpRight, FiArrowUp, FiChevronDown, FiMail } from "react-icons/fi";
-import { FaInstagram, FaWhatsapp } from "react-icons/fa";
+import { FaInstagram } from "react-icons/fa";
+import { LinkedInLogo, WhatsAppLogo } from "../brandIcons/brandIcons";
 import "./contactForm.css";
 import { basePath } from "../../constant";
 import { profile, services } from "../../data/portfolio";
@@ -190,9 +191,9 @@ const ContactForm: React.FC = () => {
   };
 
   const links = [
-    { href: profile.linkedin, label: "LinkedIn", external: true },
+    { href: profile.linkedin, label: "LinkedIn", external: true, Icon: LinkedInLogo },
     { href: basePath + profile.resume, label: "Resume (PDF)", external: true },
-    { href: whatsappUrl(whatsappGreeting), label: "WhatsApp", external: true, Icon: FaWhatsapp },
+    { href: whatsappUrl(whatsappGreeting), label: "WhatsApp", external: true, Icon: WhatsAppLogo },
     { href: `tel:${profile.phone.replace(/\s/g, "")}`, label: `Call ${profile.phone}` },
     ...(profile.instagram
       ? [
@@ -239,7 +240,7 @@ const ContactForm: React.FC = () => {
                 </li>
               ))}
               <li className="contact-place mono">
-                {profile.company} · {profile.location}
+                {profile.location}
               </li>
             </ul>
 
@@ -368,7 +369,7 @@ const ContactForm: React.FC = () => {
                 onClick={onWhatsApp}
                 disabled={status === "sending"}
               >
-                <FaWhatsapp aria-hidden="true" /> Send on WhatsApp
+                <WhatsAppLogo aria-hidden="true" /> Send on WhatsApp
               </button>
             </div>
 

@@ -32,7 +32,7 @@ const Hero = () => (
           <i aria-hidden="true" /> {profile.availability}
         </span>
         <span>
-          {profile.company} · {profile.location}
+          {profile.location}
         </span>
       </div>
 

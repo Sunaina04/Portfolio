@@ -9,7 +9,7 @@ export const profile = {
   role: "Project Manager",
   company: "Genboot",
   since: "April 2024",
-  location: "Mohali, India",
+  location: "Amritsar, Punjab, India",
   email: "sunainatakhi64@gmail.com",
   phone: "+91 82849 48195",
   whatsapp: "918284948195", // same number, international format for wa.me links
