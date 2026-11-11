@@ -36,7 +36,7 @@ const serviceTitle = (id: string) =>
 // sending by email, which the submit check enforces.
 const live = { emailRequired: false };
 
-const whatsappGreeting = `Hi ${profile.name}, I found your portfolio and would like to talk about a project.`;
+const whatsappGreeting = `Hi ${profile.firstName}, I found your portfolio and would like to talk about a project.`;
 
 const emptyValues: ContactValues = { name: "", email: "", phone: "", message: "" };
 

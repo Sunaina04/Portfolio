@@ -106,6 +106,20 @@ const CaseStudy = () => {
               ))}
             </ul>
           </Block>
+          {project.articles && (
+            <Block label="Selected articles">
+              <ul className="cs-articles">
+                {project.articles.map((a) => (
+                  <li key={a.url}>
+                    <a href={a.url} target="_blank" rel="noreferrer" className="cs-article">
+                      <span className="cs-article-title serif">{a.title}</span>
+                      <span className="mono">{a.language} ↗</span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </Block>
+          )}
           {project.outcomes && (
             <Block label="Outcomes">
               <ul className="cs-list">

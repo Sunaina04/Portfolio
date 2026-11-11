@@ -6,7 +6,7 @@ import { basePath } from "../../constant";
 import { profile } from "../../data/portfolio";
 import { whatsappUrl } from "../contactForm/delivery";
 
-const greeting = `Hi ${profile.name}, I found your portfolio and would like to talk about a project.`;
+const greeting = `Hi ${profile.firstName}, I found your portfolio and would like to talk about a project.`;
 
 // Resume, LinkedIn, WhatsApp (and Instagram once a handle is set), as a quiet
 // row of text links. Used under the hero buttons and in the phone menu.

@@ -1,4 +1,4 @@
-# Sunaina — Portfolio
+# Sunaina Ruhaniat — Portfolio
 
 Personal portfolio and services site, live at <https://sunaina04.github.io/Portfolio/>.
 

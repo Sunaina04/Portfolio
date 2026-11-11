@@ -153,6 +153,35 @@
   color: var(--ink);
 }
 
+.cs-article {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 16px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--rule);
+  text-decoration: none;
+  color: var(--ink);
+}
+
+.cs-articles li:first-child .cs-article {
+  padding-top: 0;
+}
+
+.cs-article-title {
+  font-size: 22px;
+  line-height: 1.25;
+  transition: color 0.2s ease;
+}
+
+.cs-article:hover .cs-article-title {
+  color: var(--accent);
+}
+
+.cs-article .mono {
+  flex-shrink: 0;
+}
+
 .cs-stack {
   font-size: clamp(20px, 2vw, 26px);
   line-height: 1.45;

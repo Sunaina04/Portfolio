@@ -3,7 +3,8 @@
 // restates what the resume says; there are no invented metrics.
 
 export const profile = {
-  name: "Sunaina",
+  name: "Sunaina Ruhaniat",
+  firstName: "Sunaina", // used in greetings, e.g. "Hi Sunaina"
   title: "Technical Project Manager & Software Engineer",
   role: "Project Manager",
   company: "Genboot",
@@ -283,6 +284,7 @@ export interface Project {
   sketch: SystemSketch;
   link?: string;
   screenshot?: string;
+  articles?: { title: string; url: string; language: string }[];
 }
 
 export const projects: Project[] = [
@@ -525,6 +527,26 @@ projects.push({
     outputs: ["Students & beginners", "Professionals"],
   },
   link: "https://explaineradda.com/",
+  screenshot: "/images/work/explainer-adda.png",
+  // Three published articles showing the range: an AI-tools guide, an AI
+  // explainer and a Hindi explainer (links checked Nov 2026).
+  articles: [
+    {
+      title: "Best AI Tools for Students in 2026 (Free & Paid)",
+      url: "https://explaineradda.com/best-ai-tools-for-students-in-2026/",
+      language: "English",
+    },
+    {
+      title: "What is India’s AI Literacy Mission? Complete Guide for Students (2026)",
+      url: "https://explaineradda.com/indias-ai-literacy-mission/",
+      language: "English",
+    },
+    {
+      title: "LPG सिलेंडर कैसे काम करता है? Inside Story of Your Gas Cylinder",
+      url: "https://explaineradda.com/lpg-gas-kaha-se-aati-hai-cylinder-working/",
+      language: "Hindi",
+    },
+  ],
 });
 
 // Toolkit: the core skills only (the full list is in the resume PDF).

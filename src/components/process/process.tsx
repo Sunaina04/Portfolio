@@ -13,7 +13,7 @@ const Process = () => (
           <span>(03)</span> How I work
         </p>
         <h2 id="process-title" className="process-title display" data-reveal>
-          From <em>idea</em> to execution.
+          From first call to <em>launch.</em>
         </h2>
         <p className="process-promise">{profile.pitch}</p>
         <Link to={{ pathname: "/", hash: "#contact" }} className="btn">

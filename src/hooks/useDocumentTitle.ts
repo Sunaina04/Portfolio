@@ -1,9 +1,9 @@
 import { useEffect } from "react";
 
-const SITE = "Sunaina — Technical Project Manager & Software Engineer";
+const SITE = "Sunaina Ruhaniat — Technical Project Manager & Software Engineer";
 
 export const useDocumentTitle = (title?: string) => {
   useEffect(() => {
-    document.title = title ? `${title} · Sunaina` : SITE;
+    document.title = title ? `${title} · Sunaina Ruhaniat` : SITE;
   }, [title]);
 };

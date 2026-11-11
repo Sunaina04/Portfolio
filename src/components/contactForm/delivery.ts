@@ -21,7 +21,7 @@ const clean = (values: ContactValues): ContactValues => ({
 export const composeMessage = (values: ContactValues, serviceTitle?: string) => {
   const v = clean(values);
   const header = [
-    `Hi ${profile.name}, I'm ${v.name}.`,
+    `Hi ${profile.firstName}, I'm ${v.name}.`,
     serviceTitle && `Service: ${serviceTitle}`,
     v.email && `Email: ${v.email}`,
     v.phone && `Phone: ${v.phone}`,
@@ -63,7 +63,7 @@ export const sendEmail = async (
       body: JSON.stringify({
         access_key: WEB3FORMS_KEY,
         subject: `Portfolio enquiry from ${v.name}${serviceTitle ? ` — ${serviceTitle}` : ""}`,
-        from_name: "Sunaina's portfolio",
+        from_name: "Sunaina Ruhaniat — portfolio",
         name: v.name,
         email: v.email,
         phone: v.phone || "Not provided",
