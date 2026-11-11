@@ -32,5 +32,9 @@ test('falls back to the email app when no form key is configured', () => {
     expect.stringMatching(/^mailto:sunainatakhi64@gmail\.com\?subject=/)
   );
   expect(screen.getByText(/Your email app has opened/)).toBeInTheDocument();
+  expect(screen.getByLabelText(/^Name/)).toHaveValue('');
+  expect(screen.getByLabelText(/^Email/)).toHaveValue('');
+  expect(screen.getByLabelText(/^Message/)).toHaveValue('');
+  expect(screen.getByLabelText(/^Name/)).not.toHaveAttribute('aria-invalid');
   fetchSpy.mockRestore();
 });

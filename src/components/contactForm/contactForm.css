@@ -199,6 +199,20 @@
   transition: border-color 0.3s ease;
 }
 
+/* Browser autofill paints inputs light blue; keep the form's own colours. */
+.field input:-webkit-autofill,
+.field input:-webkit-autofill:hover,
+.field input:-webkit-autofill:focus {
+  -webkit-text-fill-color: var(--ink);
+  caret-color: var(--ink);
+  -webkit-box-shadow: 0 0 0 1000px var(--paper-2) inset;
+  transition: background-color 600000s 0s;
+}
+
+.field input:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0 1000px var(--paper-2) inset, 0 1px 0 0 var(--accent);
+}
+
 .field select {
   appearance: none;
   padding-right: 32px;

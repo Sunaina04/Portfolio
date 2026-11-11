@@ -85,7 +85,7 @@ describe('contact form validation', () => {
     expect(screen.getByLabelText(/^Email/)).toHaveAttribute('aria-invalid', 'true');
     expect(screen.getByLabelText(/^Email/)).toHaveAccessibleDescription(/valid email address/);
     expect(screen.getByLabelText(/^Phone/)).toHaveAccessibleDescription(/digits/);
-    expect(screen.getByLabelText(/^Message/)).toHaveAccessibleDescription(/at least 20 characters/);
+    expect(screen.getByLabelText(/^Message/)).not.toHaveAttribute('aria-invalid');
     expect(screen.getByLabelText(/^Name/)).not.toHaveAttribute('aria-invalid');
     expect(document.activeElement).toBe(screen.getByLabelText(/^Email/));
   });
@@ -146,6 +146,10 @@ describe('contact form validation', () => {
     expect(text).toContain('Service: AI Engineering & AI Solutions');
     expect(text).not.toContain('Email:');
     expect(screen.getByText(/press send there/)).toBeInTheDocument();
+    // Form is cleared, but the retry link still carries the full message.
+    expect(screen.getByLabelText(/^Name/)).toHaveValue('');
+    expect(screen.getByLabelText(/^Message/)).toHaveValue('');
+    expect(screen.getByRole('link', { name: 'open WhatsApp here' })).toHaveAttribute('href', url);
   });
 
   test('sending by email still requires an email address', () => {

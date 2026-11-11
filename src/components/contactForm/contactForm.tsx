@@ -96,6 +96,9 @@ const ContactForm: React.FC = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const [sentTo, setSentTo] = useState("");
   const [failedValues, setFailedValues] = useState<ContactValues | null>(null);
+  // The prepared email/WhatsApp link, kept after the form clears so the
+  // "if it didn't open" retry still carries the whole message.
+  const [handoffUrl, setHandoffUrl] = useState("");
   const [service, setService] = useState("");
   const [values, setValues] = useState<ContactValues>(emptyValues);
   const [errors, setErrors] = useState<ContactErrors>({});
@@ -150,8 +153,11 @@ const ContactForm: React.FC = () => {
 
     // No form key of our own yet: hand the message to the visitor's email app.
     if (!emailServiceReady) {
-      openMailApp(mailtoUrl(values, serviceTitle(service)));
+      const url = mailtoUrl(values, serviceTitle(service));
+      openMailApp(url);
+      setHandoffUrl(url);
       setStatus("mailto");
+      resetForm();
       return;
     }
 
@@ -176,8 +182,11 @@ const ContactForm: React.FC = () => {
   const onWhatsApp = (event: React.MouseEvent<HTMLButtonElement>) => {
     const form = event.currentTarget.form;
     if (!form || !checkForm(form, false)) return;
-    window.open(whatsappUrl(composeMessage(values, serviceTitle(service))), "_blank", "noopener");
+    const url = whatsappUrl(composeMessage(values, serviceTitle(service)));
+    window.open(url, "_blank", "noopener");
+    setHandoffUrl(url);
     setStatus("whatsapp");
+    resetForm();
   };
 
   const links = [
@@ -351,7 +360,7 @@ const ContactForm: React.FC = () => {
                   Your email app has opened with the message addressed to{" "}
                   <strong>{profile.email}</strong> — press send there to deliver it. If it
                   didn't open, email me directly at{" "}
-                  <a href={mailtoUrl(values, serviceTitle(service))} className="link">
+                  <a href={handoffUrl} className="link">
                     {profile.email}
                   </a>
                   .
@@ -361,12 +370,7 @@ const ContactForm: React.FC = () => {
                 <p>
                   WhatsApp has opened with your message ready — press send there to deliver it.
                   If it didn't open,{" "}
-                  <a
-                    href={whatsappUrl(composeMessage(values, serviceTitle(service)))}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="link"
-                  >
+                  <a href={handoffUrl} target="_blank" rel="noreferrer" className="link">
                     open WhatsApp here
                   </a>
                   .

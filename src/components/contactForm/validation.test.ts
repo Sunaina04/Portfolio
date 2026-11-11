@@ -29,10 +29,11 @@ describe('phone (optional)', () => {
 });
 
 describe('message', () => {
-  it('requires at least 20 characters after trimming', () => {
-    expect(validateField('message', 'ddo')).toBeDefined();
-    expect(validateField('message', `   ${'a'.repeat(19)}   `)).toBeDefined();
-    expect(validateField('message', 'I need help planning a new web app.')).toBeUndefined();
+  it('only needs to be non-empty, so short messages like "test" are fine', () => {
+    expect(validateField('message', '')).toBeDefined();
+    expect(validateField('message', '   ')).toBeDefined();
+    expect(validateField('message', 'test')).toBeUndefined();
+    expect(validateField('message', 'ddo')).toBeUndefined();
   });
   it('caps length at 2000', () => {
     expect(validateField('message', 'a'.repeat(2001))).toBeDefined();
@@ -43,6 +44,5 @@ it('validateAll reports every failing field from the screenshot case', () => {
   expect(Object.keys(validateAll({ name: 'Test', email: 'test', phone: 'hjseo', message: 'ddo' }))).toEqual([
     'email',
     'phone',
-    'message',
   ]);
 });

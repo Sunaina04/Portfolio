@@ -10,7 +10,6 @@ export type ContactErrors = Partial<Record<ContactField, string>>;
 
 export const LIMITS = {
   nameMax: 80,
-  messageMin: 20,
   messageMax: 2000,
   phoneDigitsMin: 7,
   phoneDigitsMax: 15,
@@ -63,9 +62,6 @@ export const validateField = (
 
     case "message":
       if (!value) return "Please tell me a little about your project.";
-      if (value.length < LIMITS.messageMin) {
-        return `Please add a bit more detail — at least ${LIMITS.messageMin} characters.`;
-      }
       if (value.length > LIMITS.messageMax) {
         return `Please keep your message under ${LIMITS.messageMax} characters.`;
       }
