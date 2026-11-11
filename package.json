@@ -17,7 +17,6 @@
     "react-router": "^6.22.3",
     "react-router-dom": "^6.22.3",
     "react-scripts": "5.0.1",
-    "react-vertical-timeline-component": "^3.6.0",
     "typescript": "^4.9.5",
     "web-vitals": "^2.1.4"
   },
@@ -27,7 +26,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "deploy": "gh-pages -d build",
-    "predeploy": "npm run build"
+    "predeploy": "npm run build",
+    "postbuild": "cp build/index.html build/404.html"
   },
   "eslintConfig": {
     "extends": [
@@ -48,7 +48,6 @@
     ]
   },
   "devDependencies": {
-    "@types/react-vertical-timeline-component": "^3.3.6",
     "gh-pages": "^6.1.1"
   }
 }

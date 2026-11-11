@@ -1,59 +1,42 @@
 import React from "react";
 import "./about.css";
-import Experience from "../experience/experience";
-import Education from "../education/education";
-import { useTheme } from "../../context/ThemeContext";
-import { basePath } from "../../constant";
+import SectionHead from "../sectionHead/sectionHead";
+import { identities, profile } from "../../data/portfolio";
 
-const About = () => {
-  const { isDarkMode } = useTheme();
-
-  return (
-    <div className="main">
-      <div
-        className={`aboutParentContainer ${
-          isDarkMode ? "dark-mode" : "light-mode"
-        }`}
+const About = () => (
+  <section id="about" className="section about" aria-labelledby="about-title">
+    <div className="wrap">
+      <SectionHead
+        index="01"
+        label="About"
+        id="about-title"
+        title={
+          <>
+            I can plan it, build it, and <em>see it through.</em>
+          </>
+        }
       >
-        <div className="aboutContent">
-          <h1 className="headerText">Hi, I'm Sunaina</h1>
-          <p className="contentText">
-            I turn vision into reality with code. Whether I'm working on a
-            website or any digital product, I bring my commitment to design
-            excellence and user-centered thinking to every project I work on.
-          </p>
-          <p className="contentText">
-            Explore my latest projects showcasing my expertise in Reactjs,
-            Javascript, Typescript and web development.
-          </p>
-          <div className="locationContainer">
-            <img
-              alt="Indian flag"
-              loading="lazy"
-              decoding="async"
-              src="https://flagcdn.com/in.svg"
-              width="15"
-              height="15"
-            />
-            <span className="locationText">Amritsar, India</span>
-          </div>
-        </div>
-        <div className="image-container">
-          <img
-            className="image"
-            // src={`${basePath}/images/Programmer.avif`}
-            src={basePath + "/images/Programmer.avif"}
-            alt="Your Image Alt Text"
-            width={400}
-            height={300}
-          />
-          <div className="image-overlay"></div>
-        </div>
-      </div>
-      <Experience />
-      <Education />
+        {profile.about.map((p) => (
+          <p key={p.slice(0, 20)}>{p}</p>
+        ))}
+      </SectionHead>
+
+      <ol className="identities">
+        {identities.map((item, i) => (
+          <li
+            key={item.title}
+            className="identity"
+            data-reveal
+            style={{ "--delay": `${(i % 3) * 0.08}s` } as React.CSSProperties}
+          >
+            <span className="mono">{String(i + 1).padStart(2, "0")}</span>
+            <h3 className="identity-title display">{item.title}</h3>
+            <p className="identity-text">{item.text}</p>
+          </li>
+        ))}
+      </ol>
     </div>
-  );
-};
+  </section>
+);
 
 export default About;

@@ -1,108 +1,78 @@
-/* General styles */
-.aboutParentContainer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #000000; /* Change to your desired background color */
-  padding: 250px;
+/* Six roles on a ruled 3 × 2 grid */
+.identities {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  border-top: 1px solid var(--rule-strong);
 }
 
-.dark-mode {
-  background-color: #000000 !important; /* Dark background color */
-  color: white !important;
-  border-color: #ffffff !important;
+.identity {
+  display: grid;
+  /* Subgrid keeps number, title and text aligned across a row even when a
+     title wraps to two lines. */
+  grid-row: span 3;
+  grid-template-rows: subgrid;
+  align-content: start;
+  gap: 14px;
+  padding: 28px 28px 36px;
+  border-bottom: 1px solid var(--rule);
+  border-left: 1px solid var(--rule);
+  transition: background-color 0.4s var(--ease);
 }
 
-.light-mode {
-  background-color: white; /* Light background color */
-  color: black;
-  border-color: #000000 !important;
+.identity:nth-child(3n + 1) {
+  border-left: none;
+  padding-left: 0;
 }
 
-.aboutContent {
-  text-align: left; /* Align text to the left */
-  margin-right: 20px; /* Add margin to separate text from the image */
+.identity:hover {
+  background: var(--paper-2);
 }
 
-.headerText {
-  font-size: 4rem;
-  color: #9c8003; /* Change to your desired text color */
+.identity:nth-child(3n + 1):hover {
+  background: none;
 }
 
-.contentText {
-  font-size: 1.4rem;
+.identity-title {
+  font-size: clamp(30px, 2.8vw, 40px);
+  line-height: 1.05;
+  transition: color 0.3s ease;
 }
 
-.locationContainer {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.identity:hover .identity-title {
+  color: var(--accent);
+  font-style: italic;
 }
 
-.locationText {
-  margin-left: 5px;
-  font-size: 1.2rem;
+.identity-text {
+  max-width: 34ch;
+  font-size: 16px;
+  color: var(--ink-2);
 }
 
-.image {
-  width: 450px;
-  height: 350px;
-  object-fit: cover;
-}
-
-.image-container img {
-  transition: 1s ease;
-  margin-right: -40px;
-  margin-top: 80px;
-  border-radius: 50px;
-}
-
-.image-container img:hover {
-  border-radius: 50%;
-  transition: 1s ease;
-}
-
-/* Media queries */
-@media only screen and (max-width: 1024px) {
-  .aboutParentContainer {
-    padding: 200px; /* Adjust padding for smaller screens */
+@media (max-width: 899px) {
+  .identities {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .image {
-    width: 400px; /* Adjust image width for smaller screens */
-    height: 300px; /* Adjust image height for smaller screens */
+  .identity:nth-child(3n + 1) {
+    border-left: 1px solid var(--rule);
+    padding-left: 28px;
   }
 
-  .image-container img {
-    margin-top: 60px; /* Adjust margin for image container for smaller screens */
+  .identity:nth-child(2n + 1) {
+    border-left: none;
+    padding-left: 0;
   }
 }
 
-@media only screen and (max-width: 768px) {
-  .aboutParentContainer {
-    padding: 100px; /* Adjust padding for mobile screens */
-    flex-direction: column; /* Stack content vertically */
-    text-align: center; /* Center align text for mobile screens */
+@media (max-width: 559px) {
+  .identities {
+    grid-template-columns: 1fr;
   }
 
-  .aboutContent {
-    margin-right: 0; /* Remove margin for smaller screens */
-  }
-
-  .headerText {
-    font-size: 3rem; /* Adjust header text size for smaller screens */
-  }
-
-  .contentText {
-    font-size: 1.2rem; /* Adjust content text size for smaller screens */
-  }
-
-  .image {
-    width: 300px; /* Adjust image width for smaller screens */
-    height: 250px; /* Adjust image height for smaller screens */
-  }
-
-  .image-container img {
-    margin-top: 40px; /* Adjust margin for image container for smaller screens */
+  .identity,
+  .identity:nth-child(3n + 1) {
+    border-left: none;
+    padding: 22px 0 26px;
   }
 }

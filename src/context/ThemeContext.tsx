@@ -1,4 +1,10 @@
-import React, { createContext, useState, useContext, PropsWithChildren } from "react";
+import React, {
+  createContext,
+  useState,
+  useContext,
+  useEffect,
+  PropsWithChildren,
+} from "react";
 
 export interface ThemeContextType {
   isDarkMode: boolean;
@@ -6,6 +12,7 @@ export interface ThemeContextType {
 }
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
+const STORAGE_KEY = "portfolio-theme";
 
 export const useTheme = (): ThemeContextType => {
   const context = useContext(ThemeContext);
@@ -15,17 +22,32 @@ export const useTheme = (): ThemeContextType => {
   return context;
 };
 
+// public/index.html sets data-theme before first paint (saved choice, else
+// the system preference); start from that so React and the page agree.
+const initialTheme = (): boolean =>
+  document.documentElement.dataset.theme === "dark";
+
 export const ThemeProvider: React.FC<PropsWithChildren<{}>> = ({ children }) => {
-  const [isDarkMode, setIsDarkMode] = useState(true);
+  const [isDarkMode, setIsDarkMode] = useState(initialTheme);
+
+  useEffect(() => {
+    document.documentElement.dataset.theme = isDarkMode ? "dark" : "light";
+  }, [isDarkMode]);
 
   const toggleDarkMode = () => {
-    setIsDarkMode(!isDarkMode);
+    setIsDarkMode((dark) => {
+      try {
+        localStorage.setItem(STORAGE_KEY, dark ? "light" : "dark");
+      } catch {
+        // Storage unavailable (private mode); theme still applies for this visit.
+      }
+      return !dark;
+    });
   };
 
-  const value = {
-    isDarkMode,
-    toggleDarkMode,
-  };
-
-  return <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>;
+  return (
+    <ThemeContext.Provider value={{ isDarkMode, toggleDarkMode }}>
+      {children}
+    </ThemeContext.Provider>
+  );
 };

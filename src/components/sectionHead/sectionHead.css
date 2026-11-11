@@ -1,0 +1,43 @@
+.section-head {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 2.2fr);
+  gap: 24px 48px;
+  margin-bottom: clamp(48px, 7vw, 96px);
+}
+
+.section-head-label {
+  padding-top: 0.9em;
+}
+
+.section-head-label span {
+  color: var(--accent);
+}
+
+.section-head-title {
+  font-size: clamp(44px, 6.4vw, 96px);
+  max-width: 14ch;
+}
+
+.section-head-lead {
+  display: grid;
+  gap: 16px;
+  max-width: 62ch;
+  margin-top: 32px;
+  font-size: 19px;
+  line-height: 1.6;
+  color: var(--ink-2);
+}
+
+@media (max-width: 767px) {
+  .section-head {
+    grid-template-columns: 1fr;
+  }
+
+  .section-head-label {
+    padding-top: 0;
+  }
+
+  .section-head-lead {
+    font-size: 17px;
+  }
+}

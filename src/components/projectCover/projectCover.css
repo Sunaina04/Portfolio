@@ -1,0 +1,144 @@
+.cover {
+  margin: 0;
+  overflow: hidden;
+  border-radius: 6px;
+  background: var(--paper-2);
+}
+
+.cover svg {
+  width: 100%;
+  height: auto;
+}
+
+.sketch-dot {
+  fill: color-mix(in srgb, var(--ink) 12%, transparent);
+}
+
+.sketch-links path {
+  fill: none;
+  stroke: var(--ink-2);
+  stroke-opacity: 0.6;
+  stroke-width: 1.6;
+  stroke-dasharray: 5 6;
+  animation: flow 1.6s linear infinite;
+}
+
+.cover--compact .sketch-links path {
+  stroke-width: 2.4;
+  stroke-dasharray: 7 8;
+}
+
+@keyframes flow {
+  to {
+    stroke-dashoffset: -22;
+  }
+}
+
+.sketch-node rect {
+  fill: var(--paper);
+  stroke: var(--ink);
+  stroke-width: 1.5;
+}
+
+.cover--compact .sketch-node rect {
+  stroke-width: 2.2;
+}
+
+.sketch-node text {
+  font-family: var(--mono);
+  font-weight: 500;
+  fill: var(--ink);
+}
+
+.sketch-node--primary rect {
+  fill: var(--ink);
+}
+
+.sketch-node--primary text {
+  fill: var(--paper);
+}
+
+.sketch-node--core rect {
+  fill: var(--paper-3);
+  stroke: var(--ink-2);
+  stroke-dasharray: 4 4;
+}
+
+.sketch-index {
+  font-family: var(--serif);
+  font-style: italic;
+  fill: var(--accent);
+}
+
+.sketch-caption {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  fill: var(--muted);
+}
+
+/* Stacked text version, phones only */
+.sketch-stack {
+  display: none;
+}
+
+@media (max-width: 599px) {
+  .cover:not(.cover--compact) svg {
+    display: none;
+  }
+
+  .sketch-stack {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: 28px 20px 32px;
+    background-image: radial-gradient(
+      color-mix(in srgb, var(--ink) 12%, transparent) 1px,
+      transparent 1px
+    );
+    background-size: 18px 18px;
+  }
+
+  .sketch-stack-index {
+    align-self: flex-start;
+    font-size: 36px;
+    font-style: italic;
+    line-height: 1;
+    color: var(--accent);
+  }
+
+  .sketch-stack-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .sketch-stack-row li {
+    padding: 8px 14px;
+    border: 1.5px solid var(--ink);
+    border-radius: 999px;
+    background: var(--paper);
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 500;
+  }
+
+  .sketch-stack-row.is-core li:first-child {
+    background: var(--ink);
+    color: var(--paper);
+  }
+
+  .sketch-stack-row.is-core li + li {
+    border-style: dashed;
+    border-color: var(--ink-2);
+    background: var(--paper-3);
+  }
+
+  .sketch-stack-arrow {
+    font-size: 18px;
+    line-height: 1;
+    color: var(--muted);
+  }
+}

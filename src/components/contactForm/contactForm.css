@@ -1,102 +1,340 @@
-/* contactForm.css */
-
-/* General styles */
-.footer {
-  font-family: Arial, sans-serif;
-  color: #333;
-  padding: 20px;
-  display: flex; /* Use flexbox for centering */
-  justify-content: center; /* Horizontally center content */
-  align-items: center; /* Vertically center content */
+.contact {
+  padding: var(--section) 0 32px;
+  border-top: 1px solid var(--rule);
+  background: var(--paper-2);
 }
 
-/* Light mode */
-.light-mode {
-  background-color: #f0f0f0;
+.contact-label {
+  margin-bottom: 32px;
 }
 
-/* Dark mode */
-.dark-mode {
-  background-color: #333;
-  color: #fff;
+.contact-title {
+  font-size: clamp(54px, 9vw, 140px);
+  max-width: 12ch;
 }
 
-/* Form container */
-.contact-form-container {
-  max-width: 500px;
-  text-align: center; /* Center align text */
+.contact-email {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25em;
+  margin-top: clamp(32px, 4vw, 48px);
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--rule-strong);
+  font-size: clamp(26px, 4vw, 52px);
+  line-height: 1.1;
+  text-decoration: none;
+  overflow-wrap: anywhere;
+  transition: color 0.3s ease, border-color 0.3s ease;
 }
 
-/* Form elements */
-input[type="text"],
-input[type="email"],
-input[type="tel"],
-textarea {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  box-sizing: border-box;
+.contact-email svg {
+  flex-shrink: 0;
+  font-size: 0.7em;
+  transition: transform 0.4s var(--ease);
 }
 
-/* Send button */
-.send-button {
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  border-radius: 20px;
-  padding: 15px 180px; /* Adjusted padding for the button */
-  cursor: pointer;
-  margin-top: 20px;
-  justify-content: center;
+.contact-email:hover {
+  color: var(--accent);
+  border-color: var(--accent);
 }
 
-/* Send button hover effect */
-.send-button:hover {
-  background-color: #0056b3;
+.contact-email:hover svg {
+  transform: translate(4px, -4px);
 }
 
-/* Result message */
-.result-message,
-.error-message {
-  margin-top: 10px;
-  font-size: 14px;
+.contact-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr);
+  gap: 48px clamp(48px, 8vw, 128px);
+  margin-top: clamp(64px, 8vw, 112px);
 }
 
-/* Footer links */
-.footer-links {
-  margin-top: 15px;
+.contact-links {
+  align-self: start;
+  border-top: 1px solid var(--rule-strong);
+}
+
+.contact-link {
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--rule);
+  font-size: 20px;
+  text-decoration: none;
+  transition: color 0.2s ease, padding-left 0.4s var(--ease);
 }
 
-/* Margin between social links */
-.social-link {
-  margin-right: 1rem;
+.contact-link:hover {
+  color: var(--accent);
+  padding-left: 8px;
 }
 
-/* LinkedIn icon */
-.linkedin-icon {
-  width: 30px;
-  height: 30px;
-  margin-left: 15rem;
+.contact-link-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
 }
 
-/* Media queries for smaller screens */
-@media only screen and (max-width: 768px) {
-  .contact-form-container {
-    max-width: 90%;
-    padding: 0 10px;
+.contact-link-icon {
+  font-size: 20px;
+  color: #1f9d55;
+}
+
+.contact-place {
+  padding-top: 18px;
+}
+
+/* Form: underlined fields, no boxes */
+.contact-form {
+  display: grid;
+  gap: 24px;
+  align-content: start;
+}
+
+.field-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.field {
+  display: grid;
+  align-content: start;
+  gap: 4px;
+}
+
+.field-required {
+  color: var(--accent);
+}
+
+.field-legend {
+  margin-top: -8px;
+}
+
+.field-legend span {
+  color: var(--accent);
+}
+
+.field input::placeholder,
+.field textarea::placeholder {
+  color: var(--muted);
+  opacity: 0.6;
+}
+
+/* Inline validation */
+.field-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  min-height: 20px;
+}
+
+.field-error {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  margin: 2px 0 0;
+  font-size: 14px;
+  line-height: 1.4;
+  color: var(--danger);
+  animation: rise 0.3s var(--ease) both;
+}
+
+.field-error svg {
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.field-hint {
+  flex-shrink: 0;
+  padding-top: 4px;
+  font-size: 11px;
+}
+
+.field.has-error input,
+.field.has-error textarea {
+  border-bottom-color: var(--danger);
+}
+
+.field.has-error input:focus,
+.field.has-error textarea:focus {
+  border-bottom-color: var(--danger);
+  box-shadow: 0 1px 0 0 var(--danger);
+}
+
+.select-wrap {
+  position: relative;
+}
+
+.select-icon {
+  position: absolute;
+  top: 50%;
+  right: 2px;
+  font-size: 18px;
+  color: var(--muted);
+  transform: translateY(-50%);
+  pointer-events: none;
+  transition: transform 0.3s var(--ease), color 0.2s ease;
+}
+
+.select-wrap:focus-within .select-icon {
+  color: var(--accent);
+}
+
+.field input,
+.field textarea,
+.field select {
+  width: 100%;
+  padding: 10px 0;
+  border: none;
+  border-bottom: 1px solid var(--rule-strong);
+  border-radius: 0;
+  background: transparent;
+  color: var(--ink);
+  font: inherit;
+  font-size: 18px;
+  resize: vertical;
+  transition: border-color 0.3s ease;
+}
+
+/* Browser autofill paints inputs light blue; keep the form's own colours. */
+.field input:-webkit-autofill,
+.field input:-webkit-autofill:hover,
+.field input:-webkit-autofill:focus {
+  -webkit-text-fill-color: var(--ink);
+  caret-color: var(--ink);
+  -webkit-box-shadow: 0 0 0 1000px var(--paper-2) inset;
+  transition: background-color 600000s 0s;
+}
+
+.field input:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0 1000px var(--paper-2) inset, 0 1px 0 0 var(--accent);
+}
+
+.field select {
+  appearance: none;
+  padding-right: 32px;
+  cursor: pointer;
+}
+
+.field select option {
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.field input:focus,
+.field textarea:focus,
+.field select:focus {
+  outline: none;
+  border-bottom-color: var(--accent);
+  box-shadow: 0 1px 0 0 var(--accent);
+}
+
+.form-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px 24px;
+}
+
+.form-actions .btn:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+.form-status {
+  min-height: 1.5em;
+  margin-top: -8px;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.form-status strong {
+  font-weight: 600;
+}
+
+.form-status .link {
+  font-weight: 500;
+}
+
+/* WhatsApp's own green, so the channel is recognisable at a glance */
+.btn-whatsapp {
+  border-color: #1f9d55;
+  color: #1a7f46;
+}
+
+.btn-whatsapp svg {
+  font-size: 18px;
+}
+
+.btn-whatsapp:hover {
+  background: #1f9d55;
+  border-color: #1f9d55;
+  color: #ffffff;
+}
+
+:root[data-theme="dark"] .btn-whatsapp {
+  color: #4cd38a;
+  border-color: #4cd38a;
+}
+
+:root[data-theme="dark"] .btn-whatsapp:hover {
+  background: #4cd38a;
+  color: #12110f;
+}
+
+/* Mail and WhatsApp icons aren't arrows, so they shouldn't nudge on hover */
+.form-actions .btn:hover svg {
+  transform: none;
+}
+
+.form-status.success {
+  color: var(--accent);
+}
+
+.form-status.error,
+.form-status.invalid {
+  color: var(--danger);
+}
+
+.colophon {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px 24px;
+  margin-top: clamp(80px, 10vw, 140px);
+  padding-top: 24px;
+  border-top: 1px solid var(--rule);
+}
+
+.colophon-name {
+  font-size: 28px;
+  font-style: italic;
+}
+
+.colophon-top {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.colophon-top:hover {
+  color: var(--ink);
+}
+
+@media (max-width: 899px) {
+  .contact-grid {
+    grid-template-columns: 1fr;
   }
+}
 
-  .send-button {
-    padding: 15px 50px;
-  }
-
-  .footer-links .social-link {
-    margin-right: 0.5rem;
-    margin-top: 10px;
-    text-align: center;
+@media (max-width: 479px) {
+  .field-row {
+    grid-template-columns: 1fr;
   }
 }

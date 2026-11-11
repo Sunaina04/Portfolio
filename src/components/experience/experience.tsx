@@ -1,37 +1,55 @@
 import React from "react";
 import "./experience.css";
-import { useTheme } from "../../context/ThemeContext";
+import SectionHead from "../sectionHead/sectionHead";
+import { experience } from "../../data/portfolio";
 
-const Experience = () => {
-  const { isDarkMode } = useTheme();
-
-  return (
-    <>
-      <div className="exp-title">Work Experience</div>
-      <div
-        className={`expParentContainer ${
-          isDarkMode ? "dark-mode" : "light-mode"
-        }`}
+const Experience = () => (
+  <section id="experience" className="section" aria-labelledby="experience-title">
+    <div className="wrap">
+      <SectionHead
+        index="05"
+        label="Employment"
+        id="experience-title"
+        title={
+          <>
+            6+ years at Genboot, from <em>engineer</em> to project manager.
+          </>
+        }
       >
-        {" "}
-        <div
-          className={`exp-container ${isDarkMode ? "dark-mode" : "light-mode"}`}
-        >
-          <div className="exp-subtitle">
-            Software Engineer at Genboot (June 2022 – Present)
-          </div>
-          <p className="exp-text">
-            As a Software Engineer at Genboot, I developed and implemented
-            software applications, ensuring their functionality and performance.
-            I conducted thorough testing and collaborated closely with my team
-            to enhance our projects. Additionally, I actively pursued learning
-            opportunities to improve our software solutions and fostered
-            effective communication within the team.
-          </p>
-        </div>
-      </div>
-    </>
-  );
-};
+        <p>
+          My full-time employment history. The services above are offered independently, outside
+          this role.
+        </p>
+      </SectionHead>
+
+      <ol className="roles">
+        {experience.map((role) => (
+          <li key={role.title} className={`role${role.current ? " is-current" : ""}`} data-reveal>
+            <div className="role-dates">
+              <span className="mono">
+                {role.start} — {role.end}
+              </span>
+              {role.current && <span className="role-badge mono">Current</span>}
+            </div>
+            <div className="role-head">
+              <h3 className="role-title display">{role.title}</h3>
+              <p className="role-company">
+                {role.company} · {role.location}
+              </p>
+            </div>
+            <div className="role-body">
+              <p className="role-summary">{role.summary}</p>
+              <ul className="role-points">
+                {role.points.map((point) => (
+                  <li key={point}>{point}</li>
+                ))}
+              </ul>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+);
 
 export default Experience;

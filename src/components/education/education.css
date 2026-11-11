@@ -1,94 +1,40 @@
-.education-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  padding: 20px;
-  box-sizing: border-box;
+.edu {
+  border-bottom: 1px solid var(--rule);
 }
 
-.dark-mode {
-  background-color: #000000 !important; /* Dark background color */
-  color: white !important;
-  border-color: #ffffff !important;
+.edu-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr) minmax(0, 0.6fr);
+  gap: 12px 48px;
+  align-items: baseline;
+  padding: 28px 0;
+  border-top: 1px solid var(--rule);
 }
 
-.light-mode {
-  background-color: white; /* Light background color */
-  color: black;
-  border-color: #000000 !important;
+.edu-degree {
+  font-size: clamp(26px, 2.6vw, 36px);
+  line-height: 1.1;
 }
 
-.timeline {
-  position: relative;
-  max-width: 1200px;
-  margin: 0 auto;
+.edu-school {
+  margin-top: 6px;
+  color: var(--muted);
 }
 
-.timeline::after {
-  content: "";
-  position: absolute;
-  width: 4px;
-  /* background-color: white; */
-  top: 0;
-  bottom: 0;
-  left: 50%;
-  margin-left: -3px;
+.edu-score {
+  justify-self: end;
+  font-size: clamp(26px, 2.6vw, 36px);
+  font-style: italic;
+  color: var(--accent);
+  white-space: nowrap;
 }
 
-h1 {
-  color: rgb(221, 151, 0);
-}
+@media (max-width: 699px) {
+  .edu-row {
+    grid-template-columns: 1fr auto;
+  }
 
-.education-item {
-  display: flex;
-  align-items: center;
-  margin-bottom: 20px;
-}
-
-.box {
-  width: 45%;
-  padding: 20px;
-  /* border: 1px solid white; */
-  border-radius: 10px;
-  /* color: white; */
-}
-
-.left-box {
-  margin-right: 20px;
-}
-
-.right-box {
-  margin-left: 45px;
-}
-
-.line {
-  width: 2px;
-  /* background-color: #fff; */
-  height: 100%;
-}
-
-.left-box .period,
-.right-box .period {
-  margin: 0;
-  text-align: center;
-}
-
-.left-box h2,
-.right-box h2 {
-  margin-top: 0;
-}
-
-.logo-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 20px;
-}
-
-.logo {
-  width: 50px;
-  height: auto;
-  margin-top: -380px;
+  .edu-row > .mono {
+    grid-column: 1 / -1;
+  }
 }
